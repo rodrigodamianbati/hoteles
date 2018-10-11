@@ -83,6 +83,8 @@ class Usuario extends CI_Controller{
         $this->load->view("registro");
     }
 
+    
+
     //controlador para modificar al que 
     //le paso por la url un parametro
     public function mod($id){
