@@ -31,10 +31,10 @@ class Usuario_model extends CI_Model{
         }
     }
 
-    public function agregar($email,$contraseña,$nombre,$apellido,$fecha_nacimiento){
+    public function agregar($email,$contraseña,$nombre,$apellido){
         $consulta=$this->db->query("SELECT email FROM usuario WHERE email LIKE '$email'");
         if($consulta->num_rows()==0){
-            $consulta=$this->db->query("INSERT INTO usuario VALUES(NULL, NULL,'$nombre','$apellido','$email','$contraseña','$fecha_nacimiento');");
+            $consulta=$this->db->query("INSERT INTO usuario VALUES(NULL, NULL,'$nombre','$apellido','$email','$contraseña', NULL, NULL, NULL, NULL, NULL);");
             if($consulta==true){
               return true;
             }else{

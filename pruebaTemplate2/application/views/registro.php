@@ -28,19 +28,19 @@
       <div class="card card-register mx-auto mt-5">
         <div class="card-header">Registrar una cuenta</div>
         <div class="card-body">
-          <form action="<?=base_url("Usuario/registrar");?>" method="post">
+          <form action="<?=base_url("usuario/registrar");?>" method="post">
             <div class="form-group">
               <div class="form-row">
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="text" id="firstName" class="form-control" placeholder="Nombre" required="required" autofocus="nombre">
-                    <label for="firstName">Nombre</label>
+                    <input type="text" class="form-control" placeholder="Nombre" required="required" autofocus="nombre" name="nombre">
+                    <label for="nombre">Nombre</label>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="text" id="lastName" class="form-control" placeholder="Apellido" required="required" name="apellido">
-                    <label for="lastName">Apellido</label>
+                    <input type="text" class="form-control" placeholder="Apellido" required="required" name="apellido">
+                    <label for="apellido">Apellido</label>
                   </div>
                 </div>
               </div>
@@ -67,10 +67,10 @@
                 </div>
               </div>
             </div>
-            <a class="btn btn-primary btn-block" href="login.html">Registro</a>
+            <input class="btn btn-primary btn-block" type="submit" name="submit" value="Registrar"/>
           </form>
           <div class="text-center">
-            <a class="d-block small mt-3" href="login.html">Ingreso</a>
+            <a class="d-block small mt-3">Ingreso</a>
           </div>
         </div>
       </div>

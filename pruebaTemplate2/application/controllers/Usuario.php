@@ -24,7 +24,7 @@ class Usuario extends CI_Controller{
         $usuario["ver"]=$this->Usuario_model->ver();
          
         //cargo la vista y le paso los datos
-        $this->load->view("Usuario_view",$usuario);
+        $this->load->view("usuario_view",$usuario);
     }
      
     //controlador para añadir
@@ -65,8 +65,7 @@ class Usuario extends CI_Controller{
                 $this->input->post("email"),
                 $this->input->post("contraseña"),
                 $this->input->post("nombre"),
-                $this->input->post("apellido"),
-                $this->input->post("fecha_nacimiento")
+                $this->input->post("apellido")
                 );
         }
         if($agregar==true){
@@ -89,7 +88,7 @@ class Usuario extends CI_Controller{
     public function mod($id){
         if(is_numeric($id)){
           $datos["mod"]=$this->Usuario_model->mod($id);
-          $this->load->view("Modificar_view",$datos);
+          $this->load->view("modificar_view",$datos);
           if($this->input->post("submit")){
                 $mod=$this->Usuario_model->mod(
                         $id,
