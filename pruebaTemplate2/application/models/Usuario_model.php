@@ -71,6 +71,14 @@ class Usuario_model extends CI_Model{
        }
     }
  
+    public function esUsuario($email, $contraseña){
+        $consulta=$this->db->query("SELECT FROM usuario WHERE email=$email AND contraseña=$contraseña");
+        if($consulta==true){
+            return true;
+        }else{
+            return false;
+        }
+    }
  
 }
 ?>
