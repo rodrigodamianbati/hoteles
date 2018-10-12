@@ -18,7 +18,7 @@ class Login extends CI_Controller{
         $this->load->view("login");
     }
 
-    public function iniciar_sesion($email, $contraseña){
+    public function iniciar_sesion(){
         //compruebo si se a enviado submit
         if($this->input->post("submit")){
          
@@ -29,17 +29,26 @@ class Login extends CI_Controller{
                     );
             }
             if($identificar==true){
+
                 //Sesion de una sola ejecución
                 $this->session->set_flashdata('correcto', 'Usted ha iniciado sesion correctamente');
+
+                $nuevaSesion = array(
+                    'email'  => $email,
+                    'logged_in' => TRUE
+                );
+ 
+                $this->session->set_userdata($nuevaSesion);
+                
+                redirect('usuario');
             }else{
                 $this->session->set_flashdata('incorrecto', 'Usted no se ha iniciado sesion correctamente');
+                redirect();
             }
-            //recargo la pagina
-            redirect();
     }
 
     public function cerrar_sesion(){
-        
+        session_destroy();
     }
 }
 ?>
