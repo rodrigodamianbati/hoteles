@@ -28,10 +28,10 @@
       <div class="card card-login mx-auto mt-5">
         <div class="card-header">Login</div>
         <div class="card-body">
-          <form action="<?=base_url("login/login");?>" method="post">
+          <form action="<?=base_url("login/iniciar_sesion");?>" method="post">
             <div class="form-group">
               <div class="form-label-group">
-                <input type="email" class="form-control" required="required" autofocus="autofocus" name=email placeholder="Email">
+                <input type="email" class="form-control" required="required" autofocus="autofocus" name="email" placeholder="Email">
               </div>
             </div>
             <div class="form-group">

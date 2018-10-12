@@ -18,7 +18,7 @@ class Login extends CI_Controller{
         $this->load->view("login");
     }
 
-    public function login($email, $contraseña){
+    public function iniciar_sesion($email, $contraseña){
         //compruebo si se a enviado submit
         if($this->input->post("submit")){
          
