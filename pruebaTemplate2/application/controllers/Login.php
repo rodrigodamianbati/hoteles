@@ -11,10 +11,21 @@ class Login extends CI_Controller{
         $this->load->model("Usuario_model");
          
         $this->load->library("session");
+
+        if (isset($_SESSION['email'])){
+            redirect('usuario');
+        }
     }
      
     public function index(){
         //cargo la vista y le paso los datos
+        /////////////////////////////////////cambiar logged_in por el nombre del array y probar si es eso
+    
+        if ($this->session->userdata('logged_in'== FALSE)) {
+            redirect('login');
+        }else{
+            redirect('usuario');
+        }
         $this->load->view("login");
     }
 
@@ -49,6 +60,7 @@ class Login extends CI_Controller{
 
     public function cerrar_sesion(){
         session_destroy();
+        redirect('login');
     }
 }
 ?>

@@ -14,11 +14,15 @@ class Usuario extends CI_Controller{
          
         //cargo la libreria de sesiones
         $this->load->library("session");
+
     }
      
     //controlador por defecto
     public function index(){
-         
+        
+        if ($this->session->userdata('logged_in'== FALSE)) {
+            redirect('login');
+        }
         //array asociativo con la llamada al metodo
         //del modelo
         $usuario["ver"]=$this->Usuario_model->ver();
@@ -83,7 +87,9 @@ class Usuario extends CI_Controller{
         $this->load->view("registro");
     }
 
-    
+    public function cerrar_sesion(){
+        $this->session->sess_destroy();
+    }    
 
     //controlador para modificar al que 
     //le paso por la url un parametro

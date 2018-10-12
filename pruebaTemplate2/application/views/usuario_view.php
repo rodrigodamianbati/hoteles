@@ -314,7 +314,7 @@
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
             <!--<a class="btn btn-primary" href="<//?php echo base_url()."assets"; ?>login.html">Logout</a>-->
-            <a class="btn btn-primary" href="<?=base_url("usuario/registro");?>"> Logout</a>
+            <a class="btn btn-primary" href="<?=base_url("login/cerrar_sesion");?>"> Logout</a>
 
             <!--PROBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANDO REGISTRO-->
           </div>
