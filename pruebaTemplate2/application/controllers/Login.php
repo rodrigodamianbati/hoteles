@@ -20,13 +20,16 @@ class Login extends CI_Controller{
     public function index(){
         //cargo la vista y le paso los datos
         /////////////////////////////////////cambiar logged_in por el nombre del array y probar si es eso
-    
-        if ($this->session->userdata('logged_in'== FALSE)) {
-            redirect('login');
-        }else{
+        
+        //$data = $this->session->all_userdata();
+        //print_r($data);
+        //if ($this->session->userdata('logged_in'== TRUE)) {
+        if(isset($this->session->userdata['logged_in'])){
             redirect('usuario');
+        }else{
+            $this->load->view("login");
         }
-        $this->load->view("login");
+        
     }
 
     public function iniciar_sesion(){
