@@ -33,13 +33,13 @@
               <div class="form-row">
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="text" class="form-control" placeholder="Nombre" required="required" autofocus="nombre" name="nombre">
+                    <input type="text" id="nombre" class="form-control" placeholder="Nombre" required="required" name="nombre">
                     <label for="nombre">Nombre</label>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="text" class="form-control" placeholder="Apellido" required="required" name="apellido">
+                    <input type="text" id="apellido" class="form-control" placeholder="Apellido" required="required" name="apellido">
                     <label for="apellido">Apellido</label>
                   </div>
                 </div>

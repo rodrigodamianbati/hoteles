@@ -20,7 +20,7 @@ class Usuario extends CI_Controller{
     //controlador por defecto
     public function index(){
         
-        if ($this->session->userdata('logged_in'== FALSE)) {
+        if(!isset($this->session->userdata['logged_in'])){
             redirect('login');
         }
         //array asociativo con la llamada al metodo

@@ -18,12 +18,9 @@ class Login extends CI_Controller{
     }
      
     public function index(){
-        //cargo la vista y le paso los datos
-        /////////////////////////////////////cambiar logged_in por el nombre del array y probar si es eso
         
-        //$data = $this->session->all_userdata();
-        //print_r($data);
-        //if ($this->session->userdata('logged_in'== TRUE)) {
+        //si el usuario se encuentra logueado se redirecciona a su perfil o home o lo que sea
+
         if(isset($this->session->userdata['logged_in'])){
             redirect('usuario');
         }else{
