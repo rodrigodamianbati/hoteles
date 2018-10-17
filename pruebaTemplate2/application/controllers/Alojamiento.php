@@ -12,7 +12,7 @@ class Alojamiento extends CI_Controller{
          
         $this->load->library("session");
 
-        $this->load->library('upload');
+        //$this->load->library('upload');
 
     }
 
@@ -34,7 +34,7 @@ class Alojamiento extends CI_Controller{
         $estado_encode = json_encode($estado);
         echo $estado_encode;*/
 
-        /*$config['upload_path']          = base_url().'fotos_alojamientos';
+        /*      $config['upload_path']          = base_url().'fotos_alojamientos';
                                         
                 $config['allowed_types']        = 'gif|jpg|png';
                 $config['max_size']             = 100;
@@ -61,34 +61,35 @@ class Alojamiento extends CI_Controller{
                 echo $estado;*/
                 //print_r($_FILES);
 		//$this->load->library("upload");
-		$config = array(
-			"upload_path" => base_url().'fotos_alojamientos',
-			'allowed_types' => "gif|jpg|png"
-		);
-		$variablefile= $_FILES;
-		//$info = array();
-        //$files = count($_FILES['qqfile']['name']);
+		$config['upload_path']          = base_url().'fotos_alojamientos';
+                                        
+                $config['allowed_types']        = 'gif|jpg|png';
+                $config['max_size']             = 2048;
+                $config['max_width']            = 1024;
+                $config['max_height']           = 768;
+		//$variablefile= $_FILES;
 
-		$_FILES['qqfile']['name'] = $variablefile['qqfile']['name'];
-		$_FILES['qqfile']['type'] = $variablefile['qqfile']['type'];
-		$_FILES['qqfile']['tmp_name'] = $variablefile['qqfile']['tmp_name'];
-		$_FILES['qqfile']['error'] = $variablefile['qqfile']['error'];
-		$_FILES['qqfile']['size'] = $variablefile['qqfile']['size'];
-		$this->upload->initialize($config);
-		if ($this->upload->do_upload('qqfile')) {
-				/*$data = array("upload_data" => $this->upload->data());
-				$datos = array(
-					"name" => $data['upload_data']['file_name'],
-				);*/
+
+		//$_FILES['qqfile']['name'] = $variablefile['qqfile']['name'];
+		//$_FILES['qqfile']['type'] = $variablefile['qqfile']['type'];
+		//$_FILES['qqfile']['tmp_name'] = $variablefile['qqfile']['tmp_name'];
+		//$_FILES['qqfile']['error'] = $variablefile['qqfile']['error'];
+        //$_FILES['qqfile']['size'] = $variablefile['qqfile']['size'];
+        
+        $this->load->library('upload', $config);
+        //$this->upload->initialize($config);
+        //print_r($_FILES["qqfile"]["name"]);
+        //die();
+       
+        
+
+		if ($this->upload->do_upload($_FILES['qqfile'])) {
 			$estado = array('success' => true );
 		}
 		else{
-			//echo $this->upload->display_errors();
-			//$info[$i] = array(
-			//"archivo" => $_FILES['qqfile']['name'],
-            //"mensaje" => "Archivo no subido ni guardado"
-        //);
-		$estado = array('success' => false );
+            $estado = array('success' => false );
+            $error = array('error' => $this->upload->display_errors()); 
+            print_r($error);
         }
         
         $estado_encode = json_encode($estado);
