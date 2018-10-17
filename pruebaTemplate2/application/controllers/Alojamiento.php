@@ -40,7 +40,7 @@ class Alojamiento extends CI_Controller{
         
 		if (!$this->upload->do_upload('qqfile')) {
             $estado = array('error' => $this->upload->display_errors() );
-            $error = array('error' => $this->upload->display_errors());
+            //$error = array('error' => $this->upload->display_errors());
             http_response_code(500);
 		}
 		else{
