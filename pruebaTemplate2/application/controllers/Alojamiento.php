@@ -27,6 +27,14 @@ class Alojamiento extends CI_Controller{
 
     }
 
+    public function alta(){
+        
+    }
+
+    public function tipo(){
+        return $this->Usuario_model->tipo();
+    }
+
     public function subir_foto(){
         
 		$config['upload_path']          = '/var/www/html/pruebaTemplate2/fotos_alojamientos/';
@@ -39,8 +47,9 @@ class Alojamiento extends CI_Controller{
         $this->load->library('upload', $config);
         
 		if (!$this->upload->do_upload('qqfile')) {
+
             $estado = array('error' => $this->upload->display_errors() );
-            //$error = array('error' => $this->upload->display_errors());
+            
             http_response_code(500);
 		}
 		else{

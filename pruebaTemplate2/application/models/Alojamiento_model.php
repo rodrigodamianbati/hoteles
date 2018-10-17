@@ -8,6 +8,17 @@ class Alojamiento_model extends CI_Model{
         parent::__construct(); 
         
     }
+
+    public function index(){
+
+    }
+
+    protected function tipo(){
+
+        $this->db->select('descripcion');
+        $consulta= $this->db->get('tipo_aloj');
+         
+    }
 }
 
 
