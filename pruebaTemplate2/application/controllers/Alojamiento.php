@@ -23,7 +23,7 @@ class Alojamiento extends CI_Controller{
             redirect('login');
         }
         */
-        $this->load->view("alta_alojamiento_view");
+        $this->load->view("alta_alojamiento_fotos_view");
 
     }
 
@@ -39,15 +39,15 @@ class Alojamiento extends CI_Controller{
         $this->load->library('upload', $config);
         
 		if (!$this->upload->do_upload('qqfile')) {
-            $estado = array('success' => false );
-            $error = array('error' => $this->upload->display_errors()); 
-            print_r($error);
+            $estado = array('error' => $this->upload->display_errors() );
+            $error = array('error' => $this->upload->display_errors());
 		}
 		else{
             $estado = array('success' => true );
         }
         
         $estado_encode = json_encode($estado);
+        http_response_code(500);
         echo $estado_encode;
     }
 }

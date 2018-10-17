@@ -102,7 +102,7 @@
         }
     </style>
 
-    <title>Fine Uploader Manual Upload Trigger Demo</title>
+    <title>Nuevo Alojamiento</title>
 </head>
 <body>
     <!-- Fine Uploader DOM Element
