@@ -27,7 +27,7 @@ class Alojamiento extends CI_Controller{
 
     }
 
-    public function subir(){
+    public function subir_foto(){
         
 		$config['upload_path']          = '/var/www/html/pruebaTemplate2/fotos_alojamientos/';
         

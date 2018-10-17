@@ -116,7 +116,7 @@
             element: document.getElementById('fine-uploader-manual-trigger'),
             template: 'qq-template-manual-trigger',
             request: {
-                endpoint: '<?php echo base_url('alojamiento/subir'); ?>'
+                endpoint: '<?php echo base_url('alojamiento/subir_foto'); ?>'
             },
             thumbnails: {
                 placeholders: {
