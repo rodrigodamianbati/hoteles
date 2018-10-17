@@ -2431,7 +2431,7 @@
                     endpoint: "/server/upload",
                     filenameParam: "qqfilename",
                     forceMultipart: true,
-                    inputName: "qqfile",
+                    inputName: "qqfile", //qqfile
                     method: "POST",
                     omitDefaultParams: false,
                     params: {},
