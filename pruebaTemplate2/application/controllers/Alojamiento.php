@@ -31,7 +31,25 @@ class Alojamiento extends CI_Controller{
     }
 
     public function alta(){
-        
+        if($this->input->post("submit")){
+         
+            //llamo al metodo agregar
+            $agregar=$this->Alojamiento_model->agregar(
+                    $this->input->post("email"),
+                    $this->input->post("contraseña"),
+                    $this->input->post("nombre"),
+                    $this->input->post("apellido")
+                    );
+            }
+            if($agregar==true){
+                //Sesion de una sola ejecución
+                $this->session->set_flashdata('correcto', 'Usted se ha registrado correctamente');
+            }else{
+                $this->session->set_flashdata('incorrecto', 'Usted se ha registrado correctamente');
+            }
+             
+            //redirecciono la pagina a la url por defecto
+            redirect(base_url());
     }
 
     public function tipos(){
