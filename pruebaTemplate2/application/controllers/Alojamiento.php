@@ -23,7 +23,10 @@ class Alojamiento extends CI_Controller{
             redirect('login');
         }
         */
-        $this->load->view("alta_alojamiento_fotos_view");
+        $tipos = $this->tipos();
+        
+
+        $this->load->view("alta_alojamiento_view", $tipos);
 
     }
 
@@ -31,8 +34,11 @@ class Alojamiento extends CI_Controller{
         
     }
 
-    public function tipo(){
-        return $this->Usuario_model->tipo();
+    public function tipos(){
+
+        $consulta['tipos']=$this->Alojamiento_model->tipos();
+    
+        return $consulta;
     }
 
     public function subir_foto(){

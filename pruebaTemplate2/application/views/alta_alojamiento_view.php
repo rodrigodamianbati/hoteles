@@ -36,15 +36,19 @@
 
                     <select name="tipo" class="form-control" name="tipo" placeholder="Tipo">
                         <?php
-                        $tipos=base_url("alojamiento/tipo");
-                        foreach ($tipos as $tipo) {
-                            echo "<option value='$tipo'>$tipo</option>";
-                        }
+                         
+                          foreach ($tipos as $tipo) {
+                          
+                          ?>
+                            
+                            <option value='<?php echo $tipo->id;?>'><?php echo $tipo->descripcion;?></option>;
+
+                          <?php
+
+                          }
                         ?>
                     </select> 
 
-                    <input type="text" id="tipo" class="form-control" placeholder="Tipo" required="required" name="tipo">
-                    <label for="tipo">Tipo</label>
                   </div>
                 </div>
                 <div class="col-md-6">

@@ -13,11 +13,11 @@ class Alojamiento_model extends CI_Model{
 
     }
 
-    protected function tipo(){
+    public function tipos(){
 
         $this->db->select('descripcion');
         $consulta= $this->db->get('tipo_aloj');
-         
+    return $consulta->result();
     }
 }
 
