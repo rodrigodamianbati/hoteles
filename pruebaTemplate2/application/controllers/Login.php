@@ -44,7 +44,10 @@ class Login extends CI_Controller{
                 //Sesion de una sola ejecución
                 $this->session->set_flashdata('correcto', 'Usted ha iniciado sesion correctamente');
 
+                $id = $this->Usuario_model->id();
+
                 $nuevaSesion = array(
+                    'id' => $id,
                     'email'  => $email,
                     'logged_in' => TRUE
                 );
