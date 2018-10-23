@@ -13,11 +13,11 @@ class Alojamiento_model extends CI_Model{
 
     }
 
-    public function agregar(){
+    public function agregar($tipo, $precio, $direccion_nombre, $direccion_numero){
         $consulta=$this->db->query("SELECT id FROM alojamiento WHERE (direccion_nombre='$direccion_nombre' AND direccion_numero='$direccion_numero')");
         if($consulta->num_rows()==0){
-            $sesion=$_SESSION['id'];
-            $consulta=$this->db->query("INSERT INTO alojamiento VALUES(NULL, '$precio','$direccion_nombre','$direccion_numero', NULL, '$session'/*sesion*/, '$tipo');");
+            //$id=$_SESSION['id'];
+            $consulta=$this->db->query("INSERT INTO alojamiento VALUES(NULL, '$precio','$direccion_nombre','$direccion_numero', NULL, '1'/*sesion*/, '$tipo');");
             if($consulta==true){
               return true;
             }else{
@@ -30,10 +30,22 @@ class Alojamiento_model extends CI_Model{
 
     public function tipos(){
 
-        $this->db->select('descripcion');
+        $this->db->select('*');
         $consulta= $this->db->get('tipo_aloj');
     return $consulta->result();
     }
+
+    public function localidades(){
+
+        $this->db->select('*');
+        $consulta= $this->db->get('localidad');
+    return $consulta->result();
+    }
+
+    public function nuevaFoto($id_alojamiento, $path){
+
+    }  
+    
 }
 
 

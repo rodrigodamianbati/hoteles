@@ -1,3 +1,10 @@
+<?php
+  //print_r($localidades);
+
+  //print_r($tipos);
+  //die();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -80,6 +87,27 @@
                     <label for="confirmPassword">Confirmar contraseña</label>
                   </div>
                 </div-->
+                <div class="col-md-6">
+                  <div class="form-label-group">
+
+                    <select id="localidad" name="localidad" class="form-control" name="localidad" placeholder="Localidad">
+                    <label for="localidad">Localidad</label>
+                        <?php
+                            
+                          foreach ($localidades as $localidad) {
+                          
+                          ?>
+                            
+                            <option value='<?php echo $localidad->id;?>'><?php echo $localidad->nombre;?></option>;
+
+                          <?php
+
+                          }
+                        ?>
+                    </select> 
+
+                  </div>
+                </div>
               </div>
             </div>
             <input class="btn btn-primary btn-block" type="submit" name="submit" value="Guardar"/>
