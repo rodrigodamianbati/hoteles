@@ -60,6 +60,7 @@ class Alojamiento extends CI_Controller{
             $agregar=$this->Alojamiento_model->agregar(
                     $this->input->post("tipo"),
                     $this->input->post("precio"),
+                    $this->input->post("id_localidad"),
                     $this->input->post("direccion_nombre"),
                     $this->input->post("direccion_numero")
                     );
@@ -80,18 +81,18 @@ class Alojamiento extends CI_Controller{
         return $this->Alojamiento_model->id_alojamiento($direccion_nombre, $direccion_numero);
     }
 
-    public function subir_foto($id_alojamiento){
+    public function subir_foto(){
         
 		$config['upload_path']          = '/var/www/html/pruebaTemplate2/fotos_alojamientos/';
         
-        $config['allowed_types']        = 'gif|jpg|png';
+        $config['allowed_types']        = 'gif|jpg|png|jpeg';
         $config['max_size']             = 2048000;
         $config['max_width']            = 1024;
         $config['max_height']           = 768;
 
         //$new_name = time().$_FILES["userfiles"]['name'];
-        $numRandom = ran();
-        $numRandom1 = ran();
+        $numRandom = rand();
+        $numRandom1 = rand();
         $nombre = $_FILES['qqfile']['name'].$numRandom.$numRandom1;
         $config['file_name'] = $nombre;
         
