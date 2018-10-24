@@ -2,6 +2,9 @@
 
 class Alojamiento extends CI_Controller{
 
+    //public $id_alojamiento;
+    //public $id = '1';
+
     public function __construct() {
         
         parent::__construct(); 
@@ -23,15 +26,11 @@ class Alojamiento extends CI_Controller{
             redirect('login');
         }
         */
-       
+    
         $tipos = $this->tipos();
         $localidades = $this->localidades();
 
-        //$data = array ('tipos','localidades');
-
         $data = array_merge($tipos, $localidades);
-        //$data['tipos'] = $tipos;
-        //$data['localidades'] = $localidades;
         
         $this->load->view("alta_alojamiento_view", $data);
 
@@ -69,7 +68,10 @@ class Alojamiento extends CI_Controller{
                 //Sesion de una sola ejecución
                 $this->session->set_flashdata('correcto', 'Usted se ha registrado correctamente');
                 $id_alojamiento = $this->id_alojamiento($this->input->post("direccion_nombre"),$this->input->post("direccion_numero"));
+                //print_r($id_alojamiento);
+                //die();
                 $this->load->view("alta_alojamiento_fotos_view", $id_alojamiento);
+                
             }else{
                 $this->session->set_flashdata('incorrecto', 'Usted se ha registrado correctamente');
             }
@@ -85,7 +87,7 @@ class Alojamiento extends CI_Controller{
         
 		$config['upload_path']          = '/var/www/html/pruebaTemplate2/fotos_alojamientos/';
         
-        $config['allowed_types']        = 'gif|jpg|png|jpeg';
+        $config['allowed_types']        = 'gif|jpg|png';
         $config['max_size']             = 2048000;
         $config['max_width']            = 1024;
         $config['max_height']           = 768;
@@ -93,12 +95,15 @@ class Alojamiento extends CI_Controller{
         //$new_name = time().$_FILES["userfiles"]['name'];
         $numRandom = rand();
         $numRandom1 = rand();
-        $nombre = $_FILES['qqfile']['name'].$numRandom.$numRandom1;
+        $nombre = $numRandom.$numRandom1.$_FILES['qqfile']['name'];
         $config['file_name'] = $nombre;
         
         $this->load->library('upload', $config);
 
-        
+        //print_r($_FILES['qqfile']);
+        //die();
+        //print_r($config['file_name']);
+        //die();
 		if (!$this->upload->do_upload('qqfile')) {
 
             $estado = array('error' => $this->upload->display_errors() );
@@ -108,7 +113,9 @@ class Alojamiento extends CI_Controller{
 		else{
             
             $path = '/var/www/html/pruebaTemplate2/fotos_alojamientos/'.$nombre;
-            $this->nuevoPathFoto();
+            $id = $_GET['id'];
+    
+            $this->nuevoPathFoto($id, $path);
             $estado = array('success' => true );
             
         }
@@ -119,7 +126,7 @@ class Alojamiento extends CI_Controller{
     }
 
     private function nuevoPathFoto($id_alojamiento, $path){
-        $this->Alojamiento_model->nuevaFoto($id_alomiento, $path);
+        $this->Alojamiento_model->nuevaFoto($id_alojamiento, $path);
     }
 }
 ?>

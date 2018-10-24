@@ -56,7 +56,7 @@ class Alojamiento_model extends CI_Model{
     }  
 
     public function id_alojamiento($direccion_nombre, $direccion_numero){
-        $consulta=$this->db->query("SELECT id FROM alojamiento WHERE (direccion_nombre='$direccion_nombre' AND direccion_numero='$direccion_numero')");
+        $consulta=$this->db->query("SELECT id FROM alojamiento WHERE (direccion_nombre='$direccion_nombre' AND direccion_numero='$direccion_numero');");
     return $consulta->result();
     }
     

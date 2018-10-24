@@ -1,4 +1,7 @@
-                                    
+<?php 
+    print_r($id_alojamiento->id); 
+    die();
+?>                                   
                                     
 <!DOCTYPE html>
 <html>
@@ -116,7 +119,8 @@
             element: document.getElementById('fine-uploader-manual-trigger'),
             template: 'qq-template-manual-trigger',
             request: {
-                endpoint: '<?php echo base_url('alojamiento/subir_foto?id_alojamiento'); ?>'
+                //endpoint: '<//?php echo base_url('alojamiento/subir_foto?$id_alojamiento'); ?>'
+                endpoint: '<?php echo base_url('alojamiento/subir_foto?id=$id_alojamiento'); ?>'
             },
             thumbnails: {
                 placeholders: {
