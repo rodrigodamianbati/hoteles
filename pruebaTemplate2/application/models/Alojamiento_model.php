@@ -46,7 +46,7 @@ class Alojamiento_model extends CI_Model{
     public function nuevaFoto($id_alojamiento, $path){
         
             //$id=$_SESSION['id'];id	foto_url	id_alojamiento
-            $consulta=$this->db->query("INSERT INTO foto_alojamiento VALUES(NULL,'$path','$id_alojamiento';");
+            $consulta=$this->db->query("INSERT INTO foto_alojamiento VALUES(NULL,'$path','$id_alojamiento');");
             if($consulta==true){
               return true;
             }else{
@@ -57,7 +57,9 @@ class Alojamiento_model extends CI_Model{
 
     public function id_alojamiento($direccion_nombre, $direccion_numero){
         $consulta=$this->db->query("SELECT id FROM alojamiento WHERE (direccion_nombre='$direccion_nombre' AND direccion_numero='$direccion_numero');");
-    return $consulta->result();
+        //print_r($consulta->first_row());
+        //die();
+    return $consulta->first_row();
     }
     
 }

@@ -34,20 +34,19 @@ class Login extends CI_Controller{
         if($this->input->post("submit")){
          
             //verifico que se trate del usuario correcto
-            $identificar=$this->Usuario_model->esUsuario(
+            $identificar=$this->Usuario_model->id(
                     $this->input->post("email"),
                     $this->input->post("contraseña")
                     );
             }
-            if($identificar==true){
+            if($identificar!=null){
 
                 //Sesion de una sola ejecución
                 $this->session->set_flashdata('correcto', 'Usted ha iniciado sesion correctamente');
 
-                $id = $this->Usuario_model->id();
 
                 $nuevaSesion = array(
-                    'id' => $id,
+                    'id' => $identificar,
                     'email'  => $email,
                     'logged_in' => TRUE
                 );

@@ -67,10 +67,10 @@ class Alojamiento extends CI_Controller{
             if($agregar==true){
                 //Sesion de una sola ejecución
                 $this->session->set_flashdata('correcto', 'Usted se ha registrado correctamente');
-                $id_alojamiento = $this->id_alojamiento($this->input->post("direccion_nombre"),$this->input->post("direccion_numero"));
-                //print_r($id_alojamiento);
-                //die();
-                $this->load->view("alta_alojamiento_fotos_view", $id_alojamiento);
+                $data = $this->id_alojamiento($this->input->post("direccion_nombre"),$this->input->post("direccion_numero"));
+                //print_r($idalojamiento);
+                //die(); <--------------------------------------------------------acaaaaaaaaaaaaaaaaaaaaaaaa va la prueba
+                $this->load->view("alta_alojamiento_fotos_view", array('id_alojamiento' => $data));
                 
             }else{
                 $this->session->set_flashdata('incorrecto', 'Usted se ha registrado correctamente');
@@ -114,6 +114,9 @@ class Alojamiento extends CI_Controller{
             
             $path = '/var/www/html/pruebaTemplate2/fotos_alojamientos/'.$nombre;
             $id = $_GET['id'];
+
+            //print_r($_GET['id']);
+            //die();
     
             $this->nuevoPathFoto($id, $path);
             $estado = array('success' => true );
