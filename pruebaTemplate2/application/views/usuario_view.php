@@ -105,9 +105,9 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">Login Screens:</h6>
-            <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>login.html">Login</a>
-            <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>register.html">Register</a>
-            <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>forgot-password.html">Forgot Password</a>
+            <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>login.html">Inicio de sesion</a>
+            <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>register.html">Registro</a>
+            <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>forgot-password.html">Olvide mi contraseña</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">Other Pages:</h6>
             <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>404.html">404 Page</a>
@@ -214,7 +214,7 @@
             <div class="card-body">
               <canvas id="myAreaChart" width="100%" height="30"></canvas>
             </div>
-            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+            <div class="card-footer small text-muted">Actualizado ayer a las 11:59 PM</div>
           </div>
 
           <!-- DataTables Example -->
@@ -284,7 +284,7 @@
         <footer class="sticky-footer">
           <div class="container my-auto">
             <div class="copyright text-center my-auto">
-              <span>Copyright © Your Website 2018</span>
+              <span>Copyright © Rodrigo 2018</span>
             </div>
           </div>
         </footer>
@@ -305,16 +305,16 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <h5 class="modal-title" id="exampleModalLabel">¿Listo para salir?</h5>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-body">Seleccione "Cerrar Sesion" debajo si esta listo para cerrar la sesion.</div>
           <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
             <!--<a class="btn btn-primary" href="<//?php echo base_url()."assets"; ?>login.html">Logout</a>-->
-            <a class="btn btn-primary" href="<?=base_url("login/cerrar_sesion");?>"> Logout</a>
+            <a class="btn btn-primary" href="<?=base_url("login/cerrar_sesion");?>">Cerrar Sesion</a>
 
             <!--PROBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANDO REGISTRO-->
           </div>

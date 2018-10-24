@@ -73,10 +73,10 @@ class Usuario_model extends CI_Model{
  
     public function id($email, $contraseña){
         // $consulta=$this->db->query("SELECT * FROM usuario WHERE (email='$email' AND contraseña='$contraseña')");
-        $this->db->select('*');
+        $this->db->select('id');
         $this->db->where('email',$email);
         $this->db->where('contraseña',$contraseña);
-        $consulta= $this->db->get('id');
+        $consulta= $this->db->get('usuario');
         
         if($consulta->num_rows()>0){
             return $consulta->first_row();
