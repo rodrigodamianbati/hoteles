@@ -2,8 +2,6 @@
 
 class Alojamiento extends CI_Controller{
 
-    //public $id_alojamiento;
-    //public $id = '1';
 
     public function __construct() {
         
@@ -51,7 +49,7 @@ class Alojamiento extends CI_Controller{
     }
 
     
-
+    /////////////////////////////////////---------ALTA-ALOJAMIENTO
     public function alta(){
         if($this->input->post("submit")){
          
@@ -82,7 +80,10 @@ class Alojamiento extends CI_Controller{
     private function id_alojamiento($direccion_nombre, $direccion_numero){
         return $this->Alojamiento_model->id_alojamiento($direccion_nombre, $direccion_numero);
     }
+    ///////////////////////////////////////////////////////////
 
+
+    ///////////////////////////////////-------SUBIDOR-DE-FOTOs
     public function subir_foto(){
         
 		$config['upload_path']          = '/var/www/html/pruebaTemplate2/fotos_alojamientos/';
@@ -100,10 +101,7 @@ class Alojamiento extends CI_Controller{
         
         $this->load->library('upload', $config);
 
-        //print_r($_FILES['qqfile']);
-        //die();
-        //print_r($config['file_name']);
-        //die();
+
 		if (!$this->upload->do_upload('qqfile')) {
 
             $estado = array('error' => $this->upload->display_errors() );
@@ -113,6 +111,7 @@ class Alojamiento extends CI_Controller{
 		else{
             
             $path = '/var/www/html/pruebaTemplate2/fotos_alojamientos/'.$nombre;
+            
             $id = $_GET['id'];
 
             //print_r($_GET['id']);
@@ -131,5 +130,58 @@ class Alojamiento extends CI_Controller{
     private function nuevoPathFoto($id_alojamiento, $path){
         $this->Alojamiento_model->nuevaFoto($id_alojamiento, $path);
     }
+    ////////////////////////////////////////////////////////////
+
+
+    /////////////////////////////////////////////////////////////////Buscador
+
+    public function buscador() {
+
+        $this->load->library('pagination');
+        
+        $config['base_url'] = base_url().'alojamiento/buscador';
+        $config['total_rows'] = $this->totalFilas();
+        $config['per_page'] = 10;
+
+        $config['full_tag_open'] = '<ul>';
+        $config['full_tag_close'] = '</ul>';
+
+        $config['first_tag_open'] = '<li>';
+        $config['last_tag_open'] = '<li>';
+
+        $config['next_tag_open'] = '<li>';
+        $config['prev_tag_open'] = '<li>';
+
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+
+        $config['first_tag_close'] = '</li>';
+        $config['last_tag_open'] = '</li>';
+
+        $config['next_tag_close'] = '</li>';
+        $config['prev_tag_close'] = '</li>';
+
+        $config['cur_tag_open'] = '<li><span><b>';
+        $config['cur_tag_close'] = '</b></span></li>';
+
+        //$config['num_links'] = 10;
+        //$config['uri_segment'] = 3;
+        $data['products'] = $this->alojamientos($config['per_page']);
+
+        $this->pagination->initialize($config);
+
+        $this->load->view('buscador_resultado', $data);
+    }
+
+
+    public function totalFilas(){
+        return $this->Alojamiento_model->totalAlojamientos();
+    }
+
+    private function alojamientos($limite){
+        return $this->Alojamiento_model->alojamientos($limite);
+    }
+
+    /////////////////////////////////////////////////////////////////////////
 }
 ?>
