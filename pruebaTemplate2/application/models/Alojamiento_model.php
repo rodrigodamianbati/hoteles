@@ -106,7 +106,8 @@ class Alojamiento_model extends CI_Model{
 
     public function alojamientos($limite){
         
-        $consulta = $this->db->query("SELECT * FROM alojamiento;");
+        //$consulta = $this->db->query("SELECT * FROM alojamiento;");
+        $consulta= $this->db->get('alojamiento', $limite, $this->uri->segment(3));
         
         foreach ($consulta->result('Alojamiento_model') as $row) {
             //$row->id = $row->id; // call attributes
@@ -118,7 +119,7 @@ class Alojamiento_model extends CI_Model{
             $row->id_estado = $row->estado($row->id_estado);
             $row->id_usuario = $row->usuario($row->id_usuario);
             $row->id_tipo = $row->tipo($row->id_tipo);
-
+            $row->default_foto = $row->default_foto;
             //print_r($row);
             //die();
         } 

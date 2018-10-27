@@ -141,31 +141,50 @@ class Alojamiento extends CI_Controller{
         
         $config['base_url'] = base_url().'alojamiento/buscador';
         $config['total_rows'] = $this->totalFilas();
-        $config['per_page'] = 10;
+        $config['per_page'] = 9;
 
-        $config['full_tag_open'] = '<ul>';
-        $config['full_tag_close'] = '</ul>';
+        /*
+        $config['full_tag_open'] = '<nav aria-label="Page navigation example"><ul class="pagination">';
+        $config['full_tag_close'] = '</ul></nav>';
 
-        $config['first_tag_open'] = '<li>';
-        $config['last_tag_open'] = '<li>';
+        $config['first_tag_open'] = '<li class="page-item"><a class="page-link">';
+        //<a class="page-link">3</a>
+        $config['last_tag_open'] = '<li class="page-item"><a class="page-link">';
 
-        $config['next_tag_open'] = '<li>';
-        $config['prev_tag_open'] = '<li>';
+        $config['next_tag_open'] = '<li class="page-item"><a class="page-link">';
+        $config['prev_tag_open'] = '<li class="page-item"><a class="page-link">';
 
-        $config['num_tag_open'] = '<li>';
-        $config['num_tag_close'] = '</li>';
+        $config['num_tag_open'] = '<li class="page-item"><a class="page-link">';
+        $config['num_tag_close'] = '</a></li>';
 
-        $config['first_tag_close'] = '</li>';
-        $config['last_tag_open'] = '</li>';
+        $config['first_tag_close'] = '</a></li>';
+        $config['last_tag_close'] = '</a></li>';
 
-        $config['next_tag_close'] = '</li>';
-        $config['prev_tag_close'] = '</li>';
+        $config['next_tag_close'] = '</a></li>';
+        $config['prev_tag_close'] = '</a></li>';
 
-        $config['cur_tag_open'] = '<li><span><b>';
-        $config['cur_tag_close'] = '</b></span></li>';
+        $config['cur_tag_open'] = '<li class="page-item"><a class="page-link" active>';
+        $config['cur_tag_close'] = '</a></li>';
 
         //$config['num_links'] = 10;
         //$config['uri_segment'] = 3;
+        */
+        $config['full_tag_open'] = "<ul class='pagination'>";
+    $config['full_tag_close'] ="</ul>";
+    $config['num_tag_open'] = '<li>';
+    $config['num_tag_close'] = '</li>';
+    $config['cur_tag_open'] = "<li class='disabled'><li class='active'><a href='#'>";
+    $config['cur_tag_close'] = "<span class='sr-only'></span></a></li>";
+    $config['next_tag_open'] = "<li>";
+    $config['next_tagl_close'] = "</li>";
+    $config['prev_tag_open'] = "<li>";
+    $config['prev_tagl_close'] = "</li>";
+    $config['first_tag_open'] = "<li>";
+    $config['first_tagl_close'] = "</li>";
+    $config['last_tag_open'] = "<li>";
+    $config['last_tagl_close'] = "</li>";
+    $config['first_link'] = 'Primero';
+    $config['last_link'] = 'Ultimo';
         $data['products'] = $this->alojamientos($config['per_page']);
 
         $this->pagination->initialize($config);
