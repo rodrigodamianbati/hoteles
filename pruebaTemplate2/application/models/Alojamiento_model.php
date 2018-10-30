@@ -34,7 +34,7 @@ class Alojamiento_model extends CI_Model{
         $consulta=$this->db->query("SELECT id FROM alojamiento WHERE (direccion_nombre='$direccion_nombre' AND direccion_numero='$direccion_numero')");
         if($consulta->num_rows()==0){
             //$id=$_SESSION['id'];
-            $consulta=$this->db->query("INSERT INTO alojamiento VALUES(NULL, '$precio','$id_localidad','$direccion_nombre','$direccion_numero', NULL, '1'/*sesion*/, '$tipo');");
+            $consulta=$this->db->query("INSERT INTO alojamiento VALUES(NULL, '$precio','$id_localidad','$direccion_nombre','$direccion_numero', NULL, '1'/*sesion*/, '$tipo', '/pruebaTemplate2/fotos_alojamientos/default.png');");
             if($consulta==true){
               return true;
             }else{
@@ -63,9 +63,16 @@ class Alojamiento_model extends CI_Model{
     public function nuevaFoto($id_alojamiento, $path){
         
             //$id=$_SESSION['id'];id	foto_url	id_alojamiento
+            
             $consulta=$this->db->query("INSERT INTO foto_alojamiento VALUES(NULL,'$path','$id_alojamiento');");
             if($consulta==true){
-              return true;
+                $default=$this->db->query("SELECT default_foto FROM alojamiento a WHERE a.id='$id_alojamiento';");
+                //print_r($default->first_row()->default_foto);
+                //die();
+                if (strpos($default->first_row()->default_foto,"default")){
+                    $nuevoDefualt=$this->db->query("UPDATE alojamiento a SET default_foto = '$path' WHERE a.id='$id_alojamiento'");
+                }
+                return true;
             }else{
                 return false;
             }
@@ -110,7 +117,7 @@ class Alojamiento_model extends CI_Model{
         $consulta= $this->db->get('alojamiento', $limite, $this->uri->segment(3));
         
         //foreach ($consulta->result('Alojamiento_model') as $row) {
-        $this->db->select("a.id, e.descripcion as estado, t.descripcion as tipo, a.default_foto as foto, a.precio");
+        $this->db->select("a.id, e.descripcion as estado, t.descripcion as tipo, a.default_foto as foto, a.precio, l.nombre as localidad");
         $this->db->from("alojamiento a");
         $this->db->join("estado_aloj e", "a.id_estado = e.id");
         $this->db->join("tipo_aloj t", "a.id_tipo = t.id");

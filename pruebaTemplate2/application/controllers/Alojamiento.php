@@ -99,6 +99,9 @@ class Alojamiento extends CI_Controller{
         $nombre = $numRandom.$numRandom1.$_FILES['qqfile']['name']; //se lo concateno al principio del nombre del archivo para no perder la extension     
         $config['file_name'] = $nombre; //cambio el nombre del archivo  
         
+        //print_r($config);
+        //die();
+
         $this->load->library('upload', $config); //subo el archivo al servidor  
 
 
@@ -190,8 +193,6 @@ class Alojamiento extends CI_Controller{
 
         $this->pagination->initialize($config);
 
-        //print_r($data['products']);
-        //die();
         $this->load->view('buscador_resultado', $data);
     }
 

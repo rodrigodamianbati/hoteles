@@ -34,12 +34,12 @@
     <div class="w3-third w3-margin-bottom">
       <img src='<?php echo $product->foto?>' alt="Norway" style="width:100%">
       <div class="w3-container w3-white">
-        <h3>Single Room</h3>
+        <h3><?php echo $product->tipo?></h3>
         <h6 class="w3-opacity"><?php echo $product->precio?> $</h6>
-        <p>Single bed</p>
-        <p>15m<sup>2</sup></p>
+        <p><?php echo $product->estado?></p>
+        <p><?php echo $product->localidad?></p>
         <p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i></p>
-        <button class="w3-button w3-block w3-black w3-margin-bottom">Choose Room</button>
+        <button class="w3-button w3-block w3-black w3-margin-bottom">Reservar</button>
       </div>
     </div>
     
