@@ -139,6 +139,7 @@ class Alojamiento extends CI_Controller{
         $config['base_url'] = base_url().'alojamiento/buscador';
         $config['total_rows'] = $this->totalFilas();
         $config['per_page'] = 9;
+        $config['num_links'] = 5;
 
         /*
         $config['full_tag_open'] = '<nav aria-label="Page navigation example"><ul class="pagination">';
@@ -167,32 +168,35 @@ class Alojamiento extends CI_Controller{
         //$config['uri_segment'] = 3;
         */
         $config['full_tag_open'] = "<ul class='pagination'>";
-    $config['full_tag_close'] ="</ul>";
-    $config['num_tag_open'] = '<li>';
-    $config['num_tag_close'] = '</li>';
-    $config['cur_tag_open'] = "<li class='disabled'><li class='active'><a href='#'>";
-    $config['cur_tag_close'] = "<span class='sr-only'></span></a></li>";
-    $config['next_tag_open'] = "<li>";
-    $config['next_tagl_close'] = "</li>";
-    $config['prev_tag_open'] = "<li>";
-    $config['prev_tagl_close'] = "</li>";
-    $config['first_tag_open'] = "<li>";
-    $config['first_tagl_close'] = "</li>";
-    $config['last_tag_open'] = "<li>";
-    $config['last_tagl_close'] = "</li>";
-    $config['first_link'] = 'Primero';
-    $config['last_link'] = 'Ultimo';
+        $config['full_tag_close'] ="</ul>";
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        $config['cur_tag_open'] = "<li class='disabled'><li class='active'><a href='#'>";
+        $config['cur_tag_close'] = "<span class='sr-only'></span></a></li>";
+        $config['next_tag_open'] = "<li>";
+        $config['next_tagl_close'] = "</li>";
+        $config['prev_tag_open'] = "<li>";
+        $config['prev_tagl_close'] = "</li>";
+        $config['first_tag_open'] = "<li>";
+        $config['first_tagl_close'] = "</li>";
+        $config['last_tag_open'] = "<li>";
+        $config['last_tagl_close'] = "</li>";
+
+        $config['first_link'] = 'Primero';
+        $config['last_link'] = 'Ultimo';
+        $config['next_link'] = 'Siguiente';
+        $config['prev_link'] = 'Anterior';
         $data['products'] = $this->alojamientos($config['per_page']);
 
         $this->pagination->initialize($config);
 
-        print_r($data['products']);
-        die();
+        //print_r($data['products']);
+        //die();
         $this->load->view('buscador_resultado', $data);
     }
 
 
-    public function totalFilas(){
+    private function totalFilas(){
         return $this->Alojamiento_model->totalAlojamientos();
     }
 

@@ -32,7 +32,7 @@
     <?php foreach ($products as $product){ ?>
 
     <div class="w3-third w3-margin-bottom">
-      <img src='<?php echo $product->default_foto?>' alt="Norway" style="width:100%">
+      <img src='<?php echo $product->foto?>' alt="Norway" style="width:100%">
       <div class="w3-container w3-white">
         <h3>Single Room</h3>
         <h6 class="w3-opacity"><?php echo $product->precio?> $</h6>

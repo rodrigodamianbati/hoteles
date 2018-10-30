@@ -109,8 +109,20 @@ class Alojamiento_model extends CI_Model{
         //$consulta = $this->db->query("SELECT * FROM alojamiento;");
         $consulta= $this->db->get('alojamiento', $limite, $this->uri->segment(3));
         
-        foreach ($consulta->result('Alojamiento_model') as $row) {
-            //$row->id = $row->id; // call attributes
+        //foreach ($consulta->result('Alojamiento_model') as $row) {
+        $this->db->select("a.id, e.descripcion as estado, t.descripcion as tipo, a.default_foto as foto, a.precio");
+        $this->db->from("alojamiento a");
+        $this->db->join("estado_aloj e", "a.id_estado = e.id");
+        $this->db->join("tipo_aloj t", "a.id_tipo = t.id");
+        $this->db->join("localidad l", "a.id_localidad = l.id");
+
+        $consulta= $this->db->get('alojamiento', $limite, $this->uri->segment(3));
+        //return $this->db->get()->custom_result_object("Alojamiento_model");
+        return $consulta->custom_result_object("Alojamiento_model");
+    }
+        //}
+        //$row->id = $row->id; // call attributes
+            /*
             $row->id = $row->id;
             $row->precio = $row->precio;
             $row->id_localidad = $row->localidad($row->id_localidad);
@@ -120,10 +132,11 @@ class Alojamiento_model extends CI_Model{
             $row->id_usuario = $row->usuario($row->id_usuario);
             $row->id_tipo = $row->tipo($row->id_tipo);
             $row->default_foto = $row->default_foto;
+            */
             //print_r($row);
             //die();
-        } 
-        
+        //////////////////////////////////////////////////////////////////////////////
+
         //print_r($consulta->result('Alojamiento_model'));
         //die();
 
@@ -138,8 +151,8 @@ class Alojamiento_model extends CI_Model{
         die();
         */
 
-        return $consulta->result('Alojamiento_model');
-    }
+       // return $consulta->result('Alojamiento_model');
+    //}
     /*   $query = $this->db->query("SELECT * FROM users;");
    
     foreach ($query->result('User') as $row)
