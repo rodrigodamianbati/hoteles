@@ -28,7 +28,7 @@
 <body>
     
 <div class="w3-row-padding w3-padding-16">
-
+    
     <?php foreach ($products as $product){ ?>
 
     <div class="w3-third w3-margin-bottom">
@@ -46,8 +46,8 @@
     <?php } ?>
 </div>
 
- <?php
-        echo $this->pagination->create_links();
-    ?>
+<?php
+    echo $this->pagination->create_links();
+?>
 </body>
 </html>

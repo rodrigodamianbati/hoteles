@@ -94,12 +94,12 @@ class Alojamiento extends CI_Controller{
         $config['max_height']           = 768;
 
         //$new_name = time().$_FILES["userfiles"]['name'];
-        $numRandom = rand();
-        $numRandom1 = rand();
-        $nombre = $numRandom.$numRandom1.$_FILES['qqfile']['name'];
-        $config['file_name'] = $nombre;
+        $numRandom = rand(); //genero un numero random
+        $numRandom1 = rand(); //genero otro numero random
+        $nombre = $numRandom.$numRandom1.$_FILES['qqfile']['name']; //se lo concateno al principio del nombre del archivo para no perder la extension     
+        $config['file_name'] = $nombre; //cambio el nombre del archivo  
         
-        $this->load->library('upload', $config);
+        $this->load->library('upload', $config); //subo el archivo al servidor  
 
 
 		if (!$this->upload->do_upload('qqfile')) {
@@ -110,12 +110,9 @@ class Alojamiento extends CI_Controller{
 		}
 		else{
             
-            $path = '/var/www/html/pruebaTemplate2/fotos_alojamientos/'.$nombre;
+            $path = '/pruebaTemplate2/fotos_alojamientos/'.$nombre;
             
             $id = $_GET['id'];
-
-            //print_r($_GET['id']);
-            //die();
     
             $this->nuevoPathFoto($id, $path);
             $estado = array('success' => true );
@@ -189,6 +186,8 @@ class Alojamiento extends CI_Controller{
 
         $this->pagination->initialize($config);
 
+        print_r($data['products']);
+        die();
         $this->load->view('buscador_resultado', $data);
     }
 
