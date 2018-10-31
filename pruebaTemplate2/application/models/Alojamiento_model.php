@@ -2,6 +2,7 @@
                
                //extendemos CI_Model
 class Alojamiento_model extends CI_Model{
+    public $servicios = null;
         /*
         $this->db->from('alojamiento as a');
         $this->db->join('estado_aloj as ea','a.id_estado=ea.id');
@@ -121,10 +122,26 @@ class Alojamiento_model extends CI_Model{
         $consulta= $this->db->get('alojamiento', $limite, $this->uri->segment(3));
         //print_r($consulta);
         //die();
-        
         //print_r($consulta);
         //die();
-        return $consulta->custom_result_object("Alojamiento_model");
+        
+        $consulta = $consulta->custom_result_object("Alojamiento_model");
+        
+        foreach ($consulta as $alojamiento) {
+            $alojamiento->servicios= $alojamiento->servicios($alojamiento->id);
+        }
+        
+        //return $consulta->custom_result_object("Alojamiento_model");
+        return $consulta;
+    }
+
+    public function servicios($id_alojamiento){
+        $this->db->select('*');
+        $this->db->where("servicio_aloj.id_alojamiento='$id_alojamiento'");
+        $this->db->join("servicio s", "s.id=servicio_aloj.id_servicio");
+        $consulta = $this->db->get('servicio_aloj');
+
+        return $consulta->result();
     }
         
     public function localidad($id_localidad){
@@ -146,6 +163,8 @@ class Alojamiento_model extends CI_Model{
         $consulta = $this->db->query("SELECT * FROM tipo_aloj t WHERE t.id='$id_tipo'");
         return $consulta->result();
     }
+
+    
 }
 
 ?>

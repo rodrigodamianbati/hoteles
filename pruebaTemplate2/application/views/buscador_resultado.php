@@ -25,6 +25,7 @@
     <title>Resultado buscador</title>
     
 </head>
+
 <body>
     
 <div class="w3-row-padding w3-padding-16">
@@ -35,17 +36,31 @@
       <img src='<?php echo $product->foto?>' alt="Norway" style="width:100%">
       <div class="w3-container w3-white">
         <h3><?php echo $product->tipo?></h3>
-        <h6 class="w3-opacity"><?php echo $product->precio?> $</h6>
+        <h6 class="w3-opacity">$ <?php echo $product->precio?></h6>
         <p><?php echo $product->estado?></p>
         <p><?php echo $product->localidad?></p>
-        <p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i></p>
+        
+        <p class="w3-large">
+        <?php foreach($product->servicios as $servicio) { 
+            if ($servicio->descripcion == "Bañera") { ?>
+                    <i class="fa fa-bath"></i> 
+            <?php } else { 
+                if ($servicio->descripcion == "Internet") { ?>
+                    <i class="fa fa-wifi"></i>
+           <?php } else { 
+                if ($servicio->descripcion == "Telefono") {?>
+                    <i class="fa fa-phone"></i>
+            <?php } else { 
+                if ($servicio->descripcion == "Television") {?>
+                    <i class="fa fa-television"></i>
+        <?php } } } } }?>
+        </p>
         <button class="w3-button w3-block w3-black w3-margin-bottom">Reservar</button>
       </div>
     </div>
-    
+
     <?php } ?>
 </div>
-
 <?php
     echo $this->pagination->create_links();
 ?>
