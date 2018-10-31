@@ -25,13 +25,16 @@ class Alojamiento extends CI_Controller{
         }
         */
     
+        /*
         $tipos = $this->tipos();
         $localidades = $this->localidades();
 
         $data = array_merge($tipos, $localidades);
         
         $this->load->view("alta_alojamiento_view", $data);
+        */
 
+        $this->load->view("buscador");
     }
 
     public function tipos(){
@@ -98,10 +101,7 @@ class Alojamiento extends CI_Controller{
         $numRandom1 = rand(); //genero otro numero random
         $nombre = $numRandom.$numRandom1.$_FILES['qqfile']['name']; //se lo concateno al principio del nombre del archivo para no perder la extension     
         $config['file_name'] = $nombre; //cambio el nombre del archivo  
-        
-        //print_r($config);
-        //die();
-
+       
         $this->load->library('upload', $config); //subo el archivo al servidor  
 
 
@@ -138,38 +138,14 @@ class Alojamiento extends CI_Controller{
     public function buscador() {
 
         $this->load->library('pagination');
-        
+        $localidad = $_GET['localidad'];
+
         $config['base_url'] = base_url().'alojamiento/buscador';
-        $config['total_rows'] = $this->totalFilas();
+        $config['total_rows'] = $this->totalFilas($localidad);
         $config['per_page'] = 9;
         $config['num_links'] = 5;
+        $config['reuse_query_string'] = TRUE;
 
-        /*
-        $config['full_tag_open'] = '<nav aria-label="Page navigation example"><ul class="pagination">';
-        $config['full_tag_close'] = '</ul></nav>';
-
-        $config['first_tag_open'] = '<li class="page-item"><a class="page-link">';
-        //<a class="page-link">3</a>
-        $config['last_tag_open'] = '<li class="page-item"><a class="page-link">';
-
-        $config['next_tag_open'] = '<li class="page-item"><a class="page-link">';
-        $config['prev_tag_open'] = '<li class="page-item"><a class="page-link">';
-
-        $config['num_tag_open'] = '<li class="page-item"><a class="page-link">';
-        $config['num_tag_close'] = '</a></li>';
-
-        $config['first_tag_close'] = '</a></li>';
-        $config['last_tag_close'] = '</a></li>';
-
-        $config['next_tag_close'] = '</a></li>';
-        $config['prev_tag_close'] = '</a></li>';
-
-        $config['cur_tag_open'] = '<li class="page-item"><a class="page-link" active>';
-        $config['cur_tag_close'] = '</a></li>';
-
-        //$config['num_links'] = 10;
-        //$config['uri_segment'] = 3;
-        */
         $config['full_tag_open'] = "<ul class='pagination'>";
         $config['full_tag_close'] ="</ul>";
         $config['num_tag_open'] = '<li>';
@@ -189,20 +165,26 @@ class Alojamiento extends CI_Controller{
         $config['last_link'] = 'Ultimo';
         $config['next_link'] = 'Siguiente';
         $config['prev_link'] = 'Anterior';
-        $data['products'] = $this->alojamientos($config['per_page']);
+
+        //print_r($_GET['localidad']);
+        //die();
+
+        $data['products'] = $this->alojamientos($config['per_page'], $localidad);
 
         $this->pagination->initialize($config);
 
+        //print_r($data['products']);
+        //die();
         $this->load->view('buscador_resultado', $data);
     }
 
 
-    private function totalFilas(){
-        return $this->Alojamiento_model->totalAlojamientos();
+    private function totalFilas($localidad){
+        return $this->Alojamiento_model->totalAlojamientos($localidad);
     }
 
-    private function alojamientos($limite){
-        return $this->Alojamiento_model->alojamientos($limite);
+    private function alojamientos($limite, $localidad){
+        return $this->Alojamiento_model->alojamientos($limite, $localidad);
     }
 
     /////////////////////////////////////////////////////////////////////////
