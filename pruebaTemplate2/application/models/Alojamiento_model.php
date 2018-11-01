@@ -109,7 +109,7 @@ class Alojamiento_model extends CI_Model{
 
         //$consulta= $this->db->get('alojamiento', $limite, $this->uri->segment(3));
         
-        $this->db->select("alojamiento.id, e.descripcion as estado, t.descripcion as tipo, alojamiento.default_foto as foto, alojamiento.precio, l.nombre as localidad");
+        $this->db->select("alojamiento.id, e.descripcion as estado, t.descripcion as tipo, alojamiento.default_foto as foto, alojamiento.precio, l.nombre as localidad, alojamiento.direccion_nombre, alojamiento.direccion_numero");
         //$this->db->select("a.id, a.default_foto as foto, a.precio");
         //$this->db->from("alojamiento a");
         $this->db->where("alojamiento.id_localidad IN ($where_clause)", NULL, FALSE);
@@ -130,7 +130,6 @@ class Alojamiento_model extends CI_Model{
         foreach ($consulta as $alojamiento) {
             $alojamiento->servicios= $alojamiento->servicios($alojamiento->id);
         }
-        
         //return $consulta->custom_result_object("Alojamiento_model");
         return $consulta;
     }

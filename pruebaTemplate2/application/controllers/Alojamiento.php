@@ -144,7 +144,8 @@ class Alojamiento extends CI_Controller{
         $config['total_rows'] = $this->totalFilas($localidad);
         $config['per_page'] = 9;
         $config['num_links'] = 5;
-        $config['reuse_query_string'] = TRUE;
+
+        $config['reuse_query_string'] = TRUE; //configurar variable $localidad para el GET   
 
         $config['full_tag_open'] = "<ul class='pagination'>";
         $config['full_tag_close'] ="</ul>";
@@ -166,15 +167,10 @@ class Alojamiento extends CI_Controller{
         $config['next_link'] = 'Siguiente';
         $config['prev_link'] = 'Anterior';
 
-        //print_r($_GET['localidad']);
-        //die();
-
         $data['products'] = $this->alojamientos($config['per_page'], $localidad);
 
         $this->pagination->initialize($config);
 
-        //print_r($data['products']);
-        //die();
         $this->load->view('buscador_resultado', $data);
     }
 
