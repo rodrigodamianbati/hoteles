@@ -11,7 +11,7 @@
   <link href="<?php echo base_url()."assets/"; ?>css/nvbar.css" rel="stylesheet">
 
 
- 
+ </head>
 
 <body>
 

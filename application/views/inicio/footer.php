@@ -1,9 +1,10 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="<?php echo base_url()."assets/"; ?>css/all.css">
 <!------ Include the above in your HEAD tag ---------->
 
-<footer class="section footer-classic context-dark bg-image" style="background: #2d3246;">
+<footer class="section footer-classic context-dark bg-image" style="background: #2d3246;" id="footer">
         <div class="container">
           <div class="row row-30">
             <div class="col-md-4 col-xl-5">
@@ -45,4 +46,8 @@
           <div class="col"><a class="social-inner" href="#"><span class="icon mdi mdi-twitter"></span><span>twitter</span></a></div>
           <div class="col"><a class="social-inner" href="#"><span class="icon mdi mdi-youtube-play"></span><span>google</span></a></div>
         </div>
-      </footer>
+ </footer>
+
+ 
+</body>
+</html>

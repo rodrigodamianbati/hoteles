@@ -1,6 +1,3 @@
-<html>
-<head>
-
 
    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -20,12 +17,7 @@
 	<!-- Additional CSS Themes file - not required-->
 
 <!-- <link rel="stylesheet" href="<?php echo base_url();?>assets/js/easyautocomplete/easy-autocomplete.themes.min.css">  -->
-</head>
 
-    
-<body>
-   	
-	
 <div class="container">
     <br/>
 	<div class="row justify-content-center">
@@ -84,8 +76,6 @@
                         <!--end of col-->
                     </div>
 </div>
-
-
 
 </body>
 </html>

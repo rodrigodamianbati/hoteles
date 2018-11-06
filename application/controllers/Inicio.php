@@ -16,9 +16,9 @@
             }
             else{
                  
-                // $this->load->view("inicio/header");
+                $this->load->view("inicio/header");
 
-                // $this->load->view("inicio/inicio_view");
+                $this->load->view("inicio/inicio_view");
 
                 $this->load->view("inicio/footer");
             }
