@@ -27,7 +27,7 @@ class Alojamiento extends CI_Controller{
         }
         */
     
-        $this->load->view("inicio/inicio_view");
+        $this->load->view("buscador");
     }
 
     public function crear_alojamiento(){
