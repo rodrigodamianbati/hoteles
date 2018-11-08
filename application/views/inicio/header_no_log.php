@@ -8,13 +8,12 @@
   <div class="collapse navbar-collapse justify-content-end"> 
   <ul class="navbar-nav">
   <li class="nav-item">
-      <a class="nav-link" href="<?php echo base_url()."registro/"; ?>"><span class="fa fa-user"></span>  Registrarse</a>
+     
+
+      <a class="nav-link" href="#"><span class="fa fa-user"></span> Mi perfil</a>
     </li>
 
-    <li><h3 class="separador">|</h3></li>
-    <li class="nav-item">
-      <a class="nav-link" href="<?php echo base_url()."login/"; ?>"><span class="fa fa-sign-in"></span>  Iniciar Sesion</a>
-    </li>
+
   </ul>
 
   </div>

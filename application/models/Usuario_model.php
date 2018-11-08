@@ -85,7 +85,14 @@ class Usuario_model extends CI_Model{
         }
     }
 
-    
+     public function getUsuario($id)
+    {
+        $this->db->select('*');
+        $this->db->where('id',$id);
+        $consulta= $this->db->get('usuario');
+        return $consulta->result();
+
+    }
  
 }
 ?>
