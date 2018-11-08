@@ -27,16 +27,16 @@ class Alojamiento extends CI_Controller{
         }
         */
     
-        /*
+        $this->load->view("inicio/inicio_view");
+    }
+
+    public function crear_alojamiento(){
         $tipos = $this->tipos();
         $localidades = $this->localidades();
 
         $data = array_merge($tipos, $localidades);
         
         $this->load->view("alta_alojamiento_view", $data);
-        */
-    
-        $this->load->view("buscador");
     }
 
     public function tipos(){
@@ -204,8 +204,8 @@ class Alojamiento extends CI_Controller{
 
         $filtros=array();
 
-        if(isset($_GET['bañera'])){
-            array_push($filtros,$_GET['bañera']);
+        if(isset($_GET['baniera'])){
+            array_push($filtros,$_GET['baniera']);
         }
         if(isset($_GET['television'])){
             array_push($filtros,$_GET['television']);

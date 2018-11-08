@@ -86,15 +86,15 @@
     <button class="w3-button">Servicios<i class="fa fa-caret-down"></i></button>
 
       <div class="w3-dropdown-content w3-bar-block w3-white w3-card-4 form-check">
-        <input class="w3-bar-item w3-button w3-text-black form-check-input" type="checkbox" value="bañera" name="bañera"> 
+        <input class="w3-bar-item w3-button w3-text-black form-check-input" type="checkbox" value="1" name="baniera"> 
             <label class="form-check-label" for="baniera">Bañera</label>
-        <input class="w3-bar-item w3-button w3-text-black form-check-input" type="checkbox" value="television" name="television">
+        <input class="w3-bar-item w3-button w3-text-black form-check-input" type="checkbox" value="4" name="television">
             <label class="form-check-label" for="television">Television</label>    
-        <input class="w3-bar-item w3-button w3-text-black form-check-input" type="checkbox" value="internet" name="internet">
+        <input class="w3-bar-item w3-button w3-text-black form-check-input" type="checkbox" value="2" name="internet">
             <label class="form-check-label" for="internet">Internet</label>
-        <input class="w3-bar-item w3-button w3-text-black form-check-input" type="checkbox" value="telefono" name="telefono">
+        <input class="w3-bar-item w3-button w3-text-black form-check-input" type="checkbox" value="3" name="telefono">
             <label class="form-check-label" for="telefono">Telefono</label>    
-        <input class="w3-bar-item w3-button form-check-input" type="checkbox" value="garage" name="garage">
+        <input class="w3-bar-item w3-button form-check-input" type="checkbox" value="5" name="garage">
             <label class="form-check-label" for="garage">Garage</label>
         <!--input class="w3-bar-item w3-button w3-text-black form-check-input" type="checkbox" value="" id="Monoambiente">
             <label class="form-check-label" for="Chalet">Monoambiente</label-->
@@ -154,7 +154,7 @@
 
       <?php  }
         foreach($product->servicios as $servicio) { 
-            if ($servicio->descripcion == "bañera") { ?>
+            if ($servicio->descripcion == "baniera") { ?>
                     <i class="fa fa-bath"></i> 
             <?php } else { 
                 if ($servicio->descripcion == "internet") { ?>
