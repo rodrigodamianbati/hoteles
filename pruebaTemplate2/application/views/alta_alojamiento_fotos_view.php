@@ -8,6 +8,8 @@
     ====================================================================== -->
     <link href="<?php echo base_url()."fine_uploader/"; ?>fine-uploader-new.css" rel="stylesheet">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+
     <!-- Fine Uploader JS file
     ====================================================================== -->
     <script src="<?php echo base_url()."fine_uploader/"; ?>fine-uploader.js"></script>

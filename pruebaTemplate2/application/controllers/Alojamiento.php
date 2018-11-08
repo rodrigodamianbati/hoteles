@@ -7,7 +7,9 @@ class Alojamiento extends CI_Controller{
         
         parent::__construct(); 
          
-        $this->load->helper(array('form', 'url'));
+        $this->load->helper("form");
+
+        $this->load->helper("url");
          
         $this->load->model("Alojamiento_model");
          
@@ -33,7 +35,7 @@ class Alojamiento extends CI_Controller{
         
         $this->load->view("alta_alojamiento_view", $data);
         */
-
+    
         $this->load->view("buscador");
     }
 
@@ -179,10 +181,83 @@ class Alojamiento extends CI_Controller{
         return $this->Alojamiento_model->totalAlojamientos($localidad);
     }
 
+    private function totalFilasFiltrado($localidad, $filtros){
+        return $this->Alojamiento_model->totalAlojamientosFiltrado($localidad, $filtros);
+    }
+
     private function alojamientos($limite, $localidad){
         return $this->Alojamiento_model->alojamientos($limite, $localidad);
     }
 
-    /////////////////////////////////////////////////////////////////////////
+    private function alojamientosFiltrado($limite, $localidad, $filtros){
+        return $this->Alojamiento_model->alojamientosFiltrado($limite, $localidad, $filtros);
+    }
+    ////////////////////////////////////////////////////////////////////////
+
+    public function filtrar(){
+
+        $this->load->library('pagination');
+        
+        $localidad = $_GET['localidad'];
+
+        $config['base_url'] = base_url().'alojamiento/filtrar';
+
+        $filtros=array();
+
+        if(isset($_GET['bañera'])){
+            array_push($filtros,$_GET['bañera']);
+        }
+        if(isset($_GET['television'])){
+            array_push($filtros,$_GET['television']);
+        }
+
+        if(isset($_GET['internet'])){
+            array_push($filtros,$_GET['internet']);
+        }
+
+        if(isset($_GET['telefono'])){
+            array_push($filtros,$_GET['telefono']);
+        }
+
+        if(isset($_GET['garage'])){
+            array_push($filtros,$_GET['garage']);
+        }
+
+        //print_r($filtros);
+        //die();
+        $config['per_page'] = 9;
+        $data['products'] = $this->alojamientosFiltrado($config['per_page'], $localidad, $filtros);
+
+        $config['total_rows'] = $this->totalFilasFiltrado($localidad,$filtros);
+        
+        $config['num_links'] = 5;
+
+        $config['reuse_query_string'] = TRUE; //configurar variable $localidad para el GET   
+
+        $config['full_tag_open'] = "<ul class='pagination'>";
+        $config['full_tag_close'] ="</ul>";
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        $config['cur_tag_open'] = "<li class='disabled'><li class='active'><a href='#'>";
+        $config['cur_tag_close'] = "<span class='sr-only'></span></a></li>";
+        $config['next_tag_open'] = "<li>";
+        $config['next_tagl_close'] = "</li>";
+        $config['prev_tag_open'] = "<li>";
+        $config['prev_tagl_close'] = "</li>";
+        $config['first_tag_open'] = "<li>";
+        $config['first_tagl_close'] = "</li>";
+        $config['last_tag_open'] = "<li>";
+        $config['last_tagl_close'] = "</li>";
+
+        $config['first_link'] = 'Primero';
+        $config['last_link'] = 'Ultimo';
+        $config['next_link'] = 'Siguiente';
+        $config['prev_link'] = 'Anterior';
+
+        $this->pagination->initialize($config);
+
+        $this->load->view('buscador_resultado', $data);
+    }
+
 }
 ?>
