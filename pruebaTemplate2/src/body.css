@@ -1,0 +1,14 @@
+
+body{
+    background-image: url ("http://www.unpoliticallycorrect.org/wp-content/uploads/2018/05/UnPC_FBCoverPhoto_v1BlackNoLink-600DPI.jpg");
+    background-color: #e6b800;
+}
+
+.alojamiento-contenedor{
+    border: black solid;
+    background-color: #ffe6ff;
+}
+
+.alojamiento-descripcion{
+    background-color: #ffb3b3;
+}
