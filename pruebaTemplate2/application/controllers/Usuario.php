@@ -26,7 +26,9 @@ class Usuario extends CI_Controller{
         //array asociativo con la llamada al metodo
         //del modelo
         $usuario["ver"]=$this->Usuario_model->ver();
-         
+        
+        //print_r($usuario);
+        //die();
         //cargo la vista y le paso los datos
         $this->load->view("usuario_view",$usuario);
     }

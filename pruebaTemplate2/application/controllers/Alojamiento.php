@@ -26,8 +26,8 @@ class Alojamiento extends CI_Controller{
             redirect('login');
         }
         */
-    
-        $this->load->view("buscador");
+        redirect(base_url());
+        //$this->load->view("buscador");
     }
 
     public function crear_alojamiento(){
@@ -62,7 +62,8 @@ class Alojamiento extends CI_Controller{
             $agregar=$this->Alojamiento_model->agregar(
                     $this->input->post("tipo"),
                     $this->input->post("precio"),
-                    $this->input->post("id_localidad"),
+                    //$this->input->post("id_localidad"),
+                    $this->input->post("localidad"),
                     $this->input->post("direccion_nombre"),
                     $this->input->post("direccion_numero")
                     );
@@ -135,15 +136,8 @@ class Alojamiento extends CI_Controller{
     ////////////////////////////////////////////////////////////
 
 
-    /////////////////////////////////////////////////////////////////Buscador
+    public function configurarPaginado($config){
 
-    public function buscador() {
-
-        $this->load->library('pagination');
-        $localidad = $_GET['localidad'];
-
-        $config['base_url'] = base_url().'alojamiento/buscador';
-        $config['total_rows'] = $this->totalFilas($localidad);
         $config['per_page'] = 9;
         $config['num_links'] = 5;
 
@@ -168,6 +162,45 @@ class Alojamiento extends CI_Controller{
         $config['last_link'] = 'Ultimo';
         $config['next_link'] = 'Siguiente';
         $config['prev_link'] = 'Anterior';
+        return $config;
+    }
+
+    /////////////////////////////////////////////////////////////////Buscador
+
+    public function buscador() {
+
+        $this->load->library('pagination');
+        $localidad = $_GET['localidad'];
+
+        $config['base_url'] = base_url().'alojamiento/buscador';
+        $config['total_rows'] = $this->totalFilas($localidad);
+        $config = configurarPaginado($config);
+        /*
+        $config['per_page'] = 9;
+        $config['num_links'] = 5;
+
+        $config['reuse_query_string'] = TRUE; //configurar variable $localidad para el GET   
+
+        $config['full_tag_open'] = "<ul class='pagination'>";
+        $config['full_tag_close'] ="</ul>";
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        $config['cur_tag_open'] = "<li class='disabled'><li class='active'><a href='#'>";
+        $config['cur_tag_close'] = "<span class='sr-only'></span></a></li>";
+        $config['next_tag_open'] = "<li>";
+        $config['next_tagl_close'] = "</li>";
+        $config['prev_tag_open'] = "<li>";
+        $config['prev_tagl_close'] = "</li>";
+        $config['first_tag_open'] = "<li>";
+        $config['first_tagl_close'] = "</li>";
+        $config['last_tag_open'] = "<li>";
+        $config['last_tagl_close'] = "</li>";
+
+        $config['first_link'] = 'Primero';
+        $config['last_link'] = 'Ultimo';
+        $config['next_link'] = 'Siguiente';
+        $config['prev_link'] = 'Anterior';
+        */
 
         $data['products'] = $this->alojamientos($config['per_page'], $localidad);
 
@@ -181,12 +214,20 @@ class Alojamiento extends CI_Controller{
         return $this->Alojamiento_model->totalAlojamientos($localidad);
     }
 
+    private function totalMisAlojamientos($id){
+        return $this->Alojamiento_model->totalMisAlojamientos($id);
+    }
+
     private function totalFilasFiltrado($localidad, $filtros){
         return $this->Alojamiento_model->totalAlojamientosFiltrado($localidad, $filtros);
     }
 
     private function alojamientos($limite, $localidad){
         return $this->Alojamiento_model->alojamientos($limite, $localidad);
+    }
+
+    private function misAlojamientos($limite, $id){
+        return $this->Alojamiento_model->misAlojamientos($limite, $id);
     }
 
     private function alojamientosFiltrado($limite, $localidad, $filtros){
@@ -222,9 +263,9 @@ class Alojamiento extends CI_Controller{
         if(isset($_GET['garage'])){
             array_push($filtros,$_GET['garage']);
         }
-
-        //print_r($filtros);
-        //die();
+        $config = configurarPaginado($config);
+    
+        /*
         $config['per_page'] = 9;
         $data['products'] = $this->alojamientosFiltrado($config['per_page'], $localidad, $filtros);
 
@@ -253,11 +294,31 @@ class Alojamiento extends CI_Controller{
         $config['last_link'] = 'Ultimo';
         $config['next_link'] = 'Siguiente';
         $config['prev_link'] = 'Anterior';
+        */
 
         $this->pagination->initialize($config);
 
         $this->load->view('buscador_resultado', $data);
     }
 
+    public function mis_alojamientos(){
+        
+        $this->load->library('pagination');
+        $id = $_SESSION['id']->id;
+        $config['total_rows'] = $this->totalMisAlojamientos($id);
+        $config['base_url'] = base_url().'alojamiento/mis_alojamientos';
+
+        $config = $this->configurarPaginado($config);
+        $this->pagination->initialize($config);
+        $data['products'] = $this->misAlojamientos($config['per_page'], $id);
+        //$alojamientos = $this->Alojamiento_model->misAlojamientos($id);
+
+        $this->load->view("usuario/usuario_head");
+        $this->load->view("usuario/usuario_top_nav");
+        $this->load->view("usuario/usuario_side_nav");
+        $this->load->view("usuario/usuario_alojamientos",$data);
+        $this->load->view("usuario/usuario_footer");
+
+    }
 }
 ?>

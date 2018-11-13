@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
   <!-- Brand/logo -->
   <a class="navbar-brand" href="#">
-    <img src="bird.jpg" alt="logo" style="width:40px;">
+    <img src="<?php echo base_url()."src/img/"?>logo.jpg" alt="logo" style="width:40px;">
   </a>
   
   <!-- Links -->

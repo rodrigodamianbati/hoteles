@@ -2,7 +2,7 @@
                
                //extendemos CI_Model
 class Alojamiento_model extends CI_Model{
-    public $servicios = null;
+    
         /*
         $this->db->from('alojamiento as a');
         $this->db->join('estado_aloj as ea','a.id_estado=ea.id');
@@ -14,8 +14,6 @@ class Alojamiento_model extends CI_Model{
         //private $estado = 'Estado_model';
         //private $servicios;
 
-
-
     public function __construct() {
         //llamamos al constructor de la clase padre
         parent::__construct(); 
@@ -26,16 +24,16 @@ class Alojamiento_model extends CI_Model{
     }
 
     public function index(){
-
+        
     }
 
-    
     
     public function agregar($tipo, $precio, $id_localidad, $direccion_nombre, $direccion_numero){
         $consulta=$this->db->query("SELECT id FROM alojamiento WHERE (direccion_nombre='$direccion_nombre' AND direccion_numero='$direccion_numero')");
         if($consulta->num_rows()==0){
             //$id=$_SESSION['id'];
-            $consulta=$this->db->query("INSERT INTO alojamiento VALUES(NULL, '$precio','$id_localidad','$direccion_nombre','$direccion_numero', NULL, '1'/*sesion*/, '$tipo', '/pruebaTemplate2/fotos_alojamientos/default.png');");
+            $consulta=$this->db->query("INSERT INTO alojamiento VALUES(NULL, '$precio','$id_localidad','$direccion_nombre','$direccion_numero', '1', '1'/*sesion*/, '$tipo', '/pruebaTemplate2/fotos_alojamientos/default.png');");
+            
             if($consulta==true){
               return true;
             }else{
@@ -86,6 +84,19 @@ class Alojamiento_model extends CI_Model{
     return $consulta->first_row();
     }
 
+    public function totalMisAlojamientos($id){
+        /*
+        $this->db->select('id');
+        $this->db->from('alojamiento');
+        $this->db->where('id_usuario',$id);
+        $where_clause = $this->db->get_compiled_select();
+        */
+
+        $this->db->where("alojamiento.id_usuario", $id);
+       
+        return $this->db->get('alojamiento')->num_rows();         
+    }
+
     public function totalAlojamientos($localidad){
 
         $this->db->select('id');
@@ -134,8 +145,26 @@ class Alojamiento_model extends CI_Model{
         return $this->db->get('alojamiento')->num_rows();
     }
 
-    public function alojamientos($limite, $localidad){
+    public function misAlojamientos($limite, $id){
         
+        $this->db->select("alojamiento.id, e.descripcion as estado, t.descripcion as tipo, alojamiento.default_foto as foto, alojamiento.precio, l.nombre as localidad, alojamiento.direccion_nombre, alojamiento.direccion_numero");
+        $this->db->where("alojamiento.id_usuario='$id'");
+        $this->db->join("estado_aloj e", "alojamiento.id_estado = e.id");
+        $this->db->join("tipo_aloj t", "alojamiento.id_tipo = t.id");
+        $this->db->join("localidad l", "alojamiento.id_localidad = l.id");
+    
+        $consulta= $this->db->get('alojamiento', $limite, $this->uri->segment(3));
+            
+        $consulta = $consulta->custom_result_object("Alojamiento_model");
+            
+        foreach ($consulta as $alojamiento) {
+            $alojamiento->servicios= $alojamiento->servicios($alojamiento->id);
+        }
+             
+        return $consulta;
+    }
+
+    public function alojamientos($limite, $localidad){
         
         $this->db->select('id');
         $this->db->from('localidad');

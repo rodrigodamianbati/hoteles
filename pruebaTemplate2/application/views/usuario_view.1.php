@@ -125,7 +125,7 @@
             <span>Tables</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo base_url()."alojamiento/mis_alojamientos"; ?>">
+          <a class="nav-link" href="<?php echo base_url()."assets/"; ?>tables.html">
             <i class="fas fa-home"></i>
             <span>Alojamientos</span></a>
         </li>

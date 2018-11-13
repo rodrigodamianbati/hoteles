@@ -90,7 +90,7 @@
                 <div class="col-md-6">
                   <div class="form-label-group">
 
-                    <select id="localidad" name="localidad" class="form-control" name="localidad" placeholder="Localidad">
+                    <select id="localidad" class="form-control" name="localidad" placeholder="Localidad">
                     <label for="localidad">Localidad</label>
                         <?php
                             
