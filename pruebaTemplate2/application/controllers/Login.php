@@ -53,7 +53,7 @@ class Login extends CI_Controller{
  
                 $this->session->set_userdata($nuevaSesion);
                 
-                redirect('usuario');
+                redirect('inicio');
             }else{
                 $this->session->set_flashdata('incorrecto', 'Usted no se ha iniciado sesion correctamente');
                 redirect();

@@ -31,7 +31,7 @@
 <!-- nav header-->
 <div class="w3-bar w3-dark-grey">
     <form action="<?=base_url("alojamiento");?>">
-        <button class="w3-bar-item w3-button w3-black">Inicio</button>
+        <button class="w3-bar-item w3-button w3-dark-grey">Inicio</button>
     </form>
     <!--a href="javascript:void(0)" class="w3-bar-item w3-button">Link 1</a-->
     <!--div class="w3-dropdown-hover w3-hide-small">
