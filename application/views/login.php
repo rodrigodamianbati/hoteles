@@ -26,7 +26,7 @@
 
     <div class="container">
       <div class="card card-login mx-auto mt-5">
-        <div class="card-header">Login</div>
+        <div class="card-header">Iniciar Sesion</div>
         <div class="card-body">
           <form action="<?=base_url("login/iniciar_sesion");?>" method="post">
             <div class="form-group">

@@ -130,7 +130,7 @@
                     <i class="fa fa-television"></i>
         <?php } } } } } ?>
         </p>
-        <button class="w3-button w3-block w3-black w3-margin-bottom">Reservar</button>
+        <button class="w3-button w3-block w3-black w3-margin-bottom">Baja</button>
       </div>
     </div>
 

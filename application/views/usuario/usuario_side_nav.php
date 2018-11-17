@@ -37,7 +37,7 @@
   <li class="nav-item">
     <a class="nav-link" href="<?php echo base_url()."alojamiento/mis_alojamientos"; ?>">
     <i class="fas fa-hotel"></i>
-      <span>Alojamientos</span></a>
+      <span>Mis Alojamientos</span></a>
   </li>
   <!--li class="nav-item">
     <a class="nav-link" href="<//?php echo base_url()."assets/"; ?>tables.html">
