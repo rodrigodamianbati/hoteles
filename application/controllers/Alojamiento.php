@@ -320,5 +320,41 @@ class Alojamiento extends CI_Controller{
         $this->load->view("usuario/usuario_footer");
 
     }
+
+    public function baja(){
+        //print_r($this->input->post("baja"));
+        //die(); 
+        if($this->input->post("baja")){
+            $this->Alojamiento_model->baja($this->input->post("baja"));
+        }
+        redirect('alojamiento/mis_alojamientos'); 
+    }
+
+    public function modificaciones(){
+        if($this->input->post("modificar")){
+            $product = $this->Alojamiento_model->alojamiento($this->input->post("modificar"));
+            $data['product'] = $product;
+            /*
+            print_r(array_pop($product));
+            die();
+            print_r($product); 
+            die();
+            */
+            $this->load->view("usuario/usuario_head");
+            $this->load->view("usuario/usuario_top_nav");
+            $this->load->view("usuario/usuario_side_nav");
+            $this->load->view("usuario/modificaciones_alojamiento", $data);
+            $this->load->view("usuario/usuario_footer");
+        }
+    }
+
+    public function modificar(){
+        //print_r($this->input->post("baja"));
+        //die(); 
+        if($this->input->post("modificar")){
+            $this->Alojamiento_model->modificar($this->input->post("modificar"));
+        }
+        redirect('alojamiento/mis_alojamientos'); 
+    }
 }
 ?>

@@ -313,6 +313,48 @@ class Alojamiento_model extends CI_Model{
         return $consulta->result();
     }
 
+    public function baja($id){
+        $this->db->where('alojamiento.id', $id);
+        $this->db->delete('alojamiento');
+    }
+
+    public function modificar($id){
+        $this->db->where('alojamiento.id', $id);
+        $this->db->delete('alojamiento');
+    }
+
+    public function alojamiento($id){
+
+        $this->db->select("alojamiento.id, e.descripcion as estado, t.descripcion as tipo, alojamiento.default_foto as foto, alojamiento.precio, l.nombre as localidad, alojamiento.direccion_nombre, alojamiento.direccion_numero");
+        $this->db->where("alojamiento.id='$id'");
+        $this->db->join("estado_aloj e", "alojamiento.id_estado = e.id");
+        $this->db->join("tipo_aloj t", "alojamiento.id_tipo = t.id");
+        $this->db->join("localidad l", "alojamiento.id_localidad = l.id");
+    
+        $consulta= $this->db->get('alojamiento');
+            
+        $consulta = $consulta->custom_result_object("Alojamiento_model");
+            
+        foreach ($consulta as $alojamiento) {
+            $alojamiento->servicios= $alojamiento->servicios($alojamiento->id);
+        }
+             
+        return $consulta;
+
+        /*
+        $this->db->where('alojamiento.id', $id);
+        $consulta = $this->db->get('alojamiento');
+        
+        $alojamientos = $consulta->custom_result_object("Alojamiento_model");
+    
+        foreach ($alojamientos as $alojamiento) {
+            $alojamiento->servicios= $alojamiento->servicios($alojamiento->id);
+        }
+        
+        return $alojamientos;7
+        */
+    }
+
     
 }
 

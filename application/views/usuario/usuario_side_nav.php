@@ -25,12 +25,12 @@
     </div>
   </li>
   <!-- <li class="nav-item">
-    <a class="nav-link" href="<?php echo base_url()."assets/"; ?>charts.html">
+    <a class="nav-link" href="<//?php echo base_url()."assets/"; ?>charts.html">
       <i class="fas fa-fw fa-chart-area"></i>
       <span>Charts</span></a>
   </li> -->
   <!-- <li class="nav-item">
-    <a class="nav-link" href="<?php echo base_url()."assets/"; ?>tables.html">
+    <a class="nav-link" href="<//?php echo base_url()."assets/"; ?>tables.html">
       <i class="fas fa-fw fa-table"></i>
       <span>Tables</span></a>
   </li> -->
@@ -47,7 +47,7 @@
   <li class="nav-item">
     <a class="nav-link" href="<?php echo base_url()."alojamiento/mis_reservas"; ?>">
     <i class="fas fa-shopping-cart"></i>
-      <span>Reservas</span></a>
+      <span>Mis Reservas</span></a>
   </li>
 
 </ul>

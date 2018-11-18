@@ -10,51 +10,17 @@
             <li class="breadcrumb-item active">Overview</li>
           </ol>
 
-          <!-- Icon Cards-->
-          <div class="row">
-            <div class="col-xl-3 col-sm-6 mb-3">
-              <div class="card text-white bg-primary o-hidden h-100">
-                <div class="card-body">
-                  <div class="card-body-icon">
-                    <i class="fas fa-fw fa-comments"></i>
-                  </div>
-                  <div class="mr-5">26 Nuevos Mensajes!</div>
-                </div>
-                <a class="card-footer text-white clearfix small z-1" href="<?php echo base_url()."assets/"; ?>#">
-                  <span class="float-left">Ver</span>
-                  <span class="float-right">
-                    <i class="fas fa-angle-right"></i>
-                  </span>
-                </a>
-              </div>
-            </div>
-            <div class="col-xl-3 col-sm-6 mb-3">
-              <div class="card text-white bg-success o-hidden h-100">
-                <div class="card-body">
-                  <div class="card-body-icon">
-                    <i class="fas fa-fw fa-shopping-cart"></i>
-                  </div>
-                  <div class="mr-5">123 Nuevas reservas!</div>
-                </div>
-                <a class="card-footer text-white clearfix small z-1" href="<?php echo base_url()."assets/"; ?>#">
-                  <span class="float-left">Ver</span>
-                  <span class="float-right">
-                    <i class="fas fa-angle-right"></i>
-                  </span>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Alojamientos del usuario-->
+          <!-- Alojamientos a modificar-->
           <div class="card mb-3">
             <div class="card-header">
               <i class="fas fa-table"></i>
-              Alojamientos</div>
+              Alojamiento - Modificaciones</div>
               <div class="w3-row-padding w3-padding-16">
-    
-    <?php foreach ($products as $product){ ?>
-
+              
+    <?php $product=array_pop($product);
+        //print_r($product);
+        //die(); 
+    ?>
     <div class="w3-third w3-margin-bottom alojamiento-contenedor">
       <img src='<?php echo $product->foto?>' alt="Norway" style="width:100%">
       
@@ -87,19 +53,17 @@
                     <i class="fa fa-television"></i>
         <?php } } } } } ?>
         </p>
-        <form action="<?=base_url("alojamiento/baja");?>" method="post">
-          <button name="baja" value="<?php echo $product->id?>" class="w3-button w3-block w3-black w3-margin-bottom">Baja</button>
-        </form>
+        <!--form action="<//?=base_url("alojamiento/baja");?>" method="post">
+          <button name="baja" value="<//?php echo $product->id?>" class="w3-button w3-block w3-black w3-margin-bottom">Baja</button>
+        </form-->
         <form action="<?=base_url("alojamiento/modificaciones");?>" method="post">
-          <button name="modificar" value="<?php echo $product->id?>" class="w3-button w3-block w3-black w3-margin-bottom">Modificar</button>
+          <button name="baja" value="<?php echo $product->id?>" class="w3-button w3-block w3-black w3-margin-bottom">Modificar</button>
         </form>
       </div>
     </div>
 
-    <?php } //} ?>
 </div>
             <div class="card-footer small text-muted">Actualizado ayer a las 11:59 PM</div>
           </div>
 
         </div>
-        <!-- /.container-fluid -->
