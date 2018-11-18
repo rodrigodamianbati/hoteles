@@ -8,7 +8,7 @@
         <i class="fas fa-bars"></i>
       </button>
 
-      <!-- Navbar Search -->
+      <!-- Navbar Search
       <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Ej: Carmen de Patagones" aria-label="Search" aria-describedby="basic-addon2">
@@ -18,9 +18,10 @@
             </button>
           </div>
         </div>
-      </form>
+      </form> -->
 
       <!-- Navbar -->
+      <div class="collapse navbar-collapse justify-content-end"> 
       <ul class="navbar-nav ml-auto ml-md-0">
         <li class="nav-item dropdown no-arrow mx-1">
           <a class="nav-link dropdown-toggle" href="<?php echo base_url()."assets/"; ?>#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -58,5 +59,6 @@
           </div>
         </li>
       </ul>
+      </div>
 
     </nav>

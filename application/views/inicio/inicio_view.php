@@ -24,30 +24,45 @@
                                     
                                     <!--end of col-->
 
+                                    
 
+                                    
                                      <script type="text/javascript">
-                                    var options = {
-                                            //url: "<?php echo base_url();?>js/countries.json",
-                                            url: "<?php echo base_url();?>inicio/getCiudades",
-                                            
-                                            getValue: "nombre"
-                                            
-                                            // template: {
-                                            //     type: "description",
-                                            //     fields: {
-                                            //         description: "id"
-                                            //     }
-                                            // }
 
-                                            // template: {
-                                            //     type: "custom",
-                                            //     method: function(value, item) {
-                                            //         return item.nombre + "" + item.id;
-                                            //     }
-                                            // }
+
+                                            var options = { 
+                                            url: function (phrase) { 
+                                                // return "api / countrySearch.php? phrase =" + phrase + "& format = json"; 
+                                                return "<?php echo base_url();?>inicio/getCiudadesFiltrado/" + phrase; 
+                                            }, 
+
+                                                getValue: "nombre" 
+                                            }; 
+
+                                         
+                                     
+                                    // var options = {
+                                    //         //url: "<?php echo base_url();?>js/countries.json",
+                                    //         url: "<?php echo base_url();?>inicio/getCiudades",
+                                            
+                                    //         getValue: "nombre"
+                                            
+                                    //         // template: {
+                                    //         //     type: "description",
+                                    //         //     fields: {
+                                    //         //         description: "id"
+                                    //         //     }
+                                    //         // }
+
+                                    //         // template: {
+                                    //         //     type: "custom",
+                                    //         //     method: function(value, item) {
+                                    //         //         return item.nombre + "" + item.id;
+                                    //         //     }
+                                    //         // }
                  
                                             
-                                        };
+                                    //     };
 
                                         $("#busqueda").easyAutocomplete(options);
                                         </script>
