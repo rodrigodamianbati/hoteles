@@ -59,6 +59,14 @@ class Alojamiento_model extends CI_Model{
     return $consulta->result();
     }
 
+    public function localidadesFiltrado($ciu){
+     
+        $this->db->select('nombre');
+        $this->db-> like ( 'nombre' ,  $ciu );
+        $consulta= $this->db->get('localidad');
+        return $consulta->result();
+    }
+
     public function nuevaFoto($id_alojamiento, $path){
         
             //$id=$_SESSION['id'];id	foto_url	id_alojamiento

@@ -42,7 +42,11 @@
           
         }
 
-
+        public function getCiudadesFiltrado($ciu){
+            $resultado= $this->Alojamiento_model->localidadesFiltrado($ciu);
+            
+            echo json_encode($resultado);
+        }
         public function getCiudades(){
             $resultado= $this->Alojamiento_model->localidades();
             echo json_encode($resultado);

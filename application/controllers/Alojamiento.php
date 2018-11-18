@@ -53,6 +53,13 @@ class Alojamiento extends CI_Controller{
         return $consulta;
     }
 
+    public function localidadesFiltrado($ciu){
+
+        $consulta['localidades']=$this->Alojamiento_model->localidadesFiltrado($ciu);
+    
+        return $consulta;
+    }
+
     
     /////////////////////////////////////---------ALTA-ALOJAMIENTO
     public function alta(){
@@ -265,7 +272,7 @@ class Alojamiento extends CI_Controller{
         }
         $config = $this->configurarPaginado($config);
     
-        /*
+       
         $config['per_page'] = 9;
         $data['products'] = $this->alojamientosFiltrado($config['per_page'], $localidad, $filtros);
 
@@ -294,7 +301,7 @@ class Alojamiento extends CI_Controller{
         $config['last_link'] = 'Ultimo';
         $config['next_link'] = 'Siguiente';
         $config['prev_link'] = 'Anterior';
-        */
+        
 
         $this->pagination->initialize($config);
 
