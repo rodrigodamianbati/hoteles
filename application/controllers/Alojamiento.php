@@ -337,6 +337,31 @@ class Alojamiento extends CI_Controller{
         redirect('alojamiento/mis_alojamientos'); 
     }
 
+    public function estados(){
+        $consulta['estados']=$this->Alojamiento_model->estados();
+
+        return $consulta;
+    }  
+
+    public function modificacion_estado(){
+        if($this->input->post("modificar_estado")){
+            $product = $this->Alojamiento_model->alojamiento($this->input->post("modificar_estado"));
+            $estados = $this->estados();
+
+            //$data = array_merge($product, $estados);
+            //$data['product'] = $product;
+            //print_r($data);
+            //die();
+            $data['product']=$product;
+            $data['estados']=$estados;
+            $this->load->view("usuario/usuario_head");
+            $this->load->view("usuario/usuario_top_nav");
+            $this->load->view("usuario/usuario_side_nav");
+            $this->load->view("usuario/modificacion_estado_alojamiento", $data);
+            $this->load->view("usuario/usuario_footer");
+        }
+    }
+
     public function modificaciones(){
         if($this->input->post("modificar")){
             $product = $this->Alojamiento_model->alojamiento($this->input->post("modificar"));
@@ -380,6 +405,23 @@ class Alojamiento extends CI_Controller{
                 $this->input->post("localidad"),
                 $this->input->post("direccion_nombre"),
                 $this->input->post("direccion_numero")
+            );
+        }
+        redirect('alojamiento/mis_alojamientos'); 
+    }
+
+    public function modificar_estado(){
+        //print_r($this->input->post("baja"));
+        //die();
+        
+        if($this->input->post("modificar_estado")){
+            //print_r($this->input->post("localidades"));
+            //die();
+            //print_r($this->input->post("estado"));
+            //die(); 
+            $this->Alojamiento_model->modificar_estado(
+                $this->input->post("id"), 
+                $this->input->post("estado")
             );
         }
         redirect('alojamiento/mis_alojamientos'); 

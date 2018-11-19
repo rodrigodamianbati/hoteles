@@ -44,6 +44,17 @@ class Alojamiento_model extends CI_Model{
         }
     }
 
+    public function modificar_estado($id, $estado){
+
+        $data = array(
+            'id_estado' => $estado
+        );
+
+        $this->db->where('alojamiento.id', $id);
+        $this->db->update('alojamiento', $data);
+        
+    }
+
     public function modificar($id, $tipo, $precio, $id_localidad, $direccion_nombre, $direccion_numero){
 
         //print_r($id_localidad);
@@ -67,6 +78,14 @@ class Alojamiento_model extends CI_Model{
 
         $this->db->select('*');
         $consulta= $this->db->get('tipo_aloj');
+
+    return $consulta->result();
+    }
+
+    public function estados(){
+
+        $this->db->select('*');
+        $consulta= $this->db->get('estado_aloj');
 
     return $consulta->result();
     }

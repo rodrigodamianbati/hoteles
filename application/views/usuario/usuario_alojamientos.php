@@ -93,6 +93,9 @@
         <form action="<?=base_url("alojamiento/modificaciones");?>" method="post">
           <button name="modificar" value="<?php echo $product->id?>" class="w3-button w3-block w3-black w3-margin-bottom">Modificar</button>
         </form>
+        <form action="<?=base_url("alojamiento/modificacion_estado");?>" method="post">
+          <button name="modificar_estado" value="<?php echo $product->id?>" class="w3-button w3-block w3-black w3-margin-bottom">Modificar estado</button>
+        </form>
       </div>
     </div>
 
