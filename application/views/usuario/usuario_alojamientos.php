@@ -96,6 +96,9 @@
         <form action="<?=base_url("alojamiento/modificacion_estado");?>" method="post">
           <button name="modificar_estado" value="<?php echo $product->id?>" class="w3-button w3-block w3-black w3-margin-bottom">Modificar estado</button>
         </form>
+        <form action="<?=base_url("alojamiento/modificacion_galeria");?>" method="post">
+          <button name="modificar_estado" value="<?php echo $product->id?>" class="w3-button w3-block w3-black w3-margin-bottom">Modificar galeria</button>
+        </form>
       </div>
     </div>
 

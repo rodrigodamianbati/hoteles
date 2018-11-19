@@ -11,6 +11,8 @@
 
     <title>Bienvenido a su perfil!</title>
 
+    
+
     <!-- Bootstrap core CSS-->
     <link href="<?php echo base_url()."assets/"; ?>vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -22,5 +24,8 @@
 
     <!-- Custom styles for this template-->
     <link href="<?php echo base_url()."assets/"; ?>css/sb-admin.css" rel="stylesheet">
+
+    <link href="<?php echo base_url()."assets/"; ?>css/galeria.css" rel="stylesheet">
+
 
   </head>

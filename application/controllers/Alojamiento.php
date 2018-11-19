@@ -321,10 +321,12 @@ class Alojamiento extends CI_Controller{
         //$alojamientos = $this->Alojamiento_model->misAlojamientos($id);
 
         $this->load->view("usuario/usuario_head");
+        //$this->load->view("inicio/head");
         $this->load->view("usuario/usuario_top_nav");
         $this->load->view("usuario/usuario_side_nav");
         $this->load->view("usuario/usuario_alojamientos",$data);
         $this->load->view("usuario/usuario_footer");
+        //$this->load->view("inicio/footer");
 
     }
 
@@ -361,6 +363,27 @@ class Alojamiento extends CI_Controller{
             $this->load->view("usuario/usuario_footer");
         }
     }
+
+    public function modificacion_galeria(){
+        if($this->input->post("modificacion_galeria")){
+            $product = $this->Alojamiento_model->alojamiento($this->input->post("modificacion_galeria"));
+            $estados = $this->estados();
+
+            //$data = array_merge($product, $estados);
+            //$data['product'] = $product;
+            //print_r($data);
+            //die();
+            $data['product']=$product;
+            $data['estados']=$estados;
+            $this->load->view("usuario/inicio_head");
+            $this->load->view("usuario/usuario_top_nav");
+            $this->load->view("usuario/usuario_side_nav");
+            $this->load->view("usuario/modificacion_galeria", $data);
+            $this->load->view("usuario/inicio_footer");
+        }
+    }
+
+   
 
     public function modificaciones(){
         if($this->input->post("modificar")){
@@ -426,5 +449,6 @@ class Alojamiento extends CI_Controller{
         }
         redirect('alojamiento/mis_alojamientos'); 
     }
+
 }
 ?>
