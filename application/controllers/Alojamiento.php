@@ -365,8 +365,8 @@ class Alojamiento extends CI_Controller{
     }
 
     public function modificacion_galeria(){
-        if($this->input->post("modificacion_galeria")){
-            $product = $this->Alojamiento_model->alojamiento($this->input->post("modificacion_galeria"));
+        if($this->input->post("modificar_galeria")){
+            $product = $this->Alojamiento_model->alojamiento($this->input->post("modificar_galeria"));
             $estados = $this->estados();
 
             //$data = array_merge($product, $estados);
@@ -375,11 +375,11 @@ class Alojamiento extends CI_Controller{
             //die();
             $data['product']=$product;
             $data['estados']=$estados;
-            $this->load->view("usuario/inicio_head");
+            $this->load->view("usuario/usuario_head");
             $this->load->view("usuario/usuario_top_nav");
             $this->load->view("usuario/usuario_side_nav");
             $this->load->view("usuario/modificacion_galeria", $data);
-            $this->load->view("usuario/inicio_footer");
+            $this->load->view("usuario/usuario_footer");
         }
     }
 
