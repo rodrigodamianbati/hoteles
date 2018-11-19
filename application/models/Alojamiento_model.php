@@ -365,6 +365,16 @@ class Alojamiento_model extends CI_Model{
     }
 
 
+
+    public function galeria($id){
+
+        $this->db->select("*");
+        $this->db->where('foto_alojamiento.id_alojamiento', $id);
+        $consulta = $this->db->get('foto_alojamiento');
+
+        return $consulta->result();
+    }  
+
     public function alojamiento($id){
 
         $this->db->select("alojamiento.id, e.descripcion as estado, t.descripcion as tipo, alojamiento.default_foto as foto, alojamiento.precio, l.nombre as localidad, alojamiento.direccion_nombre, alojamiento.direccion_numero");

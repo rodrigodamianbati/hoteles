@@ -367,14 +367,14 @@ class Alojamiento extends CI_Controller{
     public function modificacion_galeria(){
         if($this->input->post("modificar_galeria")){
             $product = $this->Alojamiento_model->alojamiento($this->input->post("modificar_galeria"));
-            $estados = $this->estados();
+            $galeria = $this->Alojamiento_model->galeria($this->input->post("modificar_galeria"));
 
             //$data = array_merge($product, $estados);
             //$data['product'] = $product;
             //print_r($data);
             //die();
             $data['product']=$product;
-            $data['estados']=$estados;
+            $data['galeria']=$galeria;
             $this->load->view("usuario/usuario_head");
             $this->load->view("usuario/usuario_top_nav");
             $this->load->view("usuario/usuario_side_nav");
@@ -383,7 +383,25 @@ class Alojamiento extends CI_Controller{
         }
     }
 
-   
+
+    public function agregacion_fotos(){
+        if($this->input->post("agregar_fotos")){
+            $product = $this->Alojamiento_model->alojamiento($this->input->post("agregar_fotos"));
+            $galeria = $this->Alojamiento_model->galeria($this->input->post("agregar_fotos"));
+
+            //$data = array_merge($product, $estados);
+            //$data['product'] = $product;
+            //print_r($data);
+            //die();
+            $data['product']=$product;
+            $data['galeria']=$galeria;
+            $this->load->view("usuario/fine_uploader_head");
+            $this->load->view("usuario/usuario_top_nav");
+            $this->load->view("usuario/usuario_side_nav");
+            $this->load->view("usuario/agregar_fotos", $data);
+            $this->load->view("usuario/usuario_footer");
+        }
+    }
 
     public function modificaciones(){
         if($this->input->post("modificar")){

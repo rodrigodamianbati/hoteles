@@ -99,6 +99,9 @@
         <form action="<?=base_url("alojamiento/modificacion_galeria");?>" method="post">
           <button name="modificar_galeria" value="<?php echo $product->id?>" class="w3-button w3-block w3-black w3-margin-bottom">Modificar galeria</button>
         </form>
+        <form action="<?=base_url("alojamiento/agregacion_fotos");?>" method="post">
+          <button name="agregar_fotos" value="<?php echo $product->id?>" class="w3-button w3-block w3-black w3-margin-bottom">Agregar fotos a la galeria</button>
+        </form>
       </div>
     </div>
 
