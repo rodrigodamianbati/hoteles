@@ -340,7 +340,18 @@ class Alojamiento extends CI_Controller{
     public function modificaciones(){
         if($this->input->post("modificar")){
             $product = $this->Alojamiento_model->alojamiento($this->input->post("modificar"));
+            $tipos = $this->tipos();
+            $localidades = $this->localidades();
+
+            /*
+            $user = json_decode($product)[0];
+            print_r($user);
+            die(); 
+            */
+            $data = array_merge($tipos, $localidades);
             $data['product'] = $product;
+            //print_r($data);
+            //die();  
             /*
             print_r(array_pop($product));
             die();
@@ -357,9 +368,19 @@ class Alojamiento extends CI_Controller{
 
     public function modificar(){
         //print_r($this->input->post("baja"));
-        //die(); 
+        //die();
+        
         if($this->input->post("modificar")){
-            $this->Alojamiento_model->modificar($this->input->post("modificar"));
+            //print_r($this->input->post("localidades"));
+            //die(); 
+            $this->Alojamiento_model->modificar(
+                $this->input->post("id"), 
+                $this->input->post("tipo"), 
+                $this->input->post("precio"), 
+                $this->input->post("localidad"),
+                $this->input->post("direccion_nombre"),
+                $this->input->post("direccion_numero")
+            );
         }
         redirect('alojamiento/mis_alojamientos'); 
     }

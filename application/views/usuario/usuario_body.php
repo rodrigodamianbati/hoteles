@@ -52,7 +52,7 @@
                   </div>
                   <div class="mr-5">123 New Orders!</div>
                 </div>
-                <a class="card-footer text-white clearfix small z-1" href="<?php echo base_url()."assets/"; ?>#">
+                <a class="card-footer text-white clearfix small z-1" href="<//?php echo base_url()."assets/"; ?>#">
                   <span class="float-left">View Details</span>
                   <span class="float-right">
                     <i class="fas fa-angle-right"></i>
@@ -68,7 +68,7 @@
                   </div>
                   <div class="mr-5">13 New Tickets!</div>
                 </div>
-                <a class="card-footer text-white clearfix small z-1" href="<?php echo base_url()."assets/"; ?>#">
+                <a class="card-footer text-white clearfix small z-1" href="<//?php echo base_url()."assets/"; ?>#">
                   <span class="float-left">View Details</span>
                   <span class="float-right">
                     <i class="fas fa-angle-right"></i>

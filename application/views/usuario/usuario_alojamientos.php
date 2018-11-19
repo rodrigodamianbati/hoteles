@@ -56,7 +56,7 @@
     <?php foreach ($products as $product){ ?>
 
     <div class="w3-third w3-margin-bottom alojamiento-contenedor">
-      <img src='<?php echo $product->foto?>' alt="Norway" style="width:100%">
+      <img src='<?php echo $product->foto?>' alt="Norway" style="width:30%">
       
       <div class="w3-container alojamiento-descripcion">    <!--w3-white-->
         <h3><?php echo $product->tipo?></h3>
