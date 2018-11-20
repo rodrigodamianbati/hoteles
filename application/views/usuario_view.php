@@ -29,25 +29,15 @@
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-      <a class="navbar-brand mr-1" href="<?php echo base_url()."assets/"; ?>index.html">Start Bootstrap</a>
+      <a class="navbar-brand mr-1" href="<?php echo base_url()."assets/"; ?>index.html">Aloj.ar</a>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="<?php echo base_url()."assets/"; ?>#">
         <i class="fas fa-bars"></i>
       </button>
 
-      <!-- Navbar Search -->
-      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-          <div class="input-group-append">
-            <button class="btn btn-primary" type="button">
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
-        </div>
-      </form>
 
       <!-- Navbar -->
+      <div class="collapse navbar-collapse justify-content-end"> 
       <ul class="navbar-nav ml-auto ml-md-0">
         <li class="nav-item dropdown no-arrow mx-1">
           <a class="nav-link dropdown-toggle" href="<?php echo base_url()."assets/"; ?>#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -88,12 +78,14 @@
 
     </nav>
 
+    </div>
+
     <div id="wrapper">
 
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="<?php echo base_url()."assets/"; ?>index.html">
+          <a class="nav-link" href="<?php echo base_url()."inicio"; ?>">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Mi cuenta</span>
           </a>
@@ -101,34 +93,34 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="<?php echo base_url()."assets/"; ?>#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Paginas</span>
+            <span>Administrar Usuarios</span>
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-            <h6 class="dropdown-header">Login Screens:</h6>
-            <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>login.html">Inicio de sesion</a>
-            <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>register.html">Registro</a>
-            <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>forgot-password.html">Olvide mi contraseña</a>
+            
+            <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>login.html">Nuevo</a>
+            <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>register.html">Modificar</a>
+            <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>forgot-password.html">Eliminar</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">Other Pages:</h6>
             <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>404.html">404 Page</a>
             <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>blank.html">Blank Page</a>
           </div>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="<?php echo base_url()."assets/"; ?>charts.html">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Charts</span></a>
-        </li>
+        </li> -->
         <li class="nav-item">
           <a class="nav-link" href="<?php echo base_url()."assets/"; ?>tables.html">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Tables</span></a>
+          <i class="fas fa-key"></i>
+            <span>Contraseñas</span></a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="<?php echo base_url()."alojamiento/mis_alojamientos"; ?>">
             <i class="fas fa-home"></i>
             <span>Alojamientos</span></a>
-        </li>
+        </li> -->
         <!--li class="nav-item">
           <a class="nav-link" href="<//?php echo base_url()."assets/"; ?>tables.html">
             <i class="fas fa-home"></i>
@@ -140,100 +132,14 @@
 
         <div class="container-fluid">
 
-          <!-- Breadcrumbs-->
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <a href="<?php echo base_url()."assets/"; ?>#">Dashboard</a>
-            </li>
-            <li class="breadcrumb-item active">Overview</li>
-          </ol>
-
-          <!-- Icon Cards
-          <div class="row">
-            <div class="col-xl-3 col-sm-6 mb-3">
-              <div class="card text-white bg-primary o-hidden h-100">
-                <div class="card-body">
-                  <div class="card-body-icon">
-                    <i class="fas fa-fw fa-comments"></i>
-                  </div>
-                  <div class="mr-5">26 New Messages!</div>
-                </div>
-                <a class="card-footer text-white clearfix small z-1" href="<?php echo base_url()."assets/"; ?>#">
-                  <span class="float-left">View Details</span>
-                  <span class="float-right">
-                    <i class="fas fa-angle-right"></i>
-                  </span>
-                </a>
-              </div>
-            </div>
-            <div class="col-xl-3 col-sm-6 mb-3">
-              <div class="card text-white bg-warning o-hidden h-100">
-                <div class="card-body">
-                  <div class="card-body-icon">
-                    <i class="fas fa-fw fa-list"></i>
-                  </div>
-                  <div class="mr-5">11 New Tasks!</div>
-                </div>
-                <a class="card-footer text-white clearfix small z-1" href="<?php echo base_url()."assets/"; ?>#">
-                  <span class="float-left">View Details</span>
-                  <span class="float-right">
-                    <i class="fas fa-angle-right"></i>
-                  </span>
-                </a>
-              </div>
-            </div>
-            <div class="col-xl-3 col-sm-6 mb-3">
-              <div class="card text-white bg-success o-hidden h-100">
-                <div class="card-body">
-                  <div class="card-body-icon">
-                    <i class="fas fa-fw fa-shopping-cart"></i>
-                  </div>
-                  <div class="mr-5">123 New Orders!</div>
-                </div>
-                <a class="card-footer text-white clearfix small z-1" href="<?php echo base_url()."assets/"; ?>#">
-                  <span class="float-left">View Details</span>
-                  <span class="float-right">
-                    <i class="fas fa-angle-right"></i>
-                  </span>
-                </a>
-              </div>
-            </div>
-            <div class="col-xl-3 col-sm-6 mb-3">
-              <div class="card text-white bg-danger o-hidden h-100">
-                <div class="card-body">
-                  <div class="card-body-icon">
-                    <i class="fas fa-fw fa-life-ring"></i>
-                  </div>
-                  <div class="mr-5">13 New Tickets!</div>
-                </div>
-                <a class="card-footer text-white clearfix small z-1" href="<?php echo base_url()."assets/"; ?>#">
-                  <span class="float-left">View Details</span>
-                  <span class="float-right">
-                    <i class="fas fa-angle-right"></i>
-                  </span>
-                </a>
-              </div>
-            </div>
-          </div> -->
-
-          <!-- Area Chart Example-->
-          <div class="card mb-3">
-            <div class="card-header">
-              <i class="fas fa-chart-area"></i>
-              Area Chart Example</div>
-            <div class="card-body">
-              <canvas id="myAreaChart" width="100%" height="30"></canvas>
-            </div>
-            <div class="card-footer small text-muted">Actualizado ayer a las 11:59 PM</div>
-          </div>
-
+         
           <!-- DataTables Example -->
           <div class="card mb-3">
             <div class="card-header">
-              <i class="fas fa-table"></i>
+              <i class="fas fa-users"></i>
               Usuarios Registrados</div>
             <div class="card-body">
-              <div class="table-responsive">
+              <div id="tablaUsuarios" class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
@@ -243,6 +149,7 @@
                       <th>Apellido</th>
                       <th>Dni</th>
                       <th>Fecha de nacimiento</th>
+                      <th>Accion</th>
                     </tr>
                   </thead>
                   <tfoot>
@@ -258,7 +165,22 @@
                   <tbody>
                     <?php
                       foreach($ver as $fila){
-                    ?>
+
+                        $idUso=$fila->id."//";
+                    
+                      $datos= $fila->id."//". 
+                      $fila->nombre."//". 
+                      $fila->apellido."//".
+                      $fila->dni."//".
+                      $fila->fecha_nacimiento."//".
+                      $fila->email."//".
+                      $fila->contraseña."//";
+                      
+                 
+                      // print_r($datos);
+                      // die();
+                     
+                      ?> 
                       <tr>
                       <td>
                         <?=$fila->email;?>
@@ -278,6 +200,23 @@
                       <td>
                          <?=$fila->fecha_nacimiento;?>
                       </td>
+      
+                      <td>
+                                 
+                            <button id="button-edit" type="button" class="btn btn-dark btn-xs" data-toggle="modal" data-target="#modalEdicion" onclick="agregarForm('<?php echo $datos ?>')">
+                            <i class="fas fa-edit"></i>
+                          </button>
+                        
+
+
+                             <button id="button-elim" type="button" class="btn btn-dark btn-xs" data-toggle="modal" data-target="#modalEliminacion" onclick="agregaridElim('<?php echo $idUso ?>')">
+                              <i class="fas fa-trash-alt"></i>
+                            </button>
+
+
+                            
+                       
+                      </td>                      
                   <?php  } ?>
                   </tr>      
                   </tbody>
@@ -287,8 +226,37 @@
             <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
           </div>
 
+
         </div>
         <!-- /.container-fluid -->
+
+
+      <!-- script para actualizar los dato de la tabla luego de la modificacion -->
+        <script type="text/javascript">
+
+          function actualizarTabla(){
+               location.reload();
+          }
+
+        </script>
+
+
+        
+        <!-- script onclick del button modal llenar los input del editar  -->
+        <script type="text/javascript">
+            function agregarForm(datos){
+              d=datos.split('//');
+              
+              $('#idpersona').val(d[0]);
+              $('#nom').val(d[1]);
+              $('#ape').val(d[2]);
+              $('#dni').val(d[3]);
+              $('#fecnac').val(d[4]);
+              $('#ema').val(d[5]);
+              $('#cont').val(d[6]);
+            
+              }
+		    	</script>
 
         <!-- Sticky Footer -->
         <footer class="sticky-footer">
@@ -310,6 +278,153 @@
       <i class="fas fa-angle-up"></i>
     </a>
 
+<!-- script onclick del button modal llenar los input del editar  -->
+<script type="text/javascript">
+            function actualizarDatos(){
+              $id=$('#idpersona').val();
+              $nombre= $('#nom').val();
+              $apellido=$('#ape').val();
+              $dni=$('#dni').val();
+              $fecNac=$('#fecnac').val();
+              $email=$('#ema').val();
+              $contraseña=$('#cont').val();
+            
+
+               $cadena= "id=" + $id +
+              "&nombre=" + $nombre + 
+              "&apellido=" + $apellido +
+              "&dni=" + $dni +
+              "&fechaNacimiento=" + $fecNac +
+              "&email=" + $email +
+              "&contrasenia=" + $contraseña;
+
+
+            
+
+          $.ajax({
+            type:"POST",
+            url:"<?php echo base_url()."usuario/modificarUsuario"?>",
+            data: $cadena,
+            
+            success:function(r){
+              
+               actualizarTabla();
+              //  alert(r);
+                //alertify.success("Actualizado con exito :)");
+              // }else{
+                // echo ("na actualizo");
+                //alertify.error("Fallo el servidor :(");
+              // }
+            }
+          });
+            }
+		    	</script>
+    
+
+      <!-- Modal para editar usuario-->
+      <div class="modal fade" id="modalEdicion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel">Ingrese los nuevos datos del usuario</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              
+            </div>
+            <div class="modal-body">
+
+       
+                  
+                <input type="text" hidden="" id="idpersona" name="">
+                
+                <label>Nombre</label>
+                <input type="text" name="" id="nom" class="form-control input-sm">
+
+                <label>Apellido</label>
+                <input type="text" name="" id="ape" class="form-control input-sm">
+
+                <label>DNI</label>
+                <input type="text" name="" id="dni" class="form-control input-sm">
+
+                <label>Fecha Nacimiento</label>
+                <input type="date" name="" id="fecnac" class="form-control input-sm">
+
+                <label>Email</label>
+                <input type="text" name="" id="ema" class="form-control input-sm">
+
+                <label>Contraseña</label>
+                <input type="text" name="" id="cont" class="form-control input-sm">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+              <button id="actualizar" type="button" class="btn btn-primary " onclick="actualizarDatos()"> Continuar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+<!-- script eliminacion usuario -->
+      <script type="text/javascript">
+                  function eliminarUsuario(){
+                   $id= $('#idper').val();
+                  
+                   $cadena= "id=" + $id;
+                    
+                    $.ajax({
+                      type:"POST",
+                      url:"<?php echo base_url()."usuario/eliminarUsuario"?>",
+                      data: $cadena,
+                      
+                      success:function(r){
+                    
+                       actualizarTabla();
+                    //  alert(r);
+                      //alertify.success("Actualizado con exito :)");
+                    // }else{
+                      // echo ("na actualizo");
+                      //alertify.error("Fallo el servidor :(");
+                    // }
+                  }
+                });
+                    }
+      </script>
+
+
+      <script type="text/javascript">
+                  function agregaridElim(idUso){
+                    d=idUso.split('//');
+
+                    
+                   $('#idper').val(d[0]);
+                   
+                    
+                    }
+      </script>
+       
+       
+
+       <!-- Modal para eliminar usuario-->
+       <div class="modal fade" id="modalEliminacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel">¿Desea eliminar este usuario?</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              
+            </div>
+            <div class="modal-body">
+            <input type="text" hidden="" id="idper" name="">
+              Seleccione "Continuar" si quiere continuar con la eliminacion.
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+              <button id="eliminar" type="button" class="btn btn-primary " onclick="eliminarUsuario()"> Continuar</button>
+              <!-- <button type="button" class="btn btn-primary">Continuar</button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -323,7 +438,7 @@
           <div class="modal-body">Seleccione "Cerrar Sesion" debajo si esta listo para cerrar la sesion.</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-            <!--<a class="btn btn-primary" href="<//?php echo base_url()."assets"; ?>login.html">Logout</a>-->
+            
             <a class="btn btn-primary" href="<?=base_url("login/cerrar_sesion");?>">Cerrar Sesion</a>
 
             <!--PROBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANDO REGISTRO-->

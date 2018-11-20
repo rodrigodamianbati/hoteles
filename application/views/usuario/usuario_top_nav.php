@@ -52,13 +52,40 @@
             <i class="fas fa-user-circle fa-fw"></i>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-            <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>#">Settings</a>
+            <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>#">Ajustes</a>
             <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>#">Activity Log</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+            <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>#" data-toggle="modal" data-target="#logoutModal">Salir</a>
           </div>
         </li>
       </ul>
       </div>
 
     </nav>
+
+
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">¿Listo para salir?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Seleccione "Cerrar Sesion" debajo si esta listo para cerrar la sesion.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+            <!--<a class="btn btn-primary" href="<//?php echo base_url()."assets"; ?>login.html">Logout</a>-->
+            <a class="btn btn-primary" href="<?=base_url("login/cerrar_sesion");?>">Cerrar Sesion</a>
+
+            <!--PROBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANDO REGISTRO-->
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    

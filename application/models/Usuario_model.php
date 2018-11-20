@@ -61,9 +61,26 @@ class Usuario_model extends CI_Model{
           }
         }
     }
+
+    //VER DESPUES si se puede usar la funcion anterior
+    public function modificarUsuario($id, $nombre, $apellido, $dni, $fechaNac, $email){
+       // $data  =  array ( 'nombre'  =>  $nombre , 'apellido'  =>  $apellido , 'dni'  =>  $dni , 'fecha_nacimiento'  =>  $fechaNac ,'email'  =>  $email);
+
+       $this->db->set('nombre', $nombre);
+       $this->db->set('apellido', $apellido);
+       $this->db->set('dni', $dni);
+       $this->db->set('fecha_nacimiento', $fechaNac);
+       $this->db->set('email', $email);
+       $this->db->where('id', $id);
+      return  $this->db->update('usuario');
+        
+    }
      
     public function eliminar($id){
-       $consulta=$this->db->query("DELETE FROM usuario WHERE id=$id");
+    //    $consulta=$this->db->query("DELETE FROM usuario WHERE id=$id");
+
+        $this->db->where('id', $id);
+        $this->db->delete('usuario');
        if($consulta==true){
            return true;
        }else{
@@ -71,9 +88,9 @@ class Usuario_model extends CI_Model{
        }
     }
  
-    public function id($email, $contraseña){
-        // $consulta=$this->db->query("SELECT * FROM usuario WHERE (email='$email' AND contraseña='$contraseña')");
-        $this->db->select('id');
+    public function estaRegistrado($email, $contraseña){
+       
+        $this->db->select('id, id_rol');
         $this->db->where('email',$email);
         $this->db->where('contraseña',$contraseña);
         $consulta= $this->db->get('usuario');
@@ -93,6 +110,17 @@ class Usuario_model extends CI_Model{
         return $consulta->result();
 
     }
+
+
+    public function getRol($id_rol)
+    {
+        $this->db->select('nombre');
+        $this->db->where('id',$id_rol);
+        $consulta= $this->db->get('rol');
+        return $consulta->first_row();
+
+    }
+
  
 }
 ?>

@@ -34,23 +34,50 @@ class Login extends CI_Controller{
         if($this->input->post("submit")){
          
             //verifico que se trate del usuario correcto
-            $id=$this->Usuario_model->id(
+            // $id=$this->Usuario_model->id(
+            //         $this->input->post("email"),
+            //         $this->input->post("contraseña")
+            //         );
+            // }
+            // if($id!=null){
+
+                //Sesion de una sola ejecución
+                // $this->session->set_flashdata('correcto', 'Usted ha iniciado sesion correctamente');
+
+
+                // $nuevaSesion = array(
+                //     'id' => $id,
+                //     'email'  => $email,
+                //     'logged_in' => TRUE
+                // );
+ 
+
+                $usuario=$this->Usuario_model->estaRegistrado(
                     $this->input->post("email"),
                     $this->input->post("contraseña")
                     );
             }
-            if($id!=null){
-
+            if($usuario!=null){
+                
                 //Sesion de una sola ejecución
                 $this->session->set_flashdata('correcto', 'Usted ha iniciado sesion correctamente');
 
+            
+                $rol = $this->Usuario_model->getRol($usuario->id_rol);
+
+                // print_r($rol);
+                // die();
 
                 $nuevaSesion = array(
-                    'id' => $id,
-                    'email'  => $email,
-                    'logged_in' => TRUE
+                    'id' => $usuario->id,
+                    'email'  => $this->input->post("email"),
+                    'logged_in' => TRUE,
+                    'rol' => $rol->nombre
                 );
- 
+
+
+                // print_r($nuevaSesion);
+                // die();
                 $this->session->set_userdata($nuevaSesion);
                 
                 redirect('inicio');
@@ -62,7 +89,7 @@ class Login extends CI_Controller{
 
     public function cerrar_sesion(){
         session_destroy();
-        redirect('login');
+        redirect('inicio');
     }
 }
 ?>
