@@ -56,7 +56,7 @@
     <?php foreach ($products as $product){ ?>
 
     <div class="w3-third w3-margin-bottom alojamiento-contenedor">
-      <img src='<?php echo $product->foto?>' alt="Norway" style="width:100%">
+      <img src='<?php echo $product->foto?>' alt="Norway" style="width:30%">
       
       <div class="w3-container alojamiento-descripcion">    <!--w3-white-->
         <h3><?php echo $product->tipo?></h3>
@@ -92,6 +92,15 @@
         </form>
         <form action="<?=base_url("alojamiento/modificaciones");?>" method="post">
           <button name="modificar" value="<?php echo $product->id?>" class="w3-button w3-block w3-black w3-margin-bottom">Modificar</button>
+        </form>
+        <form action="<?=base_url("alojamiento/modificacion_estado");?>" method="post">
+          <button name="modificar_estado" value="<?php echo $product->id?>" class="w3-button w3-block w3-black w3-margin-bottom">Modificar estado</button>
+        </form>
+        <form action="<?=base_url("alojamiento/modificacion_galeria");?>" method="post">
+          <button name="modificar_galeria" value="<?php echo $product->id?>" class="w3-button w3-block w3-black w3-margin-bottom">Modificar galeria</button>
+        </form>
+        <form action="<?=base_url("alojamiento/agregacion_fotos");?>" method="post">
+          <button name="agregar_fotos" value="<?php echo $product->id?>" class="w3-button w3-block w3-black w3-margin-bottom">Agregar fotos a la galeria</button>
         </form>
       </div>
     </div>

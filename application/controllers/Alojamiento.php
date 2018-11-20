@@ -81,6 +81,9 @@ class Alojamiento extends CI_Controller{
                 $data = $this->id_alojamiento($this->input->post("direccion_nombre"),$this->input->post("direccion_numero"));
                 //print_r($idalojamiento);
                 //die(); <--------------------------------------------------------acaaaaaaaaaaaaaaaaaaaaaaaa va la prueba
+
+                print_r($data);
+                die();
                 $this->load->view("alta_alojamiento_fotos_view", array('id_alojamiento' => $data));
                 
             }else{
@@ -321,10 +324,12 @@ class Alojamiento extends CI_Controller{
         //$alojamientos = $this->Alojamiento_model->misAlojamientos($id);
 
         $this->load->view("usuario/usuario_head");
+        //$this->load->view("inicio/head");
         $this->load->view("usuario/usuario_top_nav");
         $this->load->view("usuario/usuario_side_nav");
         $this->load->view("usuario/usuario_alojamientos",$data);
         $this->load->view("usuario/usuario_footer");
+        //$this->load->view("inicio/footer");
 
     }
 
@@ -337,10 +342,94 @@ class Alojamiento extends CI_Controller{
         redirect('alojamiento/mis_alojamientos'); 
     }
 
+    public function estados(){
+        $consulta['estados']=$this->Alojamiento_model->estados();
+
+        return $consulta;
+    }  
+
+    public function modificacion_estado(){
+        if($this->input->post("modificar_estado")){
+            $product = $this->Alojamiento_model->alojamiento($this->input->post("modificar_estado"));
+            $estados = $this->estados();
+
+            //$data = array_merge($product, $estados);
+            //$data['product'] = $product;
+            //print_r($data);
+            //die();
+            $data['product']=$product;
+            $data['estados']=$estados;
+            $this->load->view("usuario/usuario_head");
+            $this->load->view("usuario/usuario_top_nav");
+            $this->load->view("usuario/usuario_side_nav");
+            $this->load->view("usuario/modificacion_estado_alojamiento", $data);
+            $this->load->view("usuario/usuario_footer");
+        }
+    }
+
+    public function modificacion_galeria(){
+        if($this->input->post("modificar_galeria")){
+            $product = $this->Alojamiento_model->alojamiento($this->input->post("modificar_galeria"));
+            $galeria = $this->Alojamiento_model->galeria($this->input->post("modificar_galeria"));
+
+            //$data = array_merge($product, $estados);
+            //$data['product'] = $product;
+            //print_r($data);
+            //die();
+            $data['product']=$product;
+            $data['galeria']=$galeria;
+            $this->load->view("usuario/usuario_head");
+            $this->load->view("usuario/usuario_top_nav");
+            $this->load->view("usuario/usuario_side_nav");
+            $this->load->view("usuario/modificacion_galeria", $data);
+            $this->load->view("usuario/usuario_footer");
+        }
+    }
+
+
+    public function agregacion_fotos(){
+        //if($this->input->post("agregar_fotos")){
+            $id_alojamiento = $this->input->post("agregar_fotos"); 
+            //$product = $this->Alojamiento_model->alojamiento($this->input->post("agregar_fotos"));
+            //$galeria = $this->Alojamiento_model->galeria($this->input->post("agregar_fotos"));
+            //print_r($data);
+            //die(); 
+
+            //$data = array_merge($product, $estados);
+            //$data['product'] = $product;
+            //print_r($data);
+            //die();
+            //$data['product']=$product;
+            //$data['galeria']=$galeria;
+            //"alta_alojamiento_fotos_view", array('id_alojamiento' => $data)
+            $data['id_alojamiento'] = $id_alojamiento;
+            //$this->load->view("alta_alojamiento_fotos_view", $data);
+            //$this->load->view("alta_alojamiento_fotos_view");  
+            
+            $this->load->view("usuario/fine_uploader_head");
+            $this->load->view("usuario/usuario_top_nav");
+            $this->load->view("usuario/usuario_side_nav");
+            $this->load->view("usuario/agregar_fotos", $data);
+            $this->load->view("usuario/usuario_footer");
+            
+        //}
+    }
+
     public function modificaciones(){
         if($this->input->post("modificar")){
             $product = $this->Alojamiento_model->alojamiento($this->input->post("modificar"));
+            $tipos = $this->tipos();
+            $localidades = $this->localidades();
+
+            /*
+            $user = json_decode($product)[0];
+            print_r($user);
+            die(); 
+            */
+            $data = array_merge($tipos, $localidades);
             $data['product'] = $product;
+            //print_r($data);
+            //die();  
             /*
             print_r(array_pop($product));
             die();
@@ -357,11 +446,39 @@ class Alojamiento extends CI_Controller{
 
     public function modificar(){
         //print_r($this->input->post("baja"));
-        //die(); 
+        //die();
+        
         if($this->input->post("modificar")){
-            $this->Alojamiento_model->modificar($this->input->post("modificar"));
+            //print_r($this->input->post("localidades"));
+            //die(); 
+            $this->Alojamiento_model->modificar(
+                $this->input->post("id"), 
+                $this->input->post("tipo"), 
+                $this->input->post("precio"), 
+                $this->input->post("localidad"),
+                $this->input->post("direccion_nombre"),
+                $this->input->post("direccion_numero")
+            );
         }
         redirect('alojamiento/mis_alojamientos'); 
     }
+
+    public function modificar_estado(){
+        //print_r($this->input->post("baja"));
+        //die();
+        
+        if($this->input->post("modificar_estado")){
+            //print_r($this->input->post("localidades"));
+            //die();
+            //print_r($this->input->post("estado"));
+            //die(); 
+            $this->Alojamiento_model->modificar_estado(
+                $this->input->post("id"), 
+                $this->input->post("estado")
+            );
+        }
+        redirect('alojamiento/mis_alojamientos'); 
+    }
+
 }
 ?>
