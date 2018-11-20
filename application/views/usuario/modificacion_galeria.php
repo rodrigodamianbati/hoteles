@@ -36,6 +36,7 @@ die();
           <div class="container">
 	<div class="row">
 		<div class="row">
+        <form method="POST" action="hanteraTaBortAnvandare.php" id="DeleteUserForm">
 <?php foreach ($galeria as $foto) {
 ?>
             <div class="col-lg-3 col-md-4 col-xs-6 thumb">
@@ -47,11 +48,12 @@ die();
                          src="<?php echo $foto->foto_url?>"
                          alt="Another alt text">
                 </a>
-                <input type="checkbox" value="<?php echo $foto->id?>"/>
+                <input name="fotos_borrar" type="checkbox" value="<?php echo $foto->id?>"/>
             </div>
 <?php
         }
 ?>
+        </form>
         <div class="modal fade" id="image-gallery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -78,7 +80,7 @@ die();
            
             </div>
             <input type="hidden" type="submit" name="id" value="<?php echo $product[0]->id?>"/>
-            <input class="btn btn-primary btn-block" type="submit" name="modificar_estado" value="Modificar"/>
+            <input class="btn btn-primary btn-block" type="submit" name="borrar_fotos" value="Borrar seleccionados"/>
           </form>
           <div class="text-center">
             <a class="d-block small mt-3" href="<?php echo base_url()."alojamiento/mis_alojamientos"; ?>">Cancelar</a>
