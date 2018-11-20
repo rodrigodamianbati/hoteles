@@ -15,7 +15,7 @@
             <div class="card-header">
               <i class="fas fa-table"></i>
               Alojamiento - Modificaciones</div>
-              <div class="card-header">Modificacion de estado</div>
+              <div class="card-header">Agregar nuevas fotos de su alojamiento!</div>
         <div class="card-body">
           <form action="<?=base_url("alojamiento/modificar_estado");?>" method="post">
 
@@ -31,7 +31,7 @@
             template: 'qq-template-manual-trigger',
             request: {
                 <?php
-                    $id_aloj = $id_alojamiento->id;
+                    $id_aloj = $id_alojamiento;
                     //print_r($id_aloj);
                 ?>
                 endpoint: '<?php echo base_url('alojamiento/subir_foto?id='.$id_aloj); ?>'
@@ -54,11 +54,11 @@
               </div>
             </div>
 
-            <input type="hidden" type="submit" name="id" value="<?php echo $product[0]->id?>"/>
-            <input class="btn btn-primary btn-block" type="submit" name="modificar_estado" value="Modificar"/>
+            <!--input type="hidden" type="submit" name="id" value="<//?php echo $product[0]->id?>"/-->
+            <!--input class="btn btn-primary btn-block" type="submit" name="modificar_estado" value="guardar"/-->
           </form>
           <div class="text-center">
-            <a class="d-block small mt-3" href="<?php echo base_url()."alojamiento/mis_alojamientos"; ?>">Cancelar</a>
+            <a class="btn btn-primary btn-block" href="<?php echo base_url()."alojamiento/mis_alojamientos"; ?>">Cancelar</a>
           </div>
         </div>
     </div>
