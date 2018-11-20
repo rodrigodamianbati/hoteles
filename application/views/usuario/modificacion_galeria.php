@@ -47,6 +47,7 @@ die();
                          src="<?php echo $foto->foto_url?>"
                          alt="Another alt text">
                 </a>
+                <input type="checkbox" value="<?php echo $foto->id?>"/>
             </div>
 <?php
         }
