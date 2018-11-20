@@ -386,6 +386,20 @@ class Alojamiento extends CI_Controller{
         }
     }
 
+    public function modificar_galeria(){
+       
+        //if($this->input->post("modificar_estado")){
+            print_r($_POST);
+            print_r($_REQUEST);
+            die(); 
+            $this->Alojamiento_model->modificar_galeria(
+                $this->input->post("id"), 
+                $this->input->post("estado")
+            );
+        //}
+        redirect('alojamiento/mis_alojamientos'); 
+    }
+
 
     public function agregacion_fotos(){
         //if($this->input->post("agregar_fotos")){

@@ -36,7 +36,8 @@ die();
           <div class="container">
 	<div class="row">
 		<div class="row">
-        <form method="POST" action="hanteraTaBortAnvandare.php" id="DeleteUserForm">
+        <form method="POST" action="alojamiento/modficar_galeria" id="cajaschequeadas">
+<!--------------------------------------------------------------------------------------------->
 <?php foreach ($galeria as $foto) {
 ?>
             <div class="col-lg-3 col-md-4 col-xs-6 thumb">
@@ -53,6 +54,7 @@ die();
 <?php
         }
 ?>
+<!------------------------------------------------------------------------------------------------->
         </form>
         <div class="modal fade" id="image-gallery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
