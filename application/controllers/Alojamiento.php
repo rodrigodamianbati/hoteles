@@ -314,7 +314,7 @@ class Alojamiento extends CI_Controller{
     public function mis_alojamientos(){
         
         $this->load->library('pagination');
-        $id = $_SESSION['id']->id;
+        $id = $_SESSION['id'];
         $config['total_rows'] = $this->totalMisAlojamientos($id);
         $config['base_url'] = base_url().'alojamiento/mis_alojamientos';
 
@@ -389,15 +389,12 @@ class Alojamiento extends CI_Controller{
     public function modificar_galeria(){
        
         //if($this->input->post("modificar_estado")){
-            print_r($_POST);
-            print_r($_REQUEST);
-            die(); 
-            $this->Alojamiento_model->modificar_galeria(
-                $this->input->post("id"), 
-                $this->input->post("estado")
-            );
+            //print_r($_POST);
+            //print_r($_REQUEST);
+            //die(); 
+            $this->Alojamiento_model->modificar_galeria($_POST['chequeados']);
         //}
-        redirect('alojamiento/mis_alojamientos'); 
+        //cuidado --------------------------------> redirect('alojamiento/mis_alojamientos'); 
     }
 
 

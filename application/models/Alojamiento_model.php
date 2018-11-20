@@ -373,7 +373,20 @@ class Alojamiento_model extends CI_Model{
         $consulta = $this->db->get('foto_alojamiento');
 
         return $consulta->result();
-    }  
+    } 
+
+    public function modificar_galeria($lista_fotos){
+        
+        foreach ($lista_fotos as $id_foto) {
+            $this->borrar_foto($id_foto); 
+        }
+    }
+
+    public function borrar_foto($id_foto){
+        
+        $this->db->where('foto_alojamiento.id', $id_foto);
+        $this->db->delete('foto_alojamiento');
+    }
 
     public function alojamiento($id){
 
