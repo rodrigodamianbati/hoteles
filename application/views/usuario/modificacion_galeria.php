@@ -30,13 +30,13 @@ die();
             <div class="card-header">
               <i class="fas fa-table"></i>
               Alojamiento - Modificaciones</div>
-              <div class="card-header">Modificacion de estado</div>
+              <div class="card-header">Modificacion de Galeria</div>
         <div class="card-body">
-          <form action="<?=base_url("alojamiento/modificar_estado");?>" method="post">
+          <!--form action="<//?=base_url("alojamiento/modificar_estado");?>" method="post"-->
           <div class="container">
 	<div class="row">
 		<div class="row">
-        <form method="POST" action="alojamiento/modficar_galeria" id="cajaschequeadas">
+        <!--form method="POST" action="alojamiento/modficar_galeria" id="cajaschequeadas"-->
 <!--------------------------------------------------------------------------------------------->
 <?php $id_vista = 0;
 //print_r($galeria.); 

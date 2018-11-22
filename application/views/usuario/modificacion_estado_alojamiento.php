@@ -69,59 +69,10 @@ die(); */?>
 
                   </div>
                 </div>
-                <!--div class="col-md-6">
-                  <div class="form-label-group">
-                    <input type="text" id="precio" class="form-control" placeholder="Precio" required="required" name="precio" value="<?php echo $product[0]->precio?>">
-                    <label for="precio">Precio</label>
-                  </div>
-                </div-->
+                
               </div>
             </div>
-            <!--div class="form-group">
-              <div class="form-label-group">
-                <input type="text" id="direccion_nombre" class="form-control" placeholder="Nombre direccion" required="required" name="direccion_nombre" value="<?php echo $product[0]->direccion_nombre?>">
-                <label for="direccion_nombre">Nombre dirección</label>
-              </div>
-            </div-->
-            <div class="form-group">
-              <div class="form-row">
-                <!--div class="col-md-6">
-                  <div class="form-label-group">
-                    <input type="text" id="direccion_numero" class="form-control" placeholder="Numero direccion" required="required" name="direccion_numero" value="<?php echo $product[0]->direccion_numero?>">
-                    <label for="direccion_numero">Numero dirección</label>
-                  </div>
-                </div-->
-                <!--div class="col-md-6">
-                  <div class="form-label-group">
-                    <input type="password" id="confirmPassword" class="form-control" placeholder="Confirmar contraseña" required="required" name="confirmar_contraseña">
-                    <label for="confirmPassword">Confirmar contraseña</label>
-                  </div>
-                </div-->
-                <!--div class="col-md-6">
-                  <div class="form-label-group">
-
-                    <select id="localidad" class="form-control" name="localidad" placeholder="Localidad">
-                    <label for="localidad">Localidad</label>
-                        <//?php
-                            
-                          foreach ($localidades as $localidad) {
-                                  if($localidad->nombre==$product[0]->localidad){
-                          ?>
-                                    <option value="<//?php echo $localidad->id;?>" selected='selected'><//?php echo $localidad->nombre;?></option>;
-                          <//?php
-                                  } else{
-                          ?>
-                            
-                                  <option value="<//?php echo $localidad->id;?>"><//php echo $localidad->nombre;?></option>;
-
-                          <//?php
-                                  }
-                          }
-                        ?>
-                    </select> 
-
-                  </div>
-                </div-->
+            
               </div>
             </div>
             <input type="hidden" type="submit" name="id" value="<?php echo $product[0]->id?>"/>

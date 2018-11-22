@@ -30,12 +30,12 @@ class Alojamiento_model extends CI_Model
 
     }
 
-    public function agregar($tipo, $precio, $id_localidad, $direccion_nombre, $direccion_numero)
+    public function agregar($tipo, $precio, $id_localidad, $direccion_nombre, $direccion_numero, $id_usuario)
     {
         $consulta = $this->db->query("SELECT id FROM alojamiento WHERE (direccion_nombre='$direccion_nombre' AND direccion_numero='$direccion_numero')");
         if ($consulta->num_rows() == 0) {
             //$id=$_SESSION['id'];
-            $consulta = $this->db->query("INSERT INTO alojamiento VALUES(NULL, '$precio','$id_localidad','$direccion_nombre','$direccion_numero', '1', '1'/*sesion*/, '$tipo', '/pruebaTemplate2/fotos_alojamientos/default.png');");
+            $consulta = $this->db->query("INSERT INTO alojamiento VALUES(NULL, '$precio','$id_localidad','$direccion_nombre','$direccion_numero', '1', '$id_usuario'/*sesion*/, '$tipo', '/pruebaTemplate2/fotos_alojamientos/default.png');");
 
             if ($consulta == true) {
                 return true;
@@ -348,12 +348,12 @@ class Alojamiento_model extends CI_Model
                     $this->db->select("alojamiento.id, e.descripcion as estado, t.descripcion as tipo, alojamiento.default_foto as foto, alojamiento.precio, l.nombre as localidad, alojamiento.direccion_nombre, alojamiento.direccion_numero");
                     //$this->db->from("alojamiento");
                     $this->db->where("alojamiento.id_localidad IN ($where_ciudad)", null, false);
-                    $this->db->where("alojamiento.id IN ($where_servicios)", null, false);
+                    //$this->db->where("alojamiento.id IN ($where_servicios)", null, false);
                     $this->db->where("alojamiento.id IN ($where_tipo)", null, false);
                     $this->db->where("alojamiento.id IN ($where_plata)", null, false);
 
-                    $this->db->join("servicio_aloj sa", "alojamiento.id = sa.id_alojamiento");
-                    $this->db->join("servicio s", "s.id = sa.id_servicio");
+                    //$this->db->join("servicio_aloj sa", "alojamiento.id = sa.id_alojamiento");
+                    //$this->db->join("servicio s", "s.id = sa.id_servicio");
                     $this->db->join("estado_aloj e", "alojamiento.id_estado = e.id");
                     $this->db->join("tipo_aloj t", "alojamiento.id_tipo = t.id");
                     $this->db->join("localidad l", "alojamiento.id_localidad = l.id");
@@ -570,6 +570,24 @@ class Alojamiento_model extends CI_Model
         return $consulta;
     }
 
+    public function servicios_disponibles($id_alojamiento){
+
+        $this->db->select("*");
+        $this->db->from("servicio_aloj"); 
+        $this->db->where("servicio_aloj.id_alojamiento",$id_alojamiento);
+        $this->db->join("servicio_aloj sa", "servicio.id = sa.id_servicio");
+        $consulta=$this->db->get("servicio");
+          
+        return $consulta->result();
+    } 
+
+    public function todos_los_servicios(){
+
+        $consulta = $this->db->query("SELECT * FROM servicio");
+          
+        return $consulta->result();
+    }
+
     public function alojamientosFiltradoLimitePrecio($limite, $localidad, $filtros, $limite_precio, $tipo)
     {
 
@@ -688,12 +706,12 @@ class Alojamiento_model extends CI_Model
                 if ($tipo != null) {
                     $this->db->select("alojamiento.id, e.descripcion as estado, t.descripcion as tipo, alojamiento.default_foto as foto, alojamiento.precio, l.nombre as localidad, alojamiento.direccion_nombre, alojamiento.direccion_numero");
                     $this->db->where("alojamiento.id_localidad IN ($where_ciudad)", null, false);
-                    $this->db->where("alojamiento.id IN ($where_servicios)", null, false);
+                    //$this->db->where("alojamiento.id IN ($where_servicios)", null, false);
                     $this->db->where("alojamiento.id IN ($where_tipo)", null, false);
                     $this->db->where("alojamiento.id IN ($where_plata)", null, false);
 
                     $this->db->join("servicio_aloj sa", "alojamiento.id = sa.id_alojamiento");
-                    $this->db->join("servicio s", "s.id = sa.id_servicio");
+                    //$this->db->join("servicio s", "s.id = sa.id_servicio");
                     $this->db->join("estado_aloj e", "alojamiento.id_estado = e.id");
                     $this->db->join("tipo_aloj t", "alojamiento.id_tipo = t.id");
                     $this->db->join("localidad l", "alojamiento.id_localidad = l.id");
@@ -813,6 +831,24 @@ class Alojamiento_model extends CI_Model
         foreach ($lista_fotos as $id_foto) {
             $this->borrar_foto($id_foto);
         }
+    }
+
+    public function agregar_servicios($lista_servicios, $id_alojamiento)
+    {
+
+        foreach ($lista_servicios as $id_servicio) {
+            $this->agregar_servicio($id_servicio, $id_alojamiento);
+        }
+    }
+
+    //agregar_servicios($_POST['chequeados'], $_POST['id_alojamiento'])
+
+    public function agregar_servicio($id_servicio, $id_alojamiento)
+    {
+        $this->db->query("INSERT INTO servicio_aloj (id_alojamiento, id_servicio) VALUES ('$id_alojamiento', '$id_servicio')"); 
+        //$this->db->insert('mytable', $data);
+        //$this->db->where('foto_alojamiento.id', $id_servicio);
+        //$this->db->delete('foto_alojamiento');
     }
 
     public function borrar_foto($id_foto)
