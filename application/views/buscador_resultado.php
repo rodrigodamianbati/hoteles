@@ -114,11 +114,11 @@
         Precios desde - hasta<i class="fa fa-caret-down"></i>
       </button>
       <div class="w3-dropdown-content w3-bar-block w3-white w3-card-4">
-        <button class="w3-bar-item w3-button w3-text-black" name="limite_1" value="500"> Hasta $500</button>
-        <button class="w3-bar-item w3-button w3-text-black" name="limite_2" value="500-2500"> $500 - $2500</button>
-        <button class="w3-bar-item w3-button w3-text-black" name="limite_3" value="2500-5000"> $2500 - $5000</button>
-        <button class="w3-bar-item w3-button w3-text-black" name="limite_4" value="5000-7500"> $5000 - $7500</button>
-        <button class="w3-bar-item w3-button w3-text-black" name="limite_5" value="7500-10000"> $7500 - $10000</button>
+        <button class="w3-bar-item w3-button w3-text-black" name="limite_1" value="limite_1"> Hasta $500</button>
+        <button class="w3-bar-item w3-button w3-text-black" name="limite_2" value="limite_2"> $500 - $2500</button>
+        <button class="w3-bar-item w3-button w3-text-black" name="limite_3" value="limite_3"> $2500 - $5000</button>
+        <button class="w3-bar-item w3-button w3-text-black" name="limite_4" value="limite_4"> $5000 - $7500</button>
+        <button class="w3-bar-item w3-button w3-text-black" name="limite_5" value="limite_5"> $7500 - $10000</button>
       </div>
     </div>
     

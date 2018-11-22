@@ -232,6 +232,12 @@ class Alojamiento extends CI_Controller{
         return $this->Alojamiento_model->totalAlojamientosFiltrado($localidad, $filtros);
     }
 
+    private function totalFilasFiltradoLimitePrecio($localidad,$filtros, $limite_precio){
+        return $this->Alojamiento_model->totalFilasFiltradoLimitePrecio($localidad,$filtros, $limite_precio);
+    }
+    
+    
+
     private function alojamientos($limite, $localidad){
         return $this->Alojamiento_model->alojamientos($limite, $localidad);
     }
@@ -243,6 +249,11 @@ class Alojamiento extends CI_Controller{
     private function alojamientosFiltrado($limite, $localidad, $filtros){
         return $this->Alojamiento_model->alojamientosFiltrado($limite, $localidad, $filtros);
     }
+
+    private function alojamientosFiltradoLimitePrecio($limite, $localidad, $filtros, $limite_precio){
+        return $this->Alojamiento_model->alojamientosFiltradoLimitePrecio($limite, $localidad, $filtros, $limite_precio);
+    }
+    
     ////////////////////////////////////////////////////////////////////////
 
     public function filtrar(){
@@ -310,12 +321,13 @@ class Alojamiento extends CI_Controller{
     
        
         $config['per_page'] = 9;
-        if($limite_precio!=null){
-            $data['products'] = $this->alojamientosFiltrado($config['per_page'], $localidad, $filtros, $limite_precio);
+        if($limite_precio==null){
+            $data['products'] = $this->alojamientosFiltrado($config['per_page'], $localidad, $filtros);
+            $config['total_rows'] = $this->totalFilasFiltrado($localidad,$filtros, $limite_precio);
         }else{
-            $data['products'] = $this->alojamientosFiltradoLimitePrecio($config['per_page'], $localidad, $filtros);
+            $data['products'] = $this->alojamientosFiltradoLimitePrecio($config['per_page'], $localidad, $filtros, $limite_precio);
+            $config['total_rows'] = $this->totalFilasFiltradoLimitePrecio($localidad,$filtros, $limite_precio);
         }
-        $config['total_rows'] = $this->totalFilasFiltrado($localidad,$filtros);
         
         $config['num_links'] = 5;
 
