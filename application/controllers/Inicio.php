@@ -16,7 +16,6 @@
                 if($this->session->userdata['rol'] == 'administrador'){
 
                     
-                    
                     $usuario["ver"]=$this->Usuario_model->ver();
 
                     $this->load->view("usuario_view", $usuario);
