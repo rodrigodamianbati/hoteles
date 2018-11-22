@@ -27,13 +27,11 @@ class Usuario extends CI_Controller{
         else{
             // array asociativo con la llamada al metodo del modelo
             
-                // $usuario["ver"]=$this->Usuario_model->ver();
+                 $usuario["ver"]=$this->Usuario_model->ver();
                 
                 // // cargo la vista y le paso los datos
-                // $this->load->view("usuario_view",$usuario);
+                 $this->load->view("usuario_view",$usuario);
             
-
-                
         }
         
     }
@@ -71,8 +69,6 @@ class Usuario extends CI_Controller{
     //controlador para añadir
     public function registrar(){
 
-        
-         
         //compruebo si se a enviado submit
         if($this->input->post("submit")){
          
@@ -84,7 +80,7 @@ class Usuario extends CI_Controller{
                 $this->input->post("apellido"),
                 $this->input->post("fecha-nac"),
                 $this->input->post("dni"),
-                $this->input->post("provincia"),
+                $this->input->post("provincia")
                 );
         }
         if($agregar==true){
@@ -133,8 +129,7 @@ class Usuario extends CI_Controller{
         $this->load->view("registro");
     }
 
-        
-
+    
     //controlador para modificar al que 
     //le paso por la url un parametro
     public function mod($id){

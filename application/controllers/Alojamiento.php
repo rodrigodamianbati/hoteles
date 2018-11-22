@@ -248,9 +248,16 @@ class Alojamiento extends CI_Controller{
     public function filtrar(){
 
         $this->load->library('pagination');
-        
-        $localidad = $_GET['localidad'];
 
+        if (isset($_GET['localidad'])){
+            $localidad = $_GET['localidad'];
+        }else
+            $localidad = $_GET['nueva_localidad']; 
+        
+        //die(); 
+        //$localidad = $_GET['localidad'];
+        //print_r($_GET);
+        //die(); 
         $config['base_url'] = base_url().'alojamiento/filtrar';
 
         $filtros=array();
@@ -273,6 +280,9 @@ class Alojamiento extends CI_Controller{
         if(isset($_GET['garage'])){
             array_push($filtros,$_GET['garage']);
         }
+
+        //print_r($filtros); 
+        //die(); 
         $config = $this->configurarPaginado($config);
     
        

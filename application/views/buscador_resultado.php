@@ -30,7 +30,7 @@
 
 <!-- nav header-->
 <div class="w3-bar w3-dark-grey">
-    <form action="<?=base_url("alojamiento");?>">
+    <form action="<?=base_url();?>">
         <button class="w3-bar-item w3-button w3-dark-grey">Inicio</button>
     </form>
     <!--a href="javascript:void(0)" class="w3-bar-item w3-button">Link 1</a-->
@@ -122,7 +122,9 @@
       </div>
     </div>
     
-    <input name="localidad" type="text" class="w3-bar-item w3-input w3-white" placeholder="Ej: Carmen de Patagones" style="width:35%">
+    <input name="localidad" type="hidden" value="<?php if (isset($products)){echo $products[0]->localidad;}?>">
+    <!--input name="current_localidad" type="sumit" type="hidden" value=""-->
+    <input name="nueva_localidad" type="text" class="w3-bar-item w3-input w3-white" placeholder="Ej: Carmen de Patagones" style="width:35%">
     <!--a href="javascript:void(0)" class="w3-bar-item w3-button w3-right"><i class="fa fa-search"> Buscar</i></a-->
    
     <button name="buscar" class="w3-bar-item w3-button w3-right" value="buscar"><i class="fa fa-search"> Buscar</i></button>
