@@ -52,5 +52,4 @@ function sumetear() {
             location.reload();
         }
      });
-
 }

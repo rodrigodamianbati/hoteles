@@ -572,7 +572,7 @@ class Alojamiento extends CI_Controller
         $this->load->view("usuario/usuario_top_nav");
         $this->load->view("usuario/usuario_side_nav");
         $this->load->view("usuario/agregar_servicios", $data);
-        $this->load->view("usuario/usuario_footer");
+        $this->load->view("usuario/usuario_footer_servicios");
     }
     
     public function servicios_disponibles($id_alojamiento){

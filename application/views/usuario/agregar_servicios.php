@@ -20,7 +20,8 @@
               Alojamiento - Servicios</div>
               <div class="card-header">Modificacion de estado</div>
         <div class="card-body">
-          <form action="<?=base_url("alojamiento/modificar_estado");?>" method="post">
+      
+          <form action="<?=base_url("alojamiento/agregar_servicios");?>" method="post" id="cajaschequeadas">
             <div class="form-group">
               <div class="form-row">
                 <div class="col-md-6">
@@ -62,7 +63,7 @@
               </div>
             </div>
             <input type="hidden" type="submit" name="id" value="<?php echo $id_alojamiento?>"/>
-            <input class="btn btn-primary btn-block" type="submit" name="agregar_servicios" value="Agregar"/>
+            <input class="btn btn-primary btn-block" type="submit" name="agregar_servicios" value="Agregar" onclick="sumetear_servicios()"/>
           </form>
           <div class="text-center">
             <a class="d-block small mt-3" href="<?php echo base_url()."alojamiento/mis_alojamientos"; ?>">Cancelar</a>
