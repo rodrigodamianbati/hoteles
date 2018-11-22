@@ -66,65 +66,73 @@ class Usuario extends CI_Controller{
         redirect(base_url());
     }
 
+
+    public function esAdministrador(){
+        if((isset($this->session->userdata['logged_in'])) && ($this->session->userdata['rol']=="administrador") ){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     //controlador para añadir
     public function registrar(){
 
         //compruebo si se a enviado submit
         if($this->input->post("submit")){
          
-        //llamo al metodo agregar
-        $agregar=$this->Usuario_model->agregar(
-                $this->input->post("email"),
-                $this->input->post("contraseña"),
-                $this->input->post("nombre"),
-                $this->input->post("apellido"),
-                $this->input->post("fecha-nac"),
-                $this->input->post("dni"),
-                $this->input->post("provincia")
+            
+            if(!$this->esAdministrador()){
+                $rol=2;
+            }
+            else{
+                $rol=  $this->input->post("rol");
+            }
+
+                // echo $rol;
+                //llamo al metodo agregar como admin
+                $agregar=$this->Usuario_model->agregar(
+                    $this->input->post("email"),
+                    $this->input->post("contraseña"),
+                    $this->input->post("nombre"),
+                    $this->input->post("apellido"),
+                    $this->input->post("fecha-nac"),
+                    $this->input->post("dni"),
+                    $this->input->post("localidad"),
+                    $this->input->post("telefono1"),
+                    $this->input->post("telefono2"),
+                    $rol
+                   
+                
                 );
-        }
-        if($agregar==true){
-            if(isset($this->session->userdata['logged_in'])){
-
-                echo'<script type="text/javascript">
-                    alert("Tarea Guardada");
-                    </script>';
                 
-                
-            }
-            else{
-                 //Sesion de una sola ejecución
-                 echo'<script type="text/javascript">
-                 alert("Tarea Guardada");
-                 </script>';
+                if(($agregar==true)){
+                    if($this->esAdministrador()){
+                        echo "Usuario agregado con exito";
+                    }
+                    else{
+                        echo "Se a registrado correctamente";
+                    }
+                    
+                }
+                else{
+                    if($this->esAdministrador()){
+                        echo "No se pudo agregar el usuario";
+                    }
+                    else{
+                        echo "No ha podido registrarse en el sistema";
+                    }
+                    
+              }
 
-                 
-                 
-            }
-           
-            
-        }else{
-            if(isset($this->session->userdata['logged_in'])){
-                echo'<script type="text/javascript">
-                alert("Tarea no Guardada");
-                </script>';
-            
-            
-              //  $this->session->set_flashdata('incorrecto', 'No se ha podido ingresar el usuario ');
-            }
-            else{
-                echo'<script type="text/javascript">
-                alert("Tarea no Guardada user");
-                </script>';
-            
-
-            }
         }
-         
-        //redirecciono la pagina a la url por defecto
         
-    }
-    
+
+}
+
+
+
     public function registro(){
         $this->load->view("registro");
     }
@@ -231,5 +239,8 @@ class Usuario extends CI_Controller{
        }
 
     }
+
+
+    
 }
 ?>

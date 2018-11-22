@@ -100,10 +100,11 @@
               <div class="form-row">
                 <div class="col-md-6">
                   <div class="form-label-group">
-                  <select id="input-rol" class="form-control">
+                  <select id="input-rol" name="rol" class="form-control">
                         <option selected>Seleccionar Rol</option>
-                        <option>Administrador</option>
-                        <option>Usuario</option>
+                        <?php foreach($rol as $r){ ?>
+                            <option value="<?php echo $r->id ?>"> <?php  echo $r->nombre; ?></option>
+                        <?php } ?>
                     </select>
                   </div>
                 </div>
@@ -120,7 +121,7 @@
               <div class="form-row">
                 <div class="col-md-6">
                   <div class="form-label-group">
-                  <select  id="input-provincia" class="form-control" onchange="getval(this);">
+                  <select  id="input-provincia"  name="provincia" class="form-control" onchange="getval(this);">
                         <option selected>Seleccionar Provincia</option>
                         <?php foreach($prov as $provincia){ ?>
                             <option value="<?php echo $provincia->id ?>"> <?php  echo $provincia->nombre; ?></option>
@@ -130,7 +131,7 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-label-group">
-                  <select  id="input-localidad" class="form-control">
+                  <select  id="input-localidad" name="localidad" class="form-control">
                         <!-- <option selected>Seleccionar Localidad</option> -->
                           
                     </select>
