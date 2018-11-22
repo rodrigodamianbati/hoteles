@@ -833,6 +833,21 @@ class Alojamiento_model extends CI_Model
         }
     }
 
+    public function agregar_servicios($lista_servicios)
+    {
+
+        foreach ($lista_servicios as $id_servicio) {
+            $this->agregar_servicio($id_servicio);
+        }
+    }
+
+    public function agregar_servicio($id_servicio)
+    {
+
+        //$this->db->where('foto_alojamiento.id', $id_servicio);
+        $this->db->delete('foto_alojamiento');
+    }
+
     public function borrar_foto($id_foto)
     {
 

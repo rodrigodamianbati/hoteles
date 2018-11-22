@@ -487,6 +487,8 @@ class Alojamiento extends CI_Controller
         }
     }
 
+     
+
     public function modificacion_galeria()
     {
         if ($this->input->post("modificar_galeria")) {
@@ -505,6 +507,12 @@ class Alojamiento extends CI_Controller
             $this->load->view("usuario/modificacion_galeria", $data);
             $this->load->view("usuario/usuario_footer");
         }
+    }
+
+    public function agregar_servicios(){
+        print_r($_POST);
+        die();
+        $this->Alojamiento_model->agregar_servicios($_POST['chequeados']);
     }
 
     public function modificar_galeria()
