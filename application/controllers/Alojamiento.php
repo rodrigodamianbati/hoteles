@@ -510,9 +510,9 @@ class Alojamiento extends CI_Controller
     }
 
     public function agregar_servicios(){
-        print_r($_POST);
-        die();
-        $this->Alojamiento_model->agregar_servicios($_POST['chequeados']);
+        //print_r($_POST);
+        //die();
+        $this->Alojamiento_model->agregar_servicios($_POST['chequeados'], $_POST['id_alojamiento']);
     }
 
     public function modificar_galeria()

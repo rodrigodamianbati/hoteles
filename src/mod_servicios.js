@@ -4,9 +4,10 @@ $('input[name=servicios_agregar]').on( 'change', function() {
     if( $(this).is(':checked') ) {
        
         checked_servicios.push(parseInt($(this).val()));
+        console.log(checked_servicios);
     } else {
-        
         checked_servicios.pop(parseInt($(this).val()));
+        console.log(checked_servicios);
     }
 });
 

@@ -833,19 +833,22 @@ class Alojamiento_model extends CI_Model
         }
     }
 
-    public function agregar_servicios($lista_servicios)
+    public function agregar_servicios($lista_servicios, $id_alojamiento)
     {
 
         foreach ($lista_servicios as $id_servicio) {
-            $this->agregar_servicio($id_servicio);
+            $this->agregar_servicio($id_servicio, $id_alojamiento);
         }
     }
 
-    public function agregar_servicio($id_servicio)
-    {
+    //agregar_servicios($_POST['chequeados'], $_POST['id_alojamiento'])
 
+    public function agregar_servicio($id_servicio, $id_alojamiento)
+    {
+        $this->db->query("INSERT INTO servicio_aloj (id_alojamiento, id_servicio) VALUES ('$id_alojamiento', '$id_servicio')"); 
+        //$this->db->insert('mytable', $data);
         //$this->db->where('foto_alojamiento.id', $id_servicio);
-        $this->db->delete('foto_alojamiento');
+        //$this->db->delete('foto_alojamiento');
     }
 
     public function borrar_foto($id_foto)
