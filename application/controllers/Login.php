@@ -88,7 +88,7 @@ class Login extends CI_Controller{
     }
 
     public function cerrar_sesion(){
-        session_destroy();
+        $this->session->sess_destroy();
         redirect('inicio');
     }
 }

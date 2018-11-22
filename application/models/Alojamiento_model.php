@@ -94,8 +94,25 @@ class Alojamiento_model extends CI_Model{
 
         $this->db->select('*');
         $consulta= $this->db->get('localidad');
-    return $consulta->result();
+         return $consulta->result();
     }
+
+    public function provincia_localidades($id_provincia){
+
+        $this->db->select('*');
+        $this->db->where('id_provincia', $id_provincia);
+        $consulta= $this->db->get('localidad');
+        return $consulta->result();
+    }
+
+
+    public function provincias(){
+
+        $this->db->select('*');
+        $consulta= $this->db->get('provincia');
+        return $consulta->result();
+    }
+
 
     public function localidadesFiltrado($ciu){
      

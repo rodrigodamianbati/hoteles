@@ -23,14 +23,19 @@ class Usuario extends CI_Controller{
         if(!isset($this->session->userdata['logged_in'])){
             redirect('login');
         }
-        //array asociativo con la llamada al metodo
-        //del modelo
-        // $usuario["ver"]=$this->Usuario_model->ver();
+
+        else{
+            // array asociativo con la llamada al metodo del modelo
+            
+                // $usuario["ver"]=$this->Usuario_model->ver();
+                
+                // // cargo la vista y le paso los datos
+                // $this->load->view("usuario_view",$usuario);
+            
+
+                
+        }
         
-        //print_r($usuario);
-        //die();
-        //cargo la vista y le paso los datos
-        // $this->load->view("usuario_view",$usuario);
     }
      
     //controlador para añadir
@@ -49,6 +54,9 @@ class Usuario extends CI_Controller{
                 $this->input->post("fecha_nacimiento")
                 );
         }
+
+
+      
         if($add==true){
             //Sesion de una sola ejecución
             $this->session->set_flashdata('correcto', 'Usuario añadido correctamente');
@@ -62,6 +70,8 @@ class Usuario extends CI_Controller{
 
     //controlador para añadir
     public function registrar(){
+
+        
          
         //compruebo si se a enviado submit
         if($this->input->post("submit")){
@@ -71,27 +81,59 @@ class Usuario extends CI_Controller{
                 $this->input->post("email"),
                 $this->input->post("contraseña"),
                 $this->input->post("nombre"),
-                $this->input->post("apellido")
+                $this->input->post("apellido"),
+                $this->input->post("fecha-nac"),
+                $this->input->post("dni"),
+                $this->input->post("provincia"),
                 );
         }
         if($agregar==true){
-            //Sesion de una sola ejecución
-            $this->session->set_flashdata('correcto', 'Usted se ha registrado correctamente');
+            if(isset($this->session->userdata['logged_in'])){
+
+                echo'<script type="text/javascript">
+                    alert("Tarea Guardada");
+                    </script>';
+                
+                
+            }
+            else{
+                 //Sesion de una sola ejecución
+                 echo'<script type="text/javascript">
+                 alert("Tarea Guardada");
+                 </script>';
+
+                 
+                 
+            }
+           
+            
         }else{
-            $this->session->set_flashdata('incorrecto', 'Usted se ha registrado correctamente');
+            if(isset($this->session->userdata['logged_in'])){
+                echo'<script type="text/javascript">
+                alert("Tarea no Guardada");
+                </script>';
+            
+            
+              //  $this->session->set_flashdata('incorrecto', 'No se ha podido ingresar el usuario ');
+            }
+            else{
+                echo'<script type="text/javascript">
+                alert("Tarea no Guardada user");
+                </script>';
+            
+
+            }
         }
          
         //redirecciono la pagina a la url por defecto
-        redirect(base_url());
+        
     }
     
     public function registro(){
         $this->load->view("registro");
     }
 
-    public function cerrar_sesion(){
-        $this->session->sess_destroy();
-    }    
+        
 
     //controlador para modificar al que 
     //le paso por la url un parametro
@@ -172,6 +214,27 @@ class Usuario extends CI_Controller{
         }else{
           redirect(base_url());
         }
+    }
+
+
+    public function administrar_contrasenias(){
+        $usuario["ver"]=$this->Usuario_model->ver();
+        $this->load->view("usuario/tabla_contrasenias", $usuario);
+    }
+
+
+    public function cambiarContrasenia(){
+
+        if($this->input->is_ajax_request()){
+            $id=$_POST['id'];
+            $contrasenia= $_POST['contrasenia'];
+
+
+            $this->Usuario_model->modificarContraseña($id, $contrasenia);
+         
+            return 1;
+       }
+
     }
 }
 ?>
