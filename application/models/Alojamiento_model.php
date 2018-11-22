@@ -30,12 +30,12 @@ class Alojamiento_model extends CI_Model
 
     }
 
-    public function agregar($tipo, $precio, $id_localidad, $direccion_nombre, $direccion_numero)
+    public function agregar($tipo, $precio, $id_localidad, $direccion_nombre, $direccion_numero, $id_usuario)
     {
         $consulta = $this->db->query("SELECT id FROM alojamiento WHERE (direccion_nombre='$direccion_nombre' AND direccion_numero='$direccion_numero')");
         if ($consulta->num_rows() == 0) {
             //$id=$_SESSION['id'];
-            $consulta = $this->db->query("INSERT INTO alojamiento VALUES(NULL, '$precio','$id_localidad','$direccion_nombre','$direccion_numero', '1', '1'/*sesion*/, '$tipo', '/pruebaTemplate2/fotos_alojamientos/default.png');");
+            $consulta = $this->db->query("INSERT INTO alojamiento VALUES(NULL, '$precio','$id_localidad','$direccion_nombre','$direccion_numero', '1', '$id_usuario'/*sesion*/, '$tipo', '/pruebaTemplate2/fotos_alojamientos/default.png');");
 
             if ($consulta == true) {
                 return true;
@@ -568,6 +568,24 @@ class Alojamiento_model extends CI_Model
         //print_r($consulta);
         //die();
         return $consulta;
+    }
+
+    public function servicios_disponibles($id_alojamiento){
+
+        $this->db->select("*");
+        $this->db->from("servicio_aloj"); 
+        $this->db->where("servicio_aloj.id_alojamiento",$id_alojamiento);
+        $this->db->join("servicio_aloj sa", "servicio.id = sa.id_servicio");
+        $consulta=$this->db->get("servicio");
+          
+        return $consulta->result();
+    } 
+
+    public function todos_los_servicios(){
+
+        $consulta = $this->db->query("SELECT * FROM servicio");
+          
+        return $consulta->result();
     }
 
     public function alojamientosFiltradoLimitePrecio($limite, $localidad, $filtros, $limite_precio, $tipo)

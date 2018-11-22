@@ -5,9 +5,9 @@
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="<?php echo base_url()."assets/"; ?>#">Dashboard</a>
+              <a href="<?php echo base_url()."alojamiento/crear_alojamiento"; ?>#">Nuevo alojamiento</a>
             </li>
-            <li class="breadcrumb-item active">Overview</li>
+            <li class="breadcrumb-item active">Nuevo alojamiento</li>
           </ol>
 
           <!-- Icon Cards-->
@@ -101,6 +101,9 @@
         </form>
         <form action="<?=base_url("alojamiento/agregacion_fotos");?>" method="post">
           <button name="agregar_fotos" value="<?php echo $product->id?>" class="w3-button w3-block w3-black w3-margin-bottom">Agregar fotos a la galeria</button>
+        </form>
+        <form action="<?=base_url("alojamiento/agregacion_servicios");?>" method="post">
+          <button name="agregar_servicios" value="<?php echo $product->id?>" class="w3-button w3-block w3-black w3-margin-bottom">Agregar nuevos servicios al alojamiento </button>
         </form>
       </div>
     </div>

@@ -1,3 +1,4 @@
+<!--?php if (isset($products)){if(!empty($products)){$tipo=$products[0]->tipo;$iguales=true; foreach ($products as $product){if ($product->tipo != $tipo){ $iguales=false;}}if($iguales){print_r($products[0]->tipo);}}}?-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -123,7 +124,7 @@
     </div>
     
     <input name="localidad" type="hidden" value="<?php if (isset($products)){if(!empty($products))echo $products[0]->localidad;}?>">
-    <input name="tipo_actual" type="hidden" value="<?php if (isset($products)){if(!empty($products))echo $products[0]->tipo;}?>">
+    <input name="tipo_actual" type="hidden" value="<?php if (isset($products)){if(!empty($products)){$tipo=$products[0]->tipo;$iguales=true; foreach ($products as $product){if ($product->tipo != $tipo){ $iguales=false;}}if($iguales){echo($products[0]->tipo);}}}?>">
     <!--input name="current_localidad" type="sumit" type="hidden" value=""-->
     <input name="nueva_localidad" type="text" class="w3-bar-item w3-input w3-white" placeholder="Ej: Carmen de Patagones" style="width:35%">
     <!--a href="javascript:void(0)" class="w3-bar-item w3-button w3-right"><i class="fa fa-search"> Buscar</i></a-->

@@ -36,6 +36,9 @@ class Alojamiento extends CI_Controller
     {
         $tipos = $this->tipos();
         $localidades = $this->localidades();
+        //print_r($_SESSION['id']);
+        //die();  
+        //$id_usuario = $_SESSION['id'];
 
         $data = array_merge($tipos, $localidades);
 
@@ -78,7 +81,8 @@ class Alojamiento extends CI_Controller
                 //$this->input->post("id_localidad"),
                 $this->input->post("localidad"),
                 $this->input->post("direccion_nombre"),
-                $this->input->post("direccion_numero")
+                $this->input->post("direccion_numero"),
+                $_SESSION['id'] 
             );
         }
         if ($agregar == true) {
@@ -88,11 +92,12 @@ class Alojamiento extends CI_Controller
             //print_r($idalojamiento);
             //die(); <--------------------------------------------------------acaaaaaaaaaaaaaaaaaaaaaaaa va la prueba
 
-            print_r($data);
-            die();
+            //print_r($data);
+            //die();
             $this->load->view("alta_alojamiento_fotos_view", array('id_alojamiento' => $data));
 
         } else {
+            //print_r("no anduvo"); 
             $this->session->set_flashdata('incorrecto', 'Usted se ha registrado correctamente');
         }
         //redirecciono la pagina a la url por defecto
@@ -278,6 +283,9 @@ class Alojamiento extends CI_Controller
         } else {
             $localidad = $_GET['nueva_localidad'];
         }
+
+        //print_r($_GET['tipo_actual']);
+        //die();  
 
         if (isset($_GET['tipo_actual'])) {
             $tipo = $_GET['tipo_actual'];
@@ -540,6 +548,34 @@ class Alojamiento extends CI_Controller
         //}
     }
 
+    public function agregacion_servicios()
+    {
+        $id_alojamiento = $this->input->post("agregar_servicios");
+    
+        $data['id_alojamiento'] = $id_alojamiento;
+       
+        $data['servicios_disponibles'] = $this->servicios_disponibles($id_alojamiento);
+        $data['todos_los_servicios'] = $this->todos_los_servicios();
+
+        //print_r($data);
+        //die(); 
+
+        $this->load->view("usuario/fine_uploader_head");
+        $this->load->view("usuario/usuario_top_nav");
+        $this->load->view("usuario/usuario_side_nav");
+        $this->load->view("usuario/agregar_servicios", $data);
+        $this->load->view("usuario/usuario_footer");
+    }
+    
+    public function servicios_disponibles($id_alojamiento){
+        return $this->Alojamiento_model->servicios_disponibles($id_alojamiento);     
+    }  
+
+    public function todos_los_servicios(){
+        return $this->Alojamiento_model->todos_los_servicios();
+    }  
+
+    
     public function modificaciones()
     {
         if ($this->input->post("modificar")) {
