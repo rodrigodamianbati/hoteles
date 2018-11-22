@@ -822,6 +822,10 @@ class Alojamiento_model extends CI_Model
         $this->db->delete('foto_alojamiento');
     }
 
+
+
+
+
     public function alojamiento($id)
     {
 
@@ -853,6 +857,30 @@ class Alojamiento_model extends CI_Model
 
     return $alojamientos;7
      */
+    }
+
+
+
+
+    public function estado_alojamiento($id_alojamiento){
+            $this->db->select('id_estado');
+            $this->db->select('id', $id_alojamiento);
+            $consulta=$this->db->get('alojamiento');
+            return $consulta->first_row();
+    }
+
+
+    public function obtener_alojamiento($id_alojamiento)
+    {
+        $this->db->select('*');
+        $this->db->select('id', $id_alojamiento);
+        $consulta=$this->db->get('alojamiento');
+        return $consulta->first_row();
+    }
+
+
+    public function reservar($precioTotal, $fecha_actual, $fecha_desde, $fecha_hasta, $id_estado,  $id_alojamiento, $id_cliente){
+        return $consulta = $this->db->query("INSERT INTO reserva VALUES(NULL, NULL, '$precioTotal', NULL, NULL, '$fecha_actual',$fecha_desde, $fecha_hasta, $id_estado, $id_alojamiento, $id_cliente)");      
     }
 
 }

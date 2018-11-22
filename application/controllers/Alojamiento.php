@@ -608,4 +608,12 @@ class Alojamiento extends CI_Controller
         redirect('alojamiento/mis_alojamientos');
     }
 
+
+
+    public function reservar(){
+        
+    }
+
+
+
 }

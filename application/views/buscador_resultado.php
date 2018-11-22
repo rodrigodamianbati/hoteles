@@ -170,7 +170,13 @@
                     <i class="fa fa-television"></i>
         <?php } } } } } ?>
         </p>
-        <button class="w3-button w3-block w3-black w3-margin-bottom">Reservar</button>
+
+        <!-- <a href="pages.php?id=<?php echo $product_id; ?>"> -->
+
+        <a class="w3-button w3-block w3-black w3-margin-bottom" href="<?php echo base_url();?>reserva/index/<?php $product->id;?>">Reservar</a>
+
+        <!-- <a class="w3-button w3-block w3-black w3-margin-bottom" href="<?php echo base_url();?>reserva?idAloj=<?php $product->id;?>">Reservar</a> -->
+        <!-- <button class="w3-button w3-block w3-black w3-margin-bottom">Reservar</button> -->
       </div>
     </div>
 
