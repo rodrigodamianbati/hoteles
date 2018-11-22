@@ -99,7 +99,7 @@
               <div class="form-row">
                 <div class="col-md-6">
                   <div class="form-label-group">
-                  <select  id="input-provincia" class="form-control" onchange="getval(this);">
+                  <select  id="input-provincia" name="provincia" class="form-control" onchange="getval(this);">
                         <option selected>Seleccionar Provincia</option>
                         <?php foreach($prov as $provincia){ ?>
                             <option value="<?php echo $provincia->id ?>"> <?php  echo $provincia->nombre; ?></option>
@@ -109,7 +109,7 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-label-group">
-                  <select  id="input-localidad" class="form-control">
+                  <select  id="input-localidad" name="localidad" class="form-control">
                         <!-- <option selected>Seleccionar Localidad</option> -->
                           
                     </select>
@@ -140,6 +140,7 @@
               </div>
             </div>
             <br>
+            
             <input class="btn btn-primary btn-block" type="submit" name="submit" value="Registrar"/>
           </form>
           <div class="text-center">
@@ -148,6 +149,9 @@
         </div>
       </div>
     </div>
+
+
+    <
 
 
 

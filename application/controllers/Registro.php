@@ -6,6 +6,7 @@
         
             parent::__construct(); 
             $this->load->model("Alojamiento_model");
+            $this->load->model("Usuario_model");
             
 
         }
@@ -14,18 +15,20 @@
 
             $provincias['prov'] = $this->Alojamiento_model->provincias();
              $localidades['loc'] = $this->Alojamiento_model->localidades(); 
-            $data = array_merge($provincias, $localidades);
+             $roles['rol']=$this->Usuario_model->roles();
 
             if(isset($this->session->userdata['logged_in'])){
                 if($this->session->userdata['rol'] == 'administrador'){
                     
+                    $data = array_merge($provincias, $localidades,$roles);
                     $this->load->view("usuario/alta_usuario", $data);
                     
                 }
                
             }
             else{
-                $this->load->view("/registro", $data);
+                $data = array_merge($provincias, $localidades);
+                $this->load->view("registro", $data);
             }
             
         }

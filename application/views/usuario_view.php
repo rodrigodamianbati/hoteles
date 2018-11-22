@@ -97,6 +97,19 @@
           <i class="fas fa-key"></i>
             <span>Contraseñas</span></a>
         </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo base_url()."usuario/administrar_contrasenias"; ?>">
+          <i class="fas fa-shopping-cart"></i>
+            <span>Reservas</span></a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo base_url()."usuario/administrar_contrasenias"; ?>">
+          <i class="fas fa-money-check-alt"></i>
+            <span>Pagos</span></a>
+        </li>
        
       </ul>
 
@@ -118,7 +131,6 @@
                   <thead>
                     <tr>
                       <th>Email</th>
-                      <th>Contraseña</th>
                       <th>Nombre</th>
                       <th>Apellido</th>
                       <th>Dni</th>
@@ -150,9 +162,7 @@
                       <td>
                         <?=$fila->email;?>
                       </td>
-                      <td>
-                        <?=$fila->contraseña;?>
-                      </td>
+                      
                       <td>
                           <?=$fila->nombre;?>
                       </td>

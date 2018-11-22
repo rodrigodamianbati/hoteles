@@ -97,6 +97,18 @@
           <i class="fas fa-key"></i>
             <span>Contraseñas</span></a>
         </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo base_url()."usuario/administrar_contrasenias"; ?>">
+          <i class="fas fa-shopping-cart"></i>
+            <span>Reservas</span></a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo base_url()."usuario/administrar_contrasenias"; ?>">
+          <i class="fas fa-money-check-alt"></i>
+            <span>Pagos</span></a>
+        </li>
        
       </ul>
 

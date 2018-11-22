@@ -31,10 +31,10 @@ class Usuario_model extends CI_Model{
         }
     }
 
-    public function agregar($email,$contraseña,$nombre,$apellido){
+    public function  agregar($email,$contraseña,$nombre,$apellido, $fecha_nac, $dni, $id_localidad, $telefono1, $telefono2, $rol){
         $consulta=$this->db->query("SELECT email FROM usuario WHERE email LIKE '$email'");
         if($consulta->num_rows()==0){
-            $consulta=$this->db->query("INSERT INTO usuario VALUES(NULL, NULL,'$nombre','$apellido','$email','$contraseña', NULL, NULL, NULL, NULL, NULL);");
+            $consulta=$this->db->query("INSERT INTO usuario VALUES(NULL, '$dni','$nombre','$apellido','$email','$contraseña', '$fecha_nac', '$telefono1', '$telefono2', $id_localidad, $rol);");
             if($consulta==true){
               return true;
             }else{
@@ -42,7 +42,7 @@ class Usuario_model extends CI_Model{
             }
         }else{
             return false;
-        }
+        }  
     }
      
     public function mod($id,$modificar="NULL",$email="NULL",$contraseña="NULL",$nombre="NULL",$apellido="NULL",$fecha_nacimiento="NULL"){
@@ -125,6 +125,25 @@ class Usuario_model extends CI_Model{
         $this->db->set('contraseña', $contraseña);
         $this->db->where('id', $id);
        return  $this->db->update('usuario'); 
+    }
+
+
+    
+
+
+    public function roles(){
+        $this->db->select('*');
+        $consulta= $this->db->get('rol');
+         return $consulta->result();
+    }
+
+
+    public function id_rol_de_usuario($rol){
+        $this->db->select('id');
+        $this->db->where('nombre', $rol);
+        $consulta=$this->db->get('rol');
+        return $consulta->result();
+
     }
 
  
