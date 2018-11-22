@@ -480,7 +480,6 @@ class Alojamiento_model extends CI_Model{
 
         //print_r($limite_precio); 
         //die(); 
-
         $this->db->select('id');
         $this->db->from('localidad');
         $this->db->where('nombre',$localidad);
@@ -499,14 +498,6 @@ class Alojamiento_model extends CI_Model{
         $where_clause_2 = $this->db->get_compiled_select();
         //print_r($where_clause_2);
         //die();
-
-        /*
-        <button class="w3-bar-item w3-button w3-text-black" name="limite_1" value="500"> Hasta $500</button>
-        <button class="w3-bar-item w3-button w3-text-black" name="limite_2" value="500-2500"> $500 - $2500</button>
-        <button class="w3-bar-item w3-button w3-text-black" name="limite_3" value="2500-5000"> $2500 - $5000</button>
-        <button class="w3-bar-item w3-button w3-text-black" name="limite_4" value="5000-7500"> $5000 - $7500</button>
-        <button class="w3-bar-item w3-button w3-text-black" name="limite_5" value="7500-10000"> $7500 - $10000</button>
-        */
         ///////////////filtro plata
         if($limite_precio=="limite_1"){
             $this->db->select('id');

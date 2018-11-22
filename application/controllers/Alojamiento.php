@@ -323,7 +323,7 @@ class Alojamiento extends CI_Controller{
         $config['per_page'] = 9;
         if($limite_precio==null){
             $data['products'] = $this->alojamientosFiltrado($config['per_page'], $localidad, $filtros);
-            $config['total_rows'] = $this->totalFilasFiltrado($localidad,$filtros, $limite_precio);
+            $config['total_rows'] = $this->totalFilasFiltrado($localidad,$filtros);
         }else{
             $data['products'] = $this->alojamientosFiltradoLimitePrecio($config['per_page'], $localidad, $filtros, $limite_precio);
             $config['total_rows'] = $this->totalFilasFiltradoLimitePrecio($localidad,$filtros, $limite_precio);

@@ -122,7 +122,7 @@
       </div>
     </div>
     
-    <input name="localidad" type="hidden" value="<?php if (isset($products)){echo $products[0]->localidad;}?>">
+    <input name="localidad" type="hidden" value="<?php if (isset($products)){if(!empty($products))echo $products[0]->localidad;}?>">
     <!--input name="current_localidad" type="sumit" type="hidden" value=""-->
     <input name="nueva_localidad" type="text" class="w3-bar-item w3-input w3-white" placeholder="Ej: Carmen de Patagones" style="width:35%">
     <!--a href="javascript:void(0)" class="w3-bar-item w3-button w3-right"><i class="fa fa-search"> Buscar</i></a-->
