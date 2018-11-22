@@ -15,8 +15,10 @@ class Reserva extends CI_controller{
 
         $idAloj = $id_alojamiento=$_GET['idAloj'];
         
+        $data['$idAloj'] = $idAloj;
+
         if(isset($this->session->userdata['logged_in'])){
-            $this->load->view("realizar_reserva_view", $idAloj);
+            $this->load->view("realizar_reserva_view", $data);
         }
         else{
             $this->load->view("login");

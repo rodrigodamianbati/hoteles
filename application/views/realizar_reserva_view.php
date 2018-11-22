@@ -28,7 +28,7 @@
       <div class="card card-register mx-auto mt-4 mb-4">
         <div class="card-header">Reserva</div>
         <div class="card-body">
-          <form action="<?=base_url()."reserva/generar_reserva/".$idAloj?> " method="post">
+          <form action="<?=base_url()."reserva/generar_reserva?idAloj=".$idAloj?>" method="post">
             
 
 <!-- hacerlo desp -->
