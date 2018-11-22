@@ -240,9 +240,10 @@ class Alojamiento_model extends CI_Model
         $this->db->where_in("servicio_aloj.id_servicio", $filtros);
         $where_servicios = $this->db->get_compiled_select();
 
-        $this->db->select('id');
+        $this->db->select('alojamiento.id');
         $this->db->from('alojamiento');
-        $this->db->where_in("alojamiento.id_tipo", $tipo);
+        $this->db->join("tipo_aloj t", "alojamiento.id_tipo = t.id");
+        $this->db->where("t.descripcion", $tipo);
         $where_tipo = $this->db->get_compiled_select();
 
         ///////////////filtro plata
@@ -287,6 +288,7 @@ class Alojamiento_model extends CI_Model
             if ($limite_precio != null) {
                 if ($tipo != null) {
                     $this->db->select("alojamiento.id, e.descripcion as estado, t.descripcion as tipo, alojamiento.default_foto as foto, alojamiento.precio, l.nombre as localidad, alojamiento.direccion_nombre, alojamiento.direccion_numero");
+                    //$this->db->from("alojamiento");
                     $this->db->where("alojamiento.id_localidad IN ($where_ciudad)", null, false);
                     $this->db->where("alojamiento.id IN ($where_servicios)", null, false);
                     $this->db->where("alojamiento.id IN ($where_tipo)", null, false);
@@ -299,6 +301,7 @@ class Alojamiento_model extends CI_Model
                     $this->db->join("localidad l", "alojamiento.id_localidad = l.id");
                 } else {
                     $this->db->select("alojamiento.id, e.descripcion as estado, t.descripcion as tipo, alojamiento.default_foto as foto, alojamiento.precio, l.nombre as localidad, alojamiento.direccion_nombre, alojamiento.direccion_numero");
+                    //$this->db->from("alojamiento");
                     $this->db->where("alojamiento.id_localidad IN ($where_ciudad)", null, false);
                     $this->db->where("alojamiento.id IN ($where_servicios)", null, false);
                     //$this->db->where("alojamiento.id IN ($where_tipo)", null, false);
@@ -313,6 +316,7 @@ class Alojamiento_model extends CI_Model
             } else {
                 if ($tipo != null) {
                     $this->db->select("alojamiento.id, e.descripcion as estado, t.descripcion as tipo, alojamiento.default_foto as foto, alojamiento.precio, l.nombre as localidad, alojamiento.direccion_nombre, alojamiento.direccion_numero");
+                    //$this->db->from("alojamiento");
                     $this->db->where("alojamiento.id_localidad IN ($where_ciudad)", null, false);
                     $this->db->where("alojamiento.id IN ($where_servicios)", null, false);
                     $this->db->where("alojamiento.id IN ($where_tipo)", null, false);
@@ -325,6 +329,7 @@ class Alojamiento_model extends CI_Model
                     $this->db->join("localidad l", "alojamiento.id_localidad = l.id");
                 } else {
                     $this->db->select("alojamiento.id, e.descripcion as estado, t.descripcion as tipo, alojamiento.default_foto as foto, alojamiento.precio, l.nombre as localidad, alojamiento.direccion_nombre, alojamiento.direccion_numero");
+                    //$this->db->from("alojamiento");
                     $this->db->where("alojamiento.id_localidad IN ($where_ciudad)", null, false);
                     $this->db->where("alojamiento.id IN ($where_servicios)", null, false);
                     //$this->db->where("alojamiento.id IN ($where_tipo)", null, false);
@@ -341,6 +346,7 @@ class Alojamiento_model extends CI_Model
             if ($limite_precio != null) {
                 if ($tipo != null) {
                     $this->db->select("alojamiento.id, e.descripcion as estado, t.descripcion as tipo, alojamiento.default_foto as foto, alojamiento.precio, l.nombre as localidad, alojamiento.direccion_nombre, alojamiento.direccion_numero");
+                    //$this->db->from("alojamiento");
                     $this->db->where("alojamiento.id_localidad IN ($where_ciudad)", null, false);
                     $this->db->where("alojamiento.id IN ($where_servicios)", null, false);
                     $this->db->where("alojamiento.id IN ($where_tipo)", null, false);
@@ -367,18 +373,21 @@ class Alojamiento_model extends CI_Model
             } else {
                 if ($tipo != null) {
                     $this->db->select("alojamiento.id, e.descripcion as estado, t.descripcion as tipo, alojamiento.default_foto as foto, alojamiento.precio, l.nombre as localidad, alojamiento.direccion_nombre, alojamiento.direccion_numero");
-                    $this->db->where("alojamiento.id_localidad IN ($where_ciudad)", null, false);
+                    //$this->db->from("alojamiento");
                     //$this->db->where("alojamiento.id IN ($where_servicios)", null, false);
-                    $this->db->where("alojamiento.id IN ($where_tipo)", null, false);
                     //$this->db->where("alojamiento.id IN ($where_plata)", null, false);
-
+                    $this->db->where("alojamiento.id IN ($where_tipo)", null, false);
+                    $this->db->where("alojamiento.id_localidad IN ($where_ciudad)", null, false);
                     //$this->db->join("servicio_aloj sa", "alojamiento.id = sa.id_alojamiento");
                     //$this->db->join("servicio s", "s.id = sa.id_servicio");
                     $this->db->join("estado_aloj e", "alojamiento.id_estado = e.id");
                     $this->db->join("tipo_aloj t", "alojamiento.id_tipo = t.id");
                     $this->db->join("localidad l", "alojamiento.id_localidad = l.id");
+
+                    
                 } else {
                     $this->db->select("alojamiento.id, e.descripcion as estado, t.descripcion as tipo, alojamiento.default_foto as foto, alojamiento.precio, l.nombre as localidad, alojamiento.direccion_nombre, alojamiento.direccion_numero");
+                    //$this->db->from("alojamiento");
                     $this->db->where("alojamiento.id_localidad IN ($where_ciudad)", null, false);
                     //$this->db->where("alojamiento.id IN ($where_servicios)", null, false);
                     $this->db->where("alojamiento.id IN ($where_tipo)", null, false);
@@ -392,8 +401,9 @@ class Alojamiento_model extends CI_Model
                 }
             }
         }
+        $consulta = $this->db->get('alojamiento')->num_rows();
 
-        return $this->db->get('alojamiento')->num_rows();
+        return $consulta;
     }
 
     public function misAlojamientos($limite, $id)
@@ -573,11 +583,14 @@ class Alojamiento_model extends CI_Model
         $this->db->where_in("servicio_aloj.id_servicio", $filtros);
         $where_servicios = $this->db->get_compiled_select();
 
-        $this->db->select('id');
+        $this->db->select('alojamiento.id');
         $this->db->from('alojamiento');
-        $this->db->where_in("alojamiento.id_tipo", $tipo);
+        $this->db->join("tipo_aloj t", "alojamiento.id_tipo = t.id");
+        $this->db->where("t.descripcion", $tipo);
         $where_tipo = $this->db->get_compiled_select();
-
+        //print_r($where_tipo);
+        //die();
+        
         ///////////////filtro plata
         if ($limite_precio == "limite_1") {
             $this->db->select('id');
@@ -725,11 +738,16 @@ class Alojamiento_model extends CI_Model
                 }
             }
         }
-        $consulta = $this->db->get_compiled_select();
-        print_r($consulta); 
-        die(); 
-        $consulta = $this->db->get('alojamiento', $limite, $this->uri->segment(3));
+        //$consulta = $this->db->get_compiled_select('alojamiento');
+        //$consulta = $this->db->get_compiled_select();
+        //print_r($consulta);
+        //die(); 
+        
+        //$consulta = $this->db->get('alojamiento', $limite, $this->uri->segment(3));
 
+        $consulta = $this->db->get('alojamiento', $limite, $this->uri->segment(3));
+        //print_r($consulta); 
+        //die();
         $consulta = $consulta->custom_result_object("Alojamiento_model");
 
         foreach ($consulta as $alojamiento) {
