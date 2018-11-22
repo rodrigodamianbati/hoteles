@@ -293,7 +293,7 @@ class Alojamiento extends CI_Controller
         <button type="input" type="sumbit" name="chalet" class="w3-bar-item w3-button w3-text-black" value="chalet"> Chalet</button>
         <button type="input" type="sumbit" name="monoambiente" class="w3-bar-item w3-button w3-text-black" value="monoambiente"> Monoambiente</button>
          */
-        if ($tipo = null) {
+        if ($tipo != null) {
             if (isset($_GET['casa'])) {
                 $tipo = "casa";
             } else {
