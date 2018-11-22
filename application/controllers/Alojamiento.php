@@ -254,6 +254,29 @@ class Alojamiento extends CI_Controller{
         }else
             $localidad = $_GET['nueva_localidad']; 
         
+        $limite_precio = null;
+
+        if (isset($_GET['limite_1'])){
+            $limite_precio = $_GET['limite_1'];
+        } else{
+                if (isset($_GET['limite_2'])){
+                    $limite_precio = $_GET['limite_2'];
+                }else{
+                    if (isset($_GET['limite_3'])){
+                        $limite_precio = $_GET['limite_3'];
+                    }else{
+                        if (isset($_GET['limite_4'])){
+                            $limite_precio = $_GET['limite_4'];
+                        }else{
+                            if (isset($_GET['limite_5'])){
+                                $limite_precio = $_GET['limite_5'];
+                        }
+                    }
+                }
+            }
+        }
+        
+        
         //die(); 
         //$localidad = $_GET['localidad'];
         //print_r($_GET);
@@ -287,8 +310,11 @@ class Alojamiento extends CI_Controller{
     
        
         $config['per_page'] = 9;
-        $data['products'] = $this->alojamientosFiltrado($config['per_page'], $localidad, $filtros);
-
+        if($limite_precio!=null){
+            $data['products'] = $this->alojamientosFiltrado($config['per_page'], $localidad, $filtros, $limite_precio);
+        }else{
+            $data['products'] = $this->alojamientosFiltradoLimitePrecio($config['per_page'], $localidad, $filtros);
+        }
         $config['total_rows'] = $this->totalFilasFiltrado($localidad,$filtros);
         
         $config['num_links'] = 5;
