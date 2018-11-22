@@ -13,7 +13,7 @@
                                     </div>
                                     <!--end of col-->
                                     <div class="col">
-                                        <input id="busqueda" name="localidad" class="form-control form-control-lg form-control-borderless" type="search" placeholder="Ej: Viedma">
+                                        <input id="busqueda" name="localidad" class="form-control form-control-lg form-control-borderless" type="search" placeholder="Ej: Carmen de Patagones">
                                     </div>
 
                                     <!--end of col-->
