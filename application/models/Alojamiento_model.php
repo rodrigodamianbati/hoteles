@@ -319,15 +319,20 @@ class Alojamiento_model extends CI_Model{
         $this->db->from('localidad');
         $this->db->where('nombre',$localidad);
         $where_clause = $this->db->get_compiled_select();
-
+        /*
         $this->db->select('id_alojamiento');
         $this->db->from('servicio_aloj');
         foreach ($filtros as $filtro) {
             $this->db->where("servicio_aloj.id_servicio", $filtro);
         }
         $where_clause_2 = $this->db->get_compiled_select();
-        print_r($where_clause_2);
-        die();  
+        */
+        $this->db->select('id_alojamiento');
+        $this->db->from('servicio_aloj');
+        $this->db->where_in("servicio_aloj.id_servicio", $filtros);
+        $where_clause_2 = $this->db->get_compiled_select();
+        //print_r($where_clause_2);
+        //die();
 
         $this->db->select("distinct(alojamiento.id), e.descripcion as estado, t.descripcion as tipo, alojamiento.default_foto as foto, alojamiento.precio, l.nombre as localidad, alojamiento.direccion_nombre, alojamiento.direccion_numero");
         $this->db->where("alojamiento.id_localidad IN ($where_clause)", NULL, FALSE);
