@@ -7,6 +7,7 @@
             parent::__construct(); 
             $this->load->model("Usuario_model");
             $this->load->model("Alojamiento_model");
+            $this->load->library("session");
         }
 
         public function index() {
@@ -69,6 +70,13 @@
         public function getCiudades(){
             $resultado= $this->Alojamiento_model->localidades();
             echo json_encode($resultado);
+        }
+
+
+
+        public function cerrar_sesion(){
+            $this->session->sess_destroy();
+            redirect('inicio');
         }
 
     }

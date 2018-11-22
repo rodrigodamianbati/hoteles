@@ -121,6 +121,12 @@ class Usuario_model extends CI_Model{
 
     }
 
+    public function modificarContraseña($id, $contraseña){
+        $this->db->set('contraseña', $contraseña);
+        $this->db->where('id', $id);
+       return  $this->db->update('usuario'); 
+    }
+
  
 }
 ?>

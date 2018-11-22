@@ -11,6 +11,9 @@
 
     <title>Registro</title>
 
+
+
+
     <!-- Bootstrap core CSS-->
     <link href="<?php echo base_url()."assets/"; ?>vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -25,7 +28,7 @@
   <body class="bg-dark">
 
     <div class="container">
-      <div class="card card-register mx-auto mt-4 mb-4">
+      <div class="card card-register mx-auto mt-5 mb-5">
         <div class="card-header">Registrar una cuenta</div>
         <div class="card-body">
           <form action="<?=base_url("usuario/registrar");?>" method="post">
@@ -46,7 +49,6 @@
               </div>
             </div>
 
-
             <div class="form-group">
               <div class="form-row">
                 <div class="col-md-6">
@@ -64,6 +66,9 @@
               </div>
             </div>
             
+
+    
+          
 
 
             <div class="form-group">
@@ -84,6 +89,22 @@
                   <div class="form-label-group">
                     <input type="password" id="confirmPassword" class="form-control" placeholder="Confirmar contraseña" required="required" name="confirmar_contraseña">
                     <label for="confirmPassword">Confirmar contraseña</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+           
+           <div class="form-group">
+              <div class="form-row">
+                <div class="col-md-6">
+                  <div class="form-label-group">
+                  <select id="input-rol" class="form-control">
+                        <option selected>Seleccionar Rol</option>
+                        <option>Administrador</option>
+                        <option>Usuario</option>
+                    </select>
                   </div>
                 </div>
               </div>
@@ -139,7 +160,6 @@
                 </div>
               </div>
             </div>
-            <br>
             <input class="btn btn-primary btn-block" type="submit" name="submit" value="Registrar"/>
           </form>
           <div class="text-center">
@@ -148,8 +168,6 @@
         </div>
       </div>
     </div>
-
-
 
 <!-- script para manejar provincia -->
 <script type="text/javascript">
@@ -186,6 +204,9 @@
   }
 </script>
 
+
+
+ 
 
 
     <!-- Bootstrap core JavaScript-->
