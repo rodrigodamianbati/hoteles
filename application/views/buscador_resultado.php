@@ -1,3 +1,4 @@
+
 <!--?php if (isset($products)){if(!empty($products)){$tipo=$products[0]->tipo;$iguales=true; foreach ($products as $product){if ($product->tipo != $tipo){ $iguales=false;}}if($iguales){print_r($products[0]->tipo);}}}?-->
 <!DOCTYPE html>
 <html>
@@ -150,11 +151,13 @@
         <?php }}}}}?>
         </p>
 
-        <!-- <a href="pages.php?id=<?php echo $product_id; ?>"> -->
-
-        <a class="w3-button w3-block w3-black w3-margin-bottom" href="<?php echo base_url(); ?>reserva/index/<?php $product->id;?>">Reservar</a>
-
-        <!-- <a class="w3-button w3-block w3-black w3-margin-bottom" href="<?php echo base_url(); ?>reserva?idAloj=<?php $product->id;?>">Reservar</a> -->
+        <!-- <a href="pages.php?id=<//?php echo $product_id; ?>"> -->
+        <form action="<?=base_url("alojamiento/reservar");?>" method="post">
+            <input type="hidden" name="precio_noche" value="<?php echo $product->precio;?>">
+            <input type="hidden" name="reserva" value="<?php echo $product->id;?>"> 
+            <input type="submit" class="w3-button w3-block w3-black w3-margin-bottom" value="Reservar">
+        </form>
+        <!-- <a class="w3-button w3-block w3-black w3-margin-bottom" href="<//?php echo base_url(); ?>reserva?idAloj=<//?php $product->id;?>">Reservar</a> -->
         <!-- <button class="w3-button w3-block w3-black w3-margin-bottom">Reservar</button> -->
       </div>
     </div>

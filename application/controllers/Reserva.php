@@ -1,5 +1,6 @@
-<?php
 
+<?php
+/*
 class Reserva extends CI_controller{
 
 
@@ -68,7 +69,7 @@ class Reserva extends CI_controller{
      }
 
     }
-       
+*/
      
 
 

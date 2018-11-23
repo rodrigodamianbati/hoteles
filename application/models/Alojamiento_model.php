@@ -919,4 +919,12 @@ class Alojamiento_model extends CI_Model
         return $consulta = $this->db->query("INSERT INTO reserva VALUES(NULL, NULL, '$precioTotal', NULL, NULL, '$fecha_actual',$fecha_desde, $fecha_hasta, $id_estado, $id_alojamiento, $id_cliente)");      
     }
 
+    public function almacenar_reserva($id_usuario, $id_alojamiento, $precio_total, $fecha_desde, $fecha_hasta){
+        
+        $f_fecha_actual = date("Y-m-d");
+        $f_desde=$fecha_desde->format('Y-m-d');
+        $f_hasta=$fecha_hasta->format('Y-m-d');
+        $this->db->query("INSERT INTO reserva (id, seña, precio_total, pago_seña, pago_resto, fecha_realizacion, fecha_inicio, fecha_fin, id_estado, id_alojamiento, id_usuario) VALUES (NULL, '0', '$precio_total', 'pendiente', '', '$f_fecha_actual', '$f_desde', '$f_hasta', '1', '$id_alojamiento', '$id_usuario')");
+        
+    }
 }

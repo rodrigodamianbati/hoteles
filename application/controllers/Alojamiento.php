@@ -290,11 +290,11 @@ class Alojamiento extends CI_Controller
         //print_r($_GET['tipo_actual']);
         //die();
 
-        if ($_GET['tipo_actual'] != 'ninguno') {
-            $tipo = $_GET['tipo_actual'];
-        } else {
-            $tipo = null;
-        }
+        //if ($_GET['tipo_actual'] != 'ninguno') {
+        //    $tipo = $_GET['tipo_actual'];
+        //} else {
+        //    $tipo = null;
+        //}
 
         /*
         <button type="input" type="sumbit" name="casa" class="w3-bar-item w3-button w3-text-black" value="casa"> Casa</button>
@@ -304,9 +304,9 @@ class Alojamiento extends CI_Controller
         <button type="input" type="sumbit" name="chalet" class="w3-bar-item w3-button w3-text-black" value="chalet"> Chalet</button>
         <button type="input" type="sumbit" name="monoambiente" class="w3-bar-item w3-button w3-text-black" value="monoambiente"> Monoambiente</button>
          */
-        print_r($tipo);
-        die();
-        if ($tipo != null) {
+        //print_r($tipo);
+        //die();
+        //if ($tipo != null) {
             if (isset($_GET['ninguno'])) {
                 $tipo = null;
             } else {
@@ -325,14 +325,18 @@ class Alojamiento extends CI_Controller
                                 if (isset($_GET['chalet'])) {
                                     $tipo = "chalet";
                                 } else {
-                                    $tipo = "monoambiente";
+                                    if(isset($_GET['monoambiente'])){
+                                        $tipo = "monoambiente";
+                                    } else{
+                                        $tipo = null; 
+                                    }
                                 }
                             }
                         }
                     }
                 }
             }
-        }
+       // }
 
         //print_r($tipo);
         //die();
@@ -394,11 +398,11 @@ class Alojamiento extends CI_Controller
         if ($limite_precio == null and $tipo == null) {
             $data['products'] = $this->alojamientosFiltrado($config['per_page'], $localidad, $filtros);
             $config['total_rows'] = $this->totalFilasFiltrado($localidad, $filtros);
-            print_r("if ");
-            die();
+           // print_r("if ");
+            //die();
         } else {
-            print_r($tipo);
-            die();
+            //print_r($tipo);
+            //die();
             $data['products'] = $this->alojamientosFiltradoLimitePrecio($config['per_page'], $localidad, $filtros, $limite_precio, $tipo);
             $config['total_rows'] = $this->totalFilasFiltradoLimitePrecio($localidad, $filtros, $limite_precio, $tipo);
         }
@@ -662,9 +666,60 @@ class Alojamiento extends CI_Controller
         redirect('alojamiento/mis_alojamientos');
     }
 
-    public function reservar()
-    {
+    public function reservar(){
 
+        $precio_noche = $this->input->post("precio_noche");   
+        $id_alojamiento = $this->input->post("reserva");
+
+        $data['precio_noche'] = $precio_noche;
+        $data['id_alojamiento'] = $id_alojamiento;
+        $this->load->view("realizar_reserva_view", $data);  
     }
+
+    public function generar_reserva(){
+
+        $precio_noche = $this->input->post("precio_noche");
+        $id_alojamiento = $this->input->post("id_alojamiento");
+
+
+
+        $fecha_desde = date_create($this->input->post("fecha_desde"));
+        $fecha_hasta = date_create($this->input->post("fecha_hasta"));
+
+        $dif=date_diff($fecha_desde,$fecha_hasta);
+        $dias = $dif->format("%a");
+
+        $precio_total = $dias * $precio_noche;
+        //print_r($precio_noche."noche");
+        //print_r($dif->format("%a")."dias");
+        //print_r($precio_total);
+        //die(); 
+        //echo($dif->format("%a"));
+        
+        //print_r($id_alojamiento);
+        //);  
+        //$data['id_alojamiento'] = $id_alojamiento;
+        $this->Alojamiento_model->almacenar_reserva($_SESSION['id'],$id_alojamiento, $precio_total, $fecha_desde, $fecha_hasta); 
+        redirect(base_url()); 
+    }
+    
+    public function mis_reservas(){
+        $this->load->library('pagination');
+        $id = $_SESSION['id'];
+        $config['total_rows'] = $this->total_mis_reservas($id);
+        $config['base_url'] = base_url() . 'alojamiento/mis_alojamientos';
+
+        $config = $this->configurarPaginado($config);
+        $this->pagination->initialize($config);
+        $data['products'] = $this->mis_reservas($config['per_page'], $id);
+        
+
+        $this->load->view("usuario/usuario_head");
+       
+        $this->load->view("usuario/usuario_top_nav");
+        $this->load->view("usuario/usuario_side_nav");
+        $this->load->view("usuario/usuario_mis_reservas", $data);
+        $this->load->view("usuario/usuario_footer");
+    }  
 
 }
