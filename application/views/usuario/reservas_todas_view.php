@@ -84,24 +84,25 @@
 
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
-        <li class="nav-item ">
-          <a class="nav-link" href="<?php echo base_url()."inicio"; ?>">
+        <li class="nav-item active">
+          <a class="nav-link" href="<?php echo base_url()."usuario"; ?>">
           <i class="fas fa-users-cog"></i>
             <span>Usuarios</span>
           </a>
         </li>
         
         
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" href="<?php echo base_url()."usuario/administrar_contrasenias"; ?>">
           <i class="fas fa-key"></i>
             <span>Contraseñas</span></a>
         </li>
 
+
         <li class="nav-item">
           <a class="nav-link" href="<?php echo base_url()."alojamiento/reservas_todas"; ?>">
           <i class="fas fa-shopping-cart"></i>
-            <span>Reservas</span></a>
+            <span>Todas las Reservas</span></a>
         </li>
 
         <li class="nav-item">
@@ -121,32 +122,39 @@
           <div class="card mb-3">
             <div class="card-header">
               <i class="fas fa-users"></i>
-              Usuarios Registrados</div>
+              Todas las Reservas</div>
             <div class="card-body">
-           
+            <div><button type="button" class="btn btn-primary btn-xs" onclick="location.href='<?php echo base_url();?>registro'">Agregar usuario</button></div>
+            <br>
               <div id="tablaUsuarios" class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>Email</th>
-                      <th>Contraseña</th>
                       <th>Nombre</th>
                       <th>Apellido</th>
                       <th>Dni</th>
-                      <th>Fecha de nacimiento</th>
-                      <th>Accion</th>
+                      <th>Pago total</th>
+                      <th>Direccion</th>
+                      <th>Estado Reserva</th>
+                      <th>Estado Pago</th>
                     </tr>
                   </thead>
                   
                   <tbody>
                     <?php
-                      foreach($ver as $fila){
+                      foreach($reservas_todas as $fila){
 
-                        $idUso=$fila->id."//";
+                        //$idUso=$fila->id_cliente."//";
                     
-                     
-                      
-                 
+                     // $datos= $fila->id_cliente."//". 
+                      //$fila->nombre."//". 
+                      //$fila->apellido."//".
+                     // $fila->dni."//".
+                      //$fila->fecha_nacimiento."//".
+                     // $fila->email."//";
+                      //$fila->contraseña."//";
+                    
                       // print_r($datos);
                       // die();
                      
@@ -155,9 +163,7 @@
                       <td>
                         <?=$fila->email;?>
                       </td>
-                      <td>
-                        <?=$fila->contraseña;?>
-                      </td>
+                      
                       <td>
                           <?=$fila->nombre;?>
                       </td>
@@ -168,20 +174,17 @@
                         <?=$fila->dni;?>
                       </td>
                       <td>
-                         <?=$fila->fecha_nacimiento;?>
+                         <?=$fila->precio_total;?>
                       </td>
-      
                       <td>
-                      
-                            <div class="d-flex justify-content-center"> 
-                            <button id="button-editar-contrasenia" title="Cambiar contraseña" type="button" class="btn btn-dark btn-xs " data-toggle="modal" data-target="#modalContrasenia" onclick="llenarId('<?php echo $idUso ?>')">
-                            <i class="fas fa-unlock-alt"></i>
-                          </button>
-                          </div>    
-                        
- 
-                       
-                      </td>                      
+                         <?=$fila->direccion_nombre." ".$fila->direccion_numero;?>
+                      </td>
+                      <td>
+                         <?=$fila->estado_reserva;?>
+                      </td>
+                      <td>
+                         <?=$fila->pago_seña;?>
+                      </td>        
                   <?php  } ?>
                   </tr>      
                   </tbody>
@@ -196,10 +199,32 @@
         <!-- /.container-fluid -->
 
 
-      
+      <!-- script para actualizar los dato de la tabla luego de la modificacion --> 
+        <script type="text/javascript">
+
+          function actualizarTabla(){
+               location.reload();
+          }
+
+        </script> 
+
          
         
-     
+        <!-- script autocompletar formulario de modificacion-->
+        <script type="text/javascript">
+            function agregarForm(datos){
+              d=datos.split('//');
+              
+              $('#idpersona').val(d[0]);
+              $('#nom').val(d[1]);
+              $('#ape').val(d[2]);
+              $('#dni').val(d[3]);
+              $('#fecnac').val(d[4]);
+              $('#ema').val(d[5]);
+              $('#cont').val(d[6]);
+            
+              }
+		    	</script>
 
         <!-- Sticky Footer -->
         <footer class="sticky-footer">
@@ -220,36 +245,100 @@
     <a class="scroll-to-top rounded" href="<?php echo base_url()."assets/"; ?>#page-top">
       <i class="fas fa-angle-up"></i>
     </a>
+
+<!-- script onclick del button modal llenar los input del editar  -->
+<script type="text/javascript">
+            function actualizarDatos(){
+              $id=$('#idpersona').val();
+              $nombre= $('#nom').val();
+              $apellido=$('#ape').val();
+              $dni=$('#dni').val();
+              $fecNac=$('#fecnac').val();
+              $email=$('#ema').val();
+            
+            
+
+               $cadena= "id=" + $id +
+              "&nombre=" + $nombre + 
+              "&apellido=" + $apellido +
+              "&dni=" + $dni +
+              "&fechaNacimiento=" + $fecNac +
+              "&email=" + $email ;
+
+
+            
+
+          $.ajax({
+            type:"POST",
+            url:"<?php echo base_url()."usuario/modificarUsuario"?>",
+            data: $cadena,
+            
+            success:function(r){
+              
+              actualizarTabla();
+             
+            }
+          });
+            }
+		    	</script>
     
 
+      <!-- Modal para editar usuario-->
+      <div class="modal fade" id="modalEdicion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel">Ingrese los nuevos datos del usuario</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              
+            </div>
+            <div class="modal-body">
 
-
-<!-- script para actualizar los dato de la tabla luego de la modificacion de contra --> 
-<script type="text/javascript">
-
-function actualizarTabla(){
-     location.reload();
-}
-
-</script> 
-
-<!-- script cambiar contra -->
-      <script type="text/javascript">
-                  function cambiarContraseña(){
-                   var id= $('#idper').val();
-                   var contrasenia = $('#id-contrasenia').val();
+       
+                  
+                <input type="text" hidden="" id="idpersona" name="">
                 
+                <label>Nombre</label>
+                <input type="text" name="" id="nom" class="form-control input-sm">
+                <br>
+                <label>Apellido</label>
+                <input type="text" name="" id="ape" class="form-control input-sm">
+                <br>
+                <label>DNI</label>
+                <input type="text" name="" id="dni" class="form-control input-sm">
+                <br>
+                <label>Fecha Nacimiento</label>
+                <input type="date" name="" id="fecnac" class="form-control input-sm">
+                <br>
+                <label>Email</label>
+                <input type="text" name="" id="ema" class="form-control input-sm">
+                <br>
+               
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+              <button id="actualizar" type="button" class="btn btn-primary " onclick="actualizarDatos()"> Continuar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+<!-- script eliminacion usuario -->
+      <script type="text/javascript">
+                  function eliminarUsuario(){
+                   var id= $('#idper').val();
                   
                    
                     
                     $.ajax({
                       type:"POST",
-                      url:"<?php echo base_url()."usuario/cambiarContrasenia"?>",
-                      data: {id, contrasenia},
+                      url:"<?php echo base_url()."usuario/eliminarUsuario"?>",
+                      data: {id},
                       
                       success:function(r){
                     
-                        actualizarTabla();
+                        location.reload();
                     //  alert(r);
                     
                   }
@@ -259,7 +348,7 @@ function actualizarTabla(){
 
 
       <script type="text/javascript">
-                  function llenarId(idUso){
+                  function agregaridElim(idUso){
                     d=idUso.split('//');
 
                     
@@ -271,35 +360,23 @@ function actualizarTabla(){
        
        
 
-      
-
-
-      <!-- Modal para cambiar contraseña-->
-      <div class="modal fade" id="modalContrasenia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+       <!-- Modal para eliminar usuario-->
+       <div class="modal fade" id="modalEliminacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title" id="myModalLabel">Ingrese la nueva contraseña</h4>
+              <h4 class="modal-title" id="myModalLabel">¿Desea eliminar este usuario?</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               
             </div>
             <div class="modal-body">
-
-       
-                  
-                <input type="text" hidden="" id="idper" name="">
-                
-                <label>Contraseña</label>
-                <input type="password" name="" id="id-contrasenia" class="form-control input-sm">
-                <br>
-                <label>Confirmar contraseña</label>
-                <input type="password" name="" id="id-contrasenia-confirm" class="form-control input-sm">
-               
-               
+            <input type="text" hidden="" id="idper" name="">
+              Seleccione "Continuar" si quiere continuar con la eliminacion.
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-              <button id="actualizar" type="button" class="btn btn-primary " onclick="cambiarContraseña()"> Continuar</button>
+              <button id="eliminar" type="button" class="btn btn-primary " onclick="eliminarUsuario()"> Continuar</button>
+              <!-- <button type="button" class="btn btn-primary">Continuar</button> -->
             </div>
           </div>
         </div>

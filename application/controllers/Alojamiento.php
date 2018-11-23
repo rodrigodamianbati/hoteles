@@ -28,8 +28,10 @@ class Alojamiento extends CI_Controller
         redirect('login');
         }
          */
-        // redirect(base_url());
-        $this->load->view("buscador");
+        //print_r($_SESSION);
+        //die();
+        redirect(base_url());
+        //$this->load->view("buscador");
     }
 
     public function crear_alojamiento()
@@ -550,6 +552,8 @@ class Alojamiento extends CI_Controller
     {
         //if($this->input->post("agregar_fotos")){
         $id_alojamiento = $this->input->post("agregar_fotos");
+
+        
         //$product = $this->Alojamiento_model->alojamiento($this->input->post("agregar_fotos"));
         //$galeria = $this->Alojamiento_model->galeria($this->input->post("agregar_fotos"));
         //print_r($data);
@@ -714,6 +718,12 @@ class Alojamiento extends CI_Controller
         $this->load->view("usuario/mis_clientes",$data);
     } 
 
+    public function reservas_todas(){
+        $reservas_todas=$this->Alojamiento_model->reservas_todas();
+        $data['reservas_todas'] = $reservas_todas;
+        $this->load->view("usuario/reservas_todas_view",$data);
+    }
+
     private function reservas($limite, $id)
     {
         return $this->Alojamiento_model->mis_reservas($limite, $id);
@@ -763,6 +773,8 @@ class Alojamiento extends CI_Controller
 
         redirect(base_url("alojamiento/mis_pagos"));
     }  
+    
+      
      /*
 Array ( [0] => stdClass Object ( [id] => 70 [seña] => 0 [precio_total] => 10000 [pago_seña] => pendiente [pago_resto] => 0 
 [fecha_realizacion] => 2018-11-23 [fecha_inicio] => 2018-11-01 [fecha_fin] => 2018-11-11 [id_estado] => 3 

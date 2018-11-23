@@ -100,13 +100,13 @@
 
 
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo base_url()."usuario/administrar_contrasenias"; ?>">
+          <a class="nav-link" href="<?php echo base_url()."alojamiento/reservas_todas"; ?>">
           <i class="fas fa-shopping-cart"></i>
-            <span>Reservas</span></a>
+            <span>Todas las reservas</span></a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo base_url()."usuario/administrar_contrasenias"; ?>">
+          <a class="nav-link" href="<?php echo base_url()."alojamiento/reservas_todas"; ?>">
           <i class="fas fa-money-check-alt"></i>
             <span>Pagos</span></a>
         </li>

@@ -183,7 +183,7 @@
                       <td>
                          <?=$fila->direccion_nombre." ".$fila->direccion_numero;?>
                       </td>
-      
+                        
                       <td>
                       <form action="<?=base_url("alojamiento/pagar");?>" method="post">
                             <button name="pagar" value="<?php echo $fila->id_reserva?>" title="Pagar" class="btn btn-dark btn-xs"></button>

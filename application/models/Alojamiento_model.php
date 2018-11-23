@@ -190,7 +190,20 @@ class Alojamiento_model extends CI_Model
         return $consulta->result();
     }
 
+     
     
+    public function reservas_todas(){
+
+        $this->db->select("estado_reserva.descripcion as estado_reserva, usuario.email, usuario.nombre, usuario.apellido, usuario.dni, reserva.confirmacion_cliente, reserva.confirmacion_dueño, reserva.id as id_reserva, reserva.seña, reserva.precio_total, reserva.pago_seña, reserva.fecha_realizacion, reserva.fecha_inicio, reserva.fecha_fin, reserva.id_estado as id_estado_reserva, reserva.id_alojamiento, reserva.id_usuario, alojamiento.id as id_alojamiento, alojamiento.direccion_nombre, alojamiento.direccion_numero, alojamiento.id_estado as id_estado_alojamiento, alojamiento.id_usuario as id_dueño"); 
+        //$this->db->where("reserva.id_usuario", $id);                                                                                                                                                                                                                               //id`, `precio`, `id_localidad`, `direccion_nombre`, `direccion_numero`, `id_estado`, `id_usuario`, `id_tipo`, `default_foto`
+        $this->db->join("alojamiento", "alojamiento.id = reserva.id_alojamiento");
+        $this->db->join("usuario", "usuario.id = reserva.id_usuario");
+        $this->db->join("estado_reserva", "estado_reserva.id = reserva.id_estado");
+
+        $consulta = $this->db->get('reserva');
+
+        return $consulta->result();
+    }
 
     public function totalAlojamientos($localidad)
     {
@@ -981,7 +994,11 @@ class Alojamiento_model extends CI_Model
     public function cliente_corfirmar_duenio($id_reserva){
 
         $this->db->query("UPDATE reserva SET confirmacion_dueño = 'confirmado' WHERE reserva.id = '$id_reserva';");
-    
+
+        $this->db->query("UPDATE reserva SET id_estado = '2' WHERE reserva.id = '$id_reserva';");
+
+        //$this->db->query("UPDATE estado_reserva SET descripcion = 'hecha' WHERE estado_reserva.id = '$id_reserva';");
+        
     }  
 
     public function reserva_pagar($id_reserva){
