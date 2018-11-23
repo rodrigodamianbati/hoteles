@@ -109,7 +109,7 @@ class Usuario extends CI_Controller{
                 
                 if(($agregar==true)){
                     if($this->esAdministrador()){
-                        echo "Usuario agregado con exito";
+                        echo "Usuario agregado con exito lpmqlp";
                     }
                     else{
                         echo "Se a registrado correctamente";
