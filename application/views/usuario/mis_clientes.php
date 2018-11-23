@@ -1,3 +1,7 @@
+<?php
+    //print_r($reservas_clientes);
+    //die(); 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -141,7 +145,7 @@
                   
                   <tbody>
                     <?php
-                      foreach($ver as $fila){
+                      foreach($reservas_clientes as $fila){
 
                         $idUso=$fila->id."//";
                     
@@ -149,11 +153,10 @@
                       $fila->nombre."//". 
                       $fila->apellido."//".
                       $fila->dni."//".
-                      $fila->fecha_nacimiento."//".
-                      $fila->email."//".
-                      $fila->contraseña."//";
-                      
-                 
+                      //$fila->fecha_nacimiento."//".
+                      $fila->email."//";
+                      //$fila->contraseña."//";
+                    
                       // print_r($datos);
                       // die();
                      
@@ -173,7 +176,7 @@
                         <?=$fila->dni;?>
                       </td>
                       <td>
-                         <?=$fila->fecha_nacimiento;?>
+                         <?=$fila->precio_total;?>
                       </td>
       
                       <td>

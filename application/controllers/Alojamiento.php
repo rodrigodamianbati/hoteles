@@ -37,7 +37,7 @@ class Alojamiento extends CI_Controller
         $tipos = $this->tipos();
         $localidades = $this->localidades();
         //print_r($_SESSION['id']);
-        //die();  
+        //die();
         //$id_usuario = $_SESSION['id'];
 
         $data = array_merge($tipos, $localidades);
@@ -82,7 +82,7 @@ class Alojamiento extends CI_Controller
                 $this->input->post("localidad"),
                 $this->input->post("direccion_nombre"),
                 $this->input->post("direccion_numero"),
-                $_SESSION['id'] 
+                $_SESSION['id']
             );
         }
         if ($agregar == true) {
@@ -97,7 +97,7 @@ class Alojamiento extends CI_Controller
             $this->load->view("alta_alojamiento_fotos_view", array('id_alojamiento' => $data));
 
         } else {
-            //print_r("no anduvo"); 
+            //print_r("no anduvo");
             $this->session->set_flashdata('incorrecto', 'Usted se ha registrado correctamente');
         }
         //redirecciono la pagina a la url por defecto
@@ -241,6 +241,12 @@ class Alojamiento extends CI_Controller
         return $this->Alojamiento_model->totalMisAlojamientos($id);
     }
 
+
+    private function total_mis_reservas($id)
+    {
+        return $this->Alojamiento_model->total_mis_reservas($id);
+    }
+
     private function totalFilasFiltrado($localidad, $filtros)
     {
         return $this->Alojamiento_model->totalAlojamientosFiltrado($localidad, $filtros);
@@ -278,20 +284,23 @@ class Alojamiento extends CI_Controller
 
         $this->load->library('pagination');
 
+        /*
         if (isset($_GET['localidad'])) {
-            $localidad = $_GET['localidad'];
+        $localidad = $_GET['localidad'];
         } else {
-            $localidad = $_GET['nueva_localidad'];
-        }
+        $localidad = $_GET['nueva_localidad'];
+        }*/
+
+        $localidad = $_GET['localidad'];
 
         //print_r($_GET['tipo_actual']);
-        //die();  
+        //die();
 
-        if (isset($_GET['tipo_actual'])) {
-            $tipo = $_GET['tipo_actual'];
-        } else {
-            $tipo = null;
-        }
+        //if ($_GET['tipo_actual'] != 'ninguno') {
+        //    $tipo = $_GET['tipo_actual'];
+        //} else {
+        //    $tipo = null;
+        //}
 
         /*
         <button type="input" type="sumbit" name="casa" class="w3-bar-item w3-button w3-text-black" value="casa"> Casa</button>
@@ -301,32 +310,39 @@ class Alojamiento extends CI_Controller
         <button type="input" type="sumbit" name="chalet" class="w3-bar-item w3-button w3-text-black" value="chalet"> Chalet</button>
         <button type="input" type="sumbit" name="monoambiente" class="w3-bar-item w3-button w3-text-black" value="monoambiente"> Monoambiente</button>
          */
-        if ($tipo != null) {
-            if (isset($_GET['casa'])) {
-                $tipo = "casa";
+        //print_r($tipo);
+        //die();
+        //if ($tipo != null) {
+            if (isset($_GET['ninguno'])) {
+                $tipo = null;
             } else {
-                if (isset($_GET['departamento'])) {
-                    $tipo = "departamento";
+                if (isset($_GET['casa'])) {
+                    $tipo = "casa";
                 } else {
-                    if (isset($_GET['hotel'])) {
-                        $tipo = "hotel";
+                    if (isset($_GET['departamento'])) {
+                        $tipo = "departamento";
                     } else {
-                        if (isset($_GET['cabaña'])) {
-                            $tipo = "cabaña";
+                        if (isset($_GET['hotel'])) {
+                            $tipo = "hotel";
                         } else {
-                            if (isset($_GET['chalet'])) {
-                                $tipo = "chalet";
+                            if (isset($_GET['cabaña'])) {
+                                $tipo = "cabaña";
                             } else {
-                                if (isset($_GET['monoambiente'])) {
-                                    $tipo = "monoambiente";
+                                if (isset($_GET['chalet'])) {
+                                    $tipo = "chalet";
+                                } else {
+                                    if(isset($_GET['monoambiente'])){
+                                        $tipo = "monoambiente";
+                                    } else{
+                                        $tipo = null; 
+                                    }
                                 }
                             }
                         }
                     }
                 }
-
             }
-        }
+       // }
 
         //print_r($tipo);
         //die();
@@ -388,7 +404,11 @@ class Alojamiento extends CI_Controller
         if ($limite_precio == null and $tipo == null) {
             $data['products'] = $this->alojamientosFiltrado($config['per_page'], $localidad, $filtros);
             $config['total_rows'] = $this->totalFilasFiltrado($localidad, $filtros);
+           // print_r("if ");
+            //die();
         } else {
+            //print_r($tipo);
+            //die();
             $data['products'] = $this->alojamientosFiltradoLimitePrecio($config['per_page'], $localidad, $filtros, $limite_precio, $tipo);
             $config['total_rows'] = $this->totalFilasFiltradoLimitePrecio($localidad, $filtros, $limite_precio, $tipo);
         }
@@ -487,8 +507,6 @@ class Alojamiento extends CI_Controller
         }
     }
 
-     
-
     public function modificacion_galeria()
     {
         if ($this->input->post("modificar_galeria")) {
@@ -509,7 +527,8 @@ class Alojamiento extends CI_Controller
         }
     }
 
-    public function agregar_servicios(){
+    public function agregar_servicios()
+    {
         //print_r($_POST);
         //die();
         $this->Alojamiento_model->agregar_servicios($_POST['chequeados'], $_POST['id_alojamiento']);
@@ -559,14 +578,14 @@ class Alojamiento extends CI_Controller
     public function agregacion_servicios()
     {
         $id_alojamiento = $this->input->post("agregar_servicios");
-    
+
         $data['id_alojamiento'] = $id_alojamiento;
-       
+
         $data['servicios_disponibles'] = $this->servicios_disponibles($id_alojamiento);
         $data['todos_los_servicios'] = $this->todos_los_servicios();
 
         //print_r($data);
-        //die(); 
+        //die();
 
         $this->load->view("usuario/fine_uploader_head");
         $this->load->view("usuario/usuario_top_nav");
@@ -574,16 +593,17 @@ class Alojamiento extends CI_Controller
         $this->load->view("usuario/agregar_servicios", $data);
         $this->load->view("usuario/usuario_footer_servicios");
     }
-    
-    public function servicios_disponibles($id_alojamiento){
-        return $this->Alojamiento_model->servicios_disponibles($id_alojamiento);     
-    }  
 
-    public function todos_los_servicios(){
+    public function servicios_disponibles($id_alojamiento)
+    {
+        return $this->Alojamiento_model->servicios_disponibles($id_alojamiento);
+    }
+
+    public function todos_los_servicios()
+    {
         return $this->Alojamiento_model->todos_los_servicios();
-    }  
+    }
 
-    
     public function modificaciones()
     {
         if ($this->input->post("modificar")) {
@@ -591,21 +611,9 @@ class Alojamiento extends CI_Controller
             $tipos = $this->tipos();
             $localidades = $this->localidades();
 
-            /*
-            $user = json_decode($product)[0];
-            print_r($user);
-            die();
-             */
             $data = array_merge($tipos, $localidades);
             $data['product'] = $product;
-            //print_r($data);
-            //die();
-            /*
-            print_r(array_pop($product));
-            die();
-            print_r($product);
-            die();
-             */
+            
             $this->load->view("usuario/usuario_head");
             $this->load->view("usuario/usuario_top_nav");
             $this->load->view("usuario/usuario_side_nav");
@@ -616,12 +624,10 @@ class Alojamiento extends CI_Controller
 
     public function modificar()
     {
-        //print_r($this->input->post("baja"));
-        //die();
+    
 
         if ($this->input->post("modificar")) {
-            //print_r($this->input->post("localidades"));
-            //die();
+            
             $this->Alojamiento_model->modificar(
                 $this->input->post("id"),
                 $this->input->post("tipo"),
@@ -652,12 +658,84 @@ class Alojamiento extends CI_Controller
         redirect('alojamiento/mis_alojamientos');
     }
 
-
-
     public function reservar(){
-        
+
+        $precio_noche = $this->input->post("precio_noche");   
+        $id_alojamiento = $this->input->post("reserva");
+
+        $data['precio_noche'] = $precio_noche;
+        $data['id_alojamiento'] = $id_alojamiento;
+        $this->load->view("realizar_reserva_view", $data);  
     }
 
+    public function generar_reserva(){
 
+        $precio_noche = $this->input->post("precio_noche");
+        $id_alojamiento = $this->input->post("id_alojamiento");
 
+        $fecha_desde = date_create($this->input->post("fecha_desde"));
+        $fecha_hasta = date_create($this->input->post("fecha_hasta"));
+
+        $dif=date_diff($fecha_desde,$fecha_hasta);
+        $dias = $dif->format("%a");
+
+        $precio_total = $dias * $precio_noche;
+
+        $this->Alojamiento_model->almacenar_reserva($_SESSION['id'],$id_alojamiento, $precio_total, $fecha_desde, $fecha_hasta); 
+        redirect(base_url()); 
+    }
+    
+    public function mis_reservas(){
+        $this->load->library('pagination');
+        $id = $_SESSION['id'];
+        $config['total_rows'] = $this->total_mis_reservas($id);
+        $config['base_url'] = base_url().'alojamiento/mis_reservas';
+
+        $config = $this->configurarPaginado($config);
+        $this->pagination->initialize($config);
+        $data['products'] = $this->reservas($config['per_page'], $id);
+        
+
+        $this->load->view("usuario/usuario_head");
+       
+        $this->load->view("usuario/usuario_top_nav");
+        $this->load->view("usuario/usuario_side_nav");
+        $this->load->view("usuario/usuario_mis_reservas", $data);
+        $this->load->view("usuario/usuario_footer");
+    }  
+
+    public function reservas_clientes(){
+        $id = $_SESSION['id'];
+        $reservas_clientes=$this->Alojamiento_model->reservas_clientes($id);
+        //print_r($id); 
+        //print_r($reservas_clientes);
+        //die();
+        $data['reservas_clientes'] =  $reservas_clientes;
+        $this->load->view("usuario/mis_clientes",$data);
+    } 
+
+    public function mis_pagos(){
+        $id = $_SESSION['id'];
+
+    }
+
+    private function reservas($limite, $id)
+    {
+        return $this->Alojamiento_model->mis_reservas($limite, $id);
+    }
+
+    public function reserva_confirmar(){
+        $id_reserva = $this->input->post("confirmar");
+        $this->Alojamiento_model->cliente_corfirmar($id_reserva); 
+
+        redirect(base_url("alojamiento/mis_reservas"));
+    }
+
+    public function reserva_baja(){
+        $id_reserva = $this->input->post("baja");
+        $this->Alojamiento_model->reserva_baja($id_reserva); 
+
+        redirect(base_url("alojamiento/mis_reservas"));
+    }
+    
 }

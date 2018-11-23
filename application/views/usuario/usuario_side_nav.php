@@ -49,6 +49,16 @@
     <i class="fas fa-shopping-cart"></i>
       <span>Mis Reservas</span></a>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="<?php echo base_url()."alojamiento/mis_pagos"; ?>">
+    <i class="fas fa-shopping-cart"></i>
+      <span>Pagos pendientes</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="<?php echo base_url()."alojamiento/reservas_clientes"; ?>">
+    <i class="fas fa-shopping-cart"></i>
+      <span>Reservas de mis clientes</span></a>
+  </li>
 
 </ul>
 

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Registro</title>
+    <title>Reserva</title>
 
     <!-- Bootstrap core CSS-->
     <link href="<?php echo base_url()."assets/"; ?>vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -28,7 +28,7 @@
       <div class="card card-register mx-auto mt-4 mb-4">
         <div class="card-header">Reserva</div>
         <div class="card-body">
-          <form action="<?=base_url()."reserva/generar_reserva/".$idAloj?> " method="post">
+          <form action="<?=base_url()."alojamiento/generar_reserva"?>" method="post">
             
 
 <!-- hacerlo desp -->
@@ -62,10 +62,6 @@
              </div>
             </div> -->
           
-
-
-            
-
             <br>
             <div class="border-bottom">
             <label for="telefono" class="text-dark ">Fecha desde/hasta</label>
@@ -75,13 +71,13 @@
               <div class="form-row">
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="date" id="fecha-desde" class="form-control" placeholder="Fecha-desde" required="required" name="fecha-desde">
+                    <input type="date" id="fecha-desde" class="form-control" placeholder="Fecha-desde" required="required" name="fecha_desde">
                     <label for="fecha-desde">Desde</label> 
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="date" id="fecha-hasta" class="form-control" placeholder="Fecha-hasta" name="fecha-hasta">
+                    <input type="date" id="fecha-hasta" class="form-control" placeholder="Fecha-hasta" name="fecha_hasta">
                     <label for="fecha-hasta" >Hasta</label>
                   </div>
                 </div>
@@ -89,6 +85,8 @@
             </div>
             <br>
             
+            <input type="hidden" name="precio_noche" value="<?php echo $precio_noche?>">
+            <input type="hidden" name="id_alojamiento" value="<?php echo $id_alojamiento?>">
             <input class="btn btn-primary btn-block" type="submit" name="submit" value="Confirmar"/>
           </form>
           
