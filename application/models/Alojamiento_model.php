@@ -972,20 +972,28 @@ class Alojamiento_model extends CI_Model
     
     }
 
-    public function reservas_clientes($id_usuario){
+    public function reservas_clientes($id_dueño){
 
         $this->db->select('id');
-        $this->db->from('localidad');
-        $this->db->where('nombre', $localidad);
+        $this->db->from('alojamiento');
+        $this->db->where('id_usuario', $id_dueño);
         $where_clause = $this->db->get_compiled_select();
 
-        $this->db->select("alojamiento.id, e.descripcion as estado, t.descripcion as tipo, alojamiento.default_foto as foto, alojamiento.precio, l.nombre as localidad, alojamiento.direccion_nombre, alojamiento.direccion_numero");
+        $this->db->select("u.dni, u.nombre, u.apellido, u.email, reserva.id_usuario as id_cliente, reserva.precio_total, reserva.fecha_fin,reserva.fecha_inicio,reserva.fecha_realizacion, reserva.pago_seña, reserva.id_estado as estado_reserva, reserva.id, e.descripcion as estado_alojamiento, t.descripcion as tipo, a.default_foto as foto, a.precio, l.nombre as localidad, a.direccion_nombre, a.direccion_numero");
        
-        $this->db->where("reserva.id='$id'");
+        $this->db->where("reserva.id_alojamiento IN ($where_clause)", null, false);
+        //$this->db->where("reserva.id_alojamiento='$id'");
 
-        $this->db->join("estado_aloj e", "alojamiento.id_estado = e.id");
-        $this->db->join("tipo_aloj t", "alojamiento.id_tipo = t.id");
-        $this->db->join("localidad l", "alojamiento.id_localidad = l.id");
+        $this->db->join("alojamiento a", "reserva.id_alojamiento= a.id");
+        $this->db->join("estado_aloj e", "a.id_estado = e.id");
+        $this->db->join("tipo_aloj t", "a.id_tipo = t.id");
+        $this->db->join("localidad l", "a.id_localidad = l.id");
+
+        $this->db->join("usuario u", "reserva.id_usuario = u.id");
+
+        $consulta = $this->db->get('reserva');
+        //$this->db->where("alojamiento.id_localidad IN ($where_clause)", null, false);
+        return $consulta->result();
     }  
 
 }

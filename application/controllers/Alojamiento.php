@@ -707,6 +707,9 @@ class Alojamiento extends CI_Controller
     public function reservas_clientes(){
         $id = $_SESSION['id'];
         $reservas_clientes=$this->Alojamiento_model->reservas_clientes($id);
+        //print_r($id); 
+        //print_r($reservas_clientes);
+        //die();
         $data['reservas_clientes'] =  $reservas_clientes;
         $this->load->view("usuario/mis_clientes",$data);
     } 
