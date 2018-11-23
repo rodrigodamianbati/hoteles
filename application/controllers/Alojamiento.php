@@ -241,6 +241,12 @@ class Alojamiento extends CI_Controller
         return $this->Alojamiento_model->totalMisAlojamientos($id);
     }
 
+
+    private function total_mis_reservas($id)
+    {
+        return $this->Alojamiento_model->total_mis_reservas($id);
+    }
+
     private function totalFilasFiltrado($localidad, $filtros)
     {
         return $this->Alojamiento_model->totalAlojamientosFiltrado($localidad, $filtros);
@@ -605,21 +611,9 @@ class Alojamiento extends CI_Controller
             $tipos = $this->tipos();
             $localidades = $this->localidades();
 
-            /*
-            $user = json_decode($product)[0];
-            print_r($user);
-            die();
-             */
             $data = array_merge($tipos, $localidades);
             $data['product'] = $product;
-            //print_r($data);
-            //die();
-            /*
-            print_r(array_pop($product));
-            die();
-            print_r($product);
-            die();
-             */
+            
             $this->load->view("usuario/usuario_head");
             $this->load->view("usuario/usuario_top_nav");
             $this->load->view("usuario/usuario_side_nav");
@@ -630,12 +624,10 @@ class Alojamiento extends CI_Controller
 
     public function modificar()
     {
-        //print_r($this->input->post("baja"));
-        //die();
+    
 
         if ($this->input->post("modificar")) {
-            //print_r($this->input->post("localidades"));
-            //die();
+            
             $this->Alojamiento_model->modificar(
                 $this->input->post("id"),
                 $this->input->post("tipo"),
@@ -681,8 +673,6 @@ class Alojamiento extends CI_Controller
         $precio_noche = $this->input->post("precio_noche");
         $id_alojamiento = $this->input->post("id_alojamiento");
 
-
-
         $fecha_desde = date_create($this->input->post("fecha_desde"));
         $fecha_hasta = date_create($this->input->post("fecha_hasta"));
 
@@ -690,15 +680,7 @@ class Alojamiento extends CI_Controller
         $dias = $dif->format("%a");
 
         $precio_total = $dias * $precio_noche;
-        //print_r($precio_noche."noche");
-        //print_r($dif->format("%a")."dias");
-        //print_r($precio_total);
-        //die(); 
-        //echo($dif->format("%a"));
-        
-        //print_r($id_alojamiento);
-        //);  
-        //$data['id_alojamiento'] = $id_alojamiento;
+
         $this->Alojamiento_model->almacenar_reserva($_SESSION['id'],$id_alojamiento, $precio_total, $fecha_desde, $fecha_hasta); 
         redirect(base_url()); 
     }
@@ -707,11 +689,11 @@ class Alojamiento extends CI_Controller
         $this->load->library('pagination');
         $id = $_SESSION['id'];
         $config['total_rows'] = $this->total_mis_reservas($id);
-        $config['base_url'] = base_url() . 'alojamiento/mis_alojamientos';
+        $config['base_url'] = base_url().'alojamiento/mis_reservas';
 
         $config = $this->configurarPaginado($config);
         $this->pagination->initialize($config);
-        $data['products'] = $this->mis_reservas($config['per_page'], $id);
+        $data['products'] = $this->reservas($config['per_page'], $id);
         
 
         $this->load->view("usuario/usuario_head");
@@ -722,4 +704,35 @@ class Alojamiento extends CI_Controller
         $this->load->view("usuario/usuario_footer");
     }  
 
+    public function reservas_clientes(){
+        $id = $_SESSION['id'];
+        $reservas_clientes=$this->Alojamiento_model->reservas_clientes($id);
+        $data['reservas_clientes'] =  $reservas_clientes;
+        $this->load->view("usuario/mis_clientes",$data);
+    } 
+
+    public function mis_pagos(){
+        $id = $_SESSION['id'];
+
+    }
+
+    private function reservas($limite, $id)
+    {
+        return $this->Alojamiento_model->mis_reservas($limite, $id);
+    }
+
+    public function reserva_confirmar(){
+        $id_reserva = $this->input->post("confirmar");
+        $this->Alojamiento_model->cliente_corfirmar($id_reserva); 
+
+        redirect(base_url("alojamiento/mis_reservas"));
+    }
+
+    public function reserva_baja(){
+        $id_reserva = $this->input->post("baja");
+        $this->Alojamiento_model->reserva_baja($id_reserva); 
+
+        redirect(base_url("alojamiento/mis_reservas"));
+    }
+    
 }

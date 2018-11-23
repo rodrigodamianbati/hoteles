@@ -85,7 +85,7 @@
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="<?php echo base_url()."inicio"; ?>">
+          <a class="nav-link" href="<?php echo base_url()."usuario"; ?>">
           <i class="fas fa-users-cog"></i>
             <span>Usuarios</span>
           </a>

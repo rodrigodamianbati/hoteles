@@ -172,6 +172,14 @@ class Alojamiento_model extends CI_Model
         return $this->db->get('alojamiento')->num_rows();
     }
 
+    public function total_mis_reservas($id){
+
+        $this->db->where("reserva.id_usuario", $id);
+        return $this->db->get('reserva')->num_rows();
+    }
+
+    
+
     public function totalAlojamientos($localidad)
     {
 
@@ -424,6 +432,29 @@ class Alojamiento_model extends CI_Model
         }
 
         return $consulta;
+    }
+
+    public function mis_reservas($limite, $id)
+    {
+
+        $this->db->select("reserva.precio_total, reserva.fecha_fin,reserva.fecha_inicio,reserva.fecha_realizacion, reserva.pago_seña, reserva.id_estado as estado_reserva, reserva.id, e.descripcion as estado_alojamiento, t.descripcion as tipo, a.default_foto as foto, a.precio, l.nombre as localidad, a.direccion_nombre, a.direccion_numero");
+        //$this->db->select("*");
+        $this->db->where("reserva.id_usuario='$id'");
+        $this->db->join("alojamiento a", "reserva.id_alojamiento = a.id");
+
+        $this->db->join("estado_aloj e", "a.id_estado = e.id");
+        $this->db->join("tipo_aloj t", "a.id_tipo = t.id");
+        $this->db->join("localidad l", "a.id_localidad = l.id");
+
+        $consulta = $this->db->get('reserva', $limite, $this->uri->segment(3));
+
+        //$consulta = $consulta->custom_result_object("Alojamiento_model");
+
+        //foreach ($consulta as $alojamiento) {
+        //    $alojamiento->servicios = $alojamiento->servicios($alojamiento->id);
+        //}
+
+        return $consulta->result();
     }
 
     public function alojamientos($limite, $localidad)
@@ -915,9 +946,9 @@ class Alojamiento_model extends CI_Model
     }
 
 
-    public function reservar($precioTotal, $fecha_actual, $fecha_desde, $fecha_hasta, $id_estado,  $id_alojamiento, $id_cliente){
-        return $consulta = $this->db->query("INSERT INTO reserva VALUES(NULL, NULL, '$precioTotal', NULL, NULL, '$fecha_actual',$fecha_desde, $fecha_hasta, $id_estado, $id_alojamiento, $id_cliente)");      
-    }
+    //public function reservar($precioTotal, $fecha_actual, $fecha_desde, $fecha_hasta, $id_estado,  $id_alojamiento, $id_cliente){
+    //    return $consulta = $this->db->query("INSERT INTO reserva VALUES(NULL, NULL, '$precioTotal', NULL, NULL, '$fecha_actual',$fecha_desde, $fecha_hasta, $id_estado, $id_alojamiento, $id_cliente)");      
+    //}
 
     public function almacenar_reserva($id_usuario, $id_alojamiento, $precio_total, $fecha_desde, $fecha_hasta){
         
@@ -926,5 +957,35 @@ class Alojamiento_model extends CI_Model
         $f_hasta=$fecha_hasta->format('Y-m-d');
         $this->db->query("INSERT INTO reserva (id, seña, precio_total, pago_seña, pago_resto, fecha_realizacion, fecha_inicio, fecha_fin, id_estado, id_alojamiento, id_usuario) VALUES (NULL, '0', '$precio_total', 'pendiente', '', '$f_fecha_actual', '$f_desde', '$f_hasta', '1', '$id_alojamiento', '$id_usuario')");
         
+        $this->db->query("UPDATE alojamiento SET id_estado = '3' WHERE alojamiento.id = '$id_alojamiento';");
     }
+
+    public function cliente_corfirmar($id_reserva){
+
+        $this->db->query("UPDATE reserva SET confirmacion_cliente = 'confirmado' WHERE reserva.id = '$id_reserva';");
+    
+    }  
+
+    public function reserva_baja($id_reserva){
+        
+        $this->db->query("DELETE FROM reserva WHERE reserva.id = '$id_reserva';");
+    
+    }
+
+    public function reservas_clientes($id_usuario){
+
+        $this->db->select('id');
+        $this->db->from('localidad');
+        $this->db->where('nombre', $localidad);
+        $where_clause = $this->db->get_compiled_select();
+
+        $this->db->select("alojamiento.id, e.descripcion as estado, t.descripcion as tipo, alojamiento.default_foto as foto, alojamiento.precio, l.nombre as localidad, alojamiento.direccion_nombre, alojamiento.direccion_numero");
+       
+        $this->db->where("reserva.id='$id'");
+
+        $this->db->join("estado_aloj e", "alojamiento.id_estado = e.id");
+        $this->db->join("tipo_aloj t", "alojamiento.id_tipo = t.id");
+        $this->db->join("localidad l", "alojamiento.id_localidad = l.id");
+    }  
+
 }
