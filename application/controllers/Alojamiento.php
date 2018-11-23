@@ -714,11 +714,6 @@ class Alojamiento extends CI_Controller
         $this->load->view("usuario/mis_clientes",$data);
     } 
 
-    public function mis_pagos(){
-        $id = $_SESSION['id'];
-
-    }
-
     private function reservas($limite, $id)
     {
         return $this->Alojamiento_model->mis_reservas($limite, $id);
@@ -731,6 +726,14 @@ class Alojamiento extends CI_Controller
         redirect(base_url("alojamiento/mis_reservas"));
     }
 
+    public function reserva_confirmar_duenio(){
+        $id_reserva = $this->input->post("confirmar");
+        $this->Alojamiento_model->cliente_corfirmar_duenio($id_reserva); 
+
+        redirect(base_url("alojamiento/mis_reservas"));
+    }
+    
+
     public function reserva_baja(){
         $id_reserva = $this->input->post("baja");
         $this->Alojamiento_model->reserva_baja($id_reserva); 
@@ -738,4 +741,33 @@ class Alojamiento extends CI_Controller
         redirect(base_url("alojamiento/mis_reservas"));
     }
     
+    public function mis_pagos(){
+        $id = $_SESSION['id'];
+        $aux = $this->Alojamiento_model->mis_reservas_simple($id);
+
+        $mis_reservas;  
+        foreach ($aux as $reserva) {
+            if(($reserva->confirmacion_cliente == 'confirmado') and ($reserva->confirmacion_dueño == 'confirmado')){
+                $mis_reservas[]=$reserva; 
+            }
+        }
+        //print_r($mis_reservas);
+        //die();
+        $data['mis_pagos'] =  $mis_reservas;
+        $this->load->view("usuario/mis_pagos",$data);
+    }
+
+    public function pagar(){
+        $id_reserva = $this->input->post("pagar");
+        $this->Alojamiento_model->reserva_pagar($id_reserva); 
+
+        redirect(base_url("alojamiento/mis_pagos"));
+    }  
+     /*
+Array ( [0] => stdClass Object ( [id] => 70 [seña] => 0 [precio_total] => 10000 [pago_seña] => pendiente [pago_resto] => 0 
+[fecha_realizacion] => 2018-11-23 [fecha_inicio] => 2018-11-01 [fecha_fin] => 2018-11-11 [id_estado] => 3 
+[id_alojamiento] => 70 [id_usuario] => 1 [confirmacion_cliente] => confirmado [confirmacion_dueño] => confirmado 
+[precio] => 1000 [id_localidad] => 2 [direccion_nombre] => Direccion muestra [direccion_numero] => 100 [id_tipo] => 4 
+[default_foto] => /pruebaTemplate2/fotos_alojamientos/21220336041436567728casa_interior.jpg ) )
+        */
 }

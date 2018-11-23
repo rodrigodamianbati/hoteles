@@ -1,4 +1,3 @@
-
 <!--?php if (isset($products)){if(!empty($products)){$tipo=$products[0]->tipo;$iguales=true; foreach ($products as $product){if ($product->tipo != $tipo){ $iguales=false;}}if($iguales){print_r($products[0]->tipo);}}}?-->
 <!DOCTYPE html>
 <html>
@@ -45,7 +44,7 @@
       </button>
       <div class="w3-dropdown-content w3-bar-block w3-white w3-card-4">
 
-        <button name="ninguno" value="ninguno" type="hidden" value="casa"></button>
+        <button name="ninguno" value="ninguno" type="hidden"></button>
         <button name="casa" class="w3-bar-item w3-button w3-text-black" value="casa"> Casa</button>
         <button name="departamento" class="w3-bar-item w3-button w3-text-black" value="departamento"> Departamento</button>
         <button name="hotel" class="w3-bar-item w3-button w3-text-black" value="hotel"> Hotel</button>

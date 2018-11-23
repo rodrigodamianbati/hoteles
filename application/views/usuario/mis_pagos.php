@@ -1,6 +1,6 @@
 <?php
-    //print_r($reservas_clientes[0]->id_reserva);
-    //die(); 
+//print_r($mis_pagos);
+//die(); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -126,19 +126,23 @@
           <div class="card mb-3">
             <div class="card-header">
               <i class="fas fa-users"></i>
-              Usuarios Registrados</div>
+              Reservas pendientes/pagadas</div>
             <div class="card-body">
             <div><button type="button" class="btn btn-primary btn-xs" onclick="location.href='<?php echo base_url();?>registro'">Agregar usuario</button></div>
             <br>
               <div id="tablaUsuarios" class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
+  <!-- Array ( [0] => stdClass Object ( [id] => 70 [seña] => 0 [precio_total] => 10000 [pago_seña] => pendiente [pago_resto] => 0 
+[fecha_realizacion] => 2018-11-23 [fecha_inicio] => 2018-11-01 [fecha_fin] => 2018-11-11 [id_estado] => 3 
+[id_alojamiento] => 70 [id_usuario] => 1 [confirmacion_cliente] => confirmado [confirmacion_dueño] => confirmado 
+[precio] => 1000 [id_localidad] => 2 [direccion_nombre] => Direccion muestra [direccion_numero] => 100 [id_tipo] => 4 
+[default_foto] => /pruebaTemplate2/fotos_alojamientos/21220336041436567728casa_interior.jpg ) ) -->
                     <tr>
-                      <th>Email</th>
-                      <th>Nombre</th>
-                      <th>Apellido</th>
-                      <th>Dni</th>
+                      <th>Fecha Inicio</th>
+                      <th>Fecha Fin</th>
                       <th>Pago total</th>
+                      <th>Estado pago</th>
                       <th>Direccion</th>
                       <th>Accion</th>  
                     </tr>
@@ -146,16 +150,16 @@
                   
                   <tbody>
                     <?php
-                      foreach($reservas_clientes as $fila){
+                      foreach($mis_pagos as $fila){
 
-                        $idUso=$fila->id_cliente."//";
+                        //$idUso=$fila->id_cliente."//";
                     
-                      $datos= $fila->id_cliente."//". 
-                      $fila->nombre."//". 
-                      $fila->apellido."//".
-                      $fila->dni."//".
+                      //$datos= $fila->id_cliente."//". 
+                      //$fila->nombre."//". 
+                      //$fila->apellido."//".
+                      //$fila->dni."//".
                       //$fila->fecha_nacimiento."//".
-                      $fila->email."//";
+                      //$fila->email."//";
                       //$fila->contraseña."//";
                     
                       // print_r($datos);
@@ -164,28 +168,25 @@
                       ?> 
                       <tr>
                       <td>
-                        <?=$fila->email;?>
+                        <?=$fila->fecha_inicio;?>
                       </td>
                       
                       <td>
-                          <?=$fila->nombre;?>
+                          <?=$fila->fecha_fin;?>
                       </td>
                       <td>
-                          <?=$fila->apellido;?>
+                          <?=$fila->precio_total;?>
                       </td>
                       <td>
-                        <?=$fila->dni;?>
-                      </td>
-                      <td>
-                         <?=$fila->precio_total;?>
+                        <?=$fila->pago_seña;?>
                       </td>
                       <td>
                          <?=$fila->direccion_nombre." ".$fila->direccion_numero;?>
                       </td>
       
                       <td>
-                      <form action="<?=base_url("alojamiento/reserva_confirmar_duenio");?>" method="post">
-                            <button name="confirmar" value="<?php echo $fila->id_reserva?>" title="Confirmar" class="btn btn-dark btn-xs"></button>
+                      <form action="<?=base_url("alojamiento/pagar");?>" method="post">
+                            <button name="pagar" value="<?php echo $fila->id_reserva?>" title="Pagar" class="btn btn-dark btn-xs"></button>
                       </form>
                         
 

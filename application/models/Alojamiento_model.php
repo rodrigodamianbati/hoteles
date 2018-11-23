@@ -178,6 +178,18 @@ class Alojamiento_model extends CI_Model
         return $this->db->get('reserva')->num_rows();
     }
 
+    public function mis_reservas_simple($id){
+
+        $this->db->select("reserva.confirmacion_cliente, reserva.confirmacion_dueño, reserva.id as id_reserva, reserva.seña, reserva.precio_total, reserva.pago_seña, reserva.fecha_realizacion, reserva.fecha_inicio, reserva.fecha_fin, reserva.id_estado as id_estado_reserva, reserva.id_alojamiento, reserva.id_usuario, alojamiento.id as id_alojamiento, alojamiento.direccion_nombre, alojamiento.direccion_numero, alojamiento.id_estado as id_estado_alojamiento, alojamiento.id_usuario as id_dueño"); 
+        $this->db->where("reserva.id_usuario", $id);
+                                                                                                                                                                                                                                                //id`, `precio`, `id_localidad`, `direccion_nombre`, `direccion_numero`, `id_estado`, `id_usuario`, `id_tipo`, `default_foto`
+        $this->db->join("alojamiento", "alojamiento.id = reserva.id_alojamiento");  
+
+        $consulta = $this->db->get('reserva');
+
+        return $consulta->result();
+    }
+
     
 
     public function totalAlojamientos($localidad)
@@ -966,6 +978,19 @@ class Alojamiento_model extends CI_Model
     
     }  
 
+    public function cliente_corfirmar_duenio($id_reserva){
+
+        $this->db->query("UPDATE reserva SET confirmacion_dueño = 'confirmado' WHERE reserva.id = '$id_reserva';");
+    
+    }  
+
+    public function reserva_pagar($id_reserva){
+
+        $this->db->query("UPDATE reserva SET pago_seña = 'pagado' WHERE reserva.id = '$id_reserva';");
+    
+    } 
+    
+    
     public function reserva_baja($id_reserva){
         
         $this->db->query("DELETE FROM reserva WHERE reserva.id = '$id_reserva';");
@@ -979,7 +1004,7 @@ class Alojamiento_model extends CI_Model
         $this->db->where('id_usuario', $id_dueño);
         $where_clause = $this->db->get_compiled_select();
 
-        $this->db->select("u.dni, u.nombre, u.apellido, u.email, reserva.id_usuario as id_cliente, reserva.precio_total, reserva.fecha_fin,reserva.fecha_inicio,reserva.fecha_realizacion, reserva.pago_seña, reserva.id_estado as estado_reserva, reserva.id, e.descripcion as estado_alojamiento, t.descripcion as tipo, a.default_foto as foto, a.precio, l.nombre as localidad, a.direccion_nombre, a.direccion_numero");
+        $this->db->select("u.dni, u.nombre, u.apellido, u.email, reserva.id_usuario as id_cliente, reserva.precio_total, reserva.fecha_fin,reserva.fecha_inicio,reserva.fecha_realizacion, reserva.pago_seña, reserva.id_estado as estado_reserva, reserva.id as id_reserva, e.descripcion as estado_alojamiento, t.descripcion as tipo, a.default_foto as foto, a.precio, l.nombre as localidad, a.direccion_nombre, a.direccion_numero");
        
         $this->db->where("reserva.id_alojamiento IN ($where_clause)", null, false);
         //$this->db->where("reserva.id_alojamiento='$id'");
