@@ -1,10 +1,5 @@
 <?php
-    //$products = $products[0];
-    
 
-           
-    //print_r($products);
-    //die();  
 ?>
 <div id="content-wrapper">
 
@@ -13,7 +8,7 @@
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="<?php echo base_url()."usario";?>">Mi perfil</a>
+              <a href="<?php echo base_url() . "usario"; ?>">Mi perfil</a>
             </li>
             <li class="breadcrumb-item active">Mis reservas</li>
           </ol>
@@ -28,7 +23,7 @@
                   </div>
                   <div class="mr-5">26 Nuevos Mensajes!</div>
                 </div>
-                <a class="card-footer text-white clearfix small z-1" href="<?php echo base_url()."assets/"; ?>#">
+                <a class="card-footer text-white clearfix small z-1" href="<?php echo base_url() . "assets/"; ?>#">
                   <span class="float-left">Ver</span>
                   <span class="float-right">
                     <i class="fas fa-angle-right"></i>
@@ -44,7 +39,7 @@
                   </div>
                   <div class="mr-5">123 Nuevas reservas!</div>
                 </div>
-                <a class="card-footer text-white clearfix small z-1" href="<?php echo base_url()."assets/"; ?>#">
+                <a class="card-footer text-white clearfix small z-1" href="<?php echo base_url() . "assets/"; ?>#">
                   <span class="float-left">Ver</span>
                   <span class="float-right">
                     <i class="fas fa-angle-right"></i>
@@ -60,27 +55,27 @@
               <i class="fas fa-table"></i>
               Alojamientos</div>
               <div class="w3-row-padding w3-padding-16">
-    
-    <?php foreach ($products as $product){ ?>
+
+    <?php foreach ($products as $product) {?>
 
     <div class="w3-third w3-margin-bottom alojamiento-contenedor">
-      <img src='<?php echo $product->foto?>' alt="Norway" style="width:30%">
-      
+      <img src='<?php echo $product->foto ?>' alt="Norway" style="width:30%">
+
       <div class="w3-container alojamiento-descripcion">    <!--w3-white-->
-        <h3><?php echo $product->tipo?></h3>
-        <h2>Precio total: $ <?php echo $product->precio_total?></h2> 
-        <h6 class="w3-opacity">Precio por noche: $ <?php echo $product->precio?></h6>
-        <p>Estado alojamiento: <?php echo $product->estado_alojamiento?></p>
-        <p>Estado reserva: <?php if($product->estado_reserva == 1){echo "pendiente";} elseif($product->estado_reserva == 2){echo "en curso";}else{echo "cancelada";}?></p>
-        <p>Pago seña: <?php echo $product->pago_seña?></p>
-        <p>Direccion: <?php echo $product->direccion_nombre?>, <?php echo $product->direccion_numero?></p>
-        
-    
+        <h3><?php echo $product->tipo ?></h3>
+        <h2>Precio total: $ <?php echo $product->precio_total ?></h2>
+        <h6 class="w3-opacity">Precio por noche: $ <?php echo $product->precio ?></h6>
+        <p>Estado alojamiento: <?php echo $product->estado_alojamiento ?></p>
+        <p>Estado reserva: <?php if ($product->estado_reserva == 1) {if ($product->confirmacion_cliente == "confirmado") {echo "pendiente (Esperando confirmacion del dueño del alojamiento)";} else {echo "pendiente";}} else {if ($product->estado_reserva == 2) {echo "en curso";} else {echo "cancelada";}}?></p>
+        <p>Pago seña: <?php echo $product->pago_seña ?></p>
+        <p>Direccion: <?php echo $product->direccion_nombre ?>, <?php echo $product->direccion_numero ?></p>
+
+
         <form action="<?=base_url("alojamiento/reserva_confirmar");?>" method="post">
-          <button name="confirmar" value="<?php echo $product->id?>" class="w3-button w3-block w3-black w3-margin-bottom">Confirmar</button>
+          <button name="confirmar" value="<?php echo $product->id ?>" class="w3-button w3-block w3-black w3-margin-bottom">Confirmar</button>
         </form>
         <form action="<?=base_url("alojamiento/reserva_baja");?>" method="post">
-          <button name="baja" value="<?php echo $product->id?>" class="w3-button w3-block w3-black w3-margin-bottom">Baja</button>
+          <button name="baja" value="<?php echo $product->id ?>" class="w3-button w3-block w3-black w3-margin-bottom">Baja</button>
         </form>
         </form>
       </div>

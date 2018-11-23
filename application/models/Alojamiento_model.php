@@ -462,7 +462,7 @@ class Alojamiento_model extends CI_Model
     public function mis_reservas($limite, $id)
     {
 
-        $this->db->select("reserva.precio_total, reserva.fecha_fin,reserva.fecha_inicio,reserva.fecha_realizacion, reserva.pago_seña, reserva.id_estado as estado_reserva, reserva.id, e.descripcion as estado_alojamiento, t.descripcion as tipo, a.default_foto as foto, a.precio, l.nombre as localidad, a.direccion_nombre, a.direccion_numero");
+        $this->db->select("reserva.confirmacion_cliente, reserva.confirmacion_dueño, reserva.precio_total, reserva.fecha_fin,reserva.fecha_inicio,reserva.fecha_realizacion, reserva.pago_seña, reserva.id_estado as estado_reserva, reserva.id, e.descripcion as estado_alojamiento, t.descripcion as tipo, a.default_foto as foto, a.precio, l.nombre as localidad, a.direccion_nombre, a.direccion_numero");
         //$this->db->select("*");
         $this->db->where("reserva.id_usuario='$id'");
         $this->db->join("alojamiento a", "reserva.id_alojamiento = a.id");
@@ -1021,11 +1021,12 @@ class Alojamiento_model extends CI_Model
         $this->db->where('id_usuario', $id_dueño);
         $where_clause = $this->db->get_compiled_select();
 
-        $this->db->select("u.dni, u.nombre, u.apellido, u.email, reserva.id_usuario as id_cliente, reserva.precio_total, reserva.fecha_fin,reserva.fecha_inicio,reserva.fecha_realizacion, reserva.pago_seña, reserva.id_estado as estado_reserva, reserva.id as id_reserva, e.descripcion as estado_alojamiento, t.descripcion as tipo, a.default_foto as foto, a.precio, l.nombre as localidad, a.direccion_nombre, a.direccion_numero");
+        $this->db->select("er.descripcion as estado_res, u.dni, u.nombre, u.apellido, u.email, reserva.id_usuario as id_cliente, reserva.precio_total, reserva.fecha_fin,reserva.fecha_inicio,reserva.fecha_realizacion, reserva.pago_seña, reserva.id_estado as estado_reserva, reserva.id as id_reserva, e.descripcion as estado_alojamiento, t.descripcion as tipo, a.default_foto as foto, a.precio, l.nombre as localidad, a.direccion_nombre, a.direccion_numero");
        
         $this->db->where("reserva.id_alojamiento IN ($where_clause)", null, false);
         //$this->db->where("reserva.id_alojamiento='$id'");
 
+        $this->db->join("estado_reserva er", "reserva.id_estado= er.id");
         $this->db->join("alojamiento a", "reserva.id_alojamiento= a.id");
         $this->db->join("estado_aloj e", "a.id_estado = e.id");
         $this->db->join("tipo_aloj t", "a.id_tipo = t.id");

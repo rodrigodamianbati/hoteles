@@ -18,7 +18,7 @@
             <div class="card-header">
               <i class="fas fa-table"></i>
               Alojamiento - Servicios</div>
-              <div class="card-header">Modificacion de estado</div>
+              <div class="card-header">Aqui puede agregar sus nuevos servicios!</div>
         <div class="card-body">
 
           <!--form action="</?=base_url("alojamiento/agregar_servicios");?>" method="post" id="cajaschequeadas"-->
@@ -43,7 +43,7 @@ foreach ($todos_los_servicios as $servicio) {
       <li><?php echo $servicio->descripcion ?><input name="servicios_agregar" type="checkbox" value="<?php echo $servicio->id ?>" id="caja<?php echo $servicio->id ?>" disabled>Ya posee este servicio</li>
     <?php
     }else{ ?>
-      <li><?php echo $servicio->descripcion ?><input name="servicios_agregar" type="checkbox" value="<?php echo $servicio->id ?>" id="caja<?php echo $servicio->id ?>" disabled></li>
+      <li><?php echo $servicio->descripcion ?><input name="servicios_agregar" type="checkbox" value="<?php echo $servicio->id ?>" id="caja<?php echo $servicio->id ?>"></li>
     <?php
     }
     ?>

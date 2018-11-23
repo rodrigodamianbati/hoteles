@@ -89,15 +89,27 @@ class Alojamiento extends CI_Controller
         }
         if ($agregar == true) {
             //Sesion de una sola ejecución
-            $this->session->set_flashdata('correcto', 'Usted se ha registrado correctamente');
-            $data = $this->id_alojamiento($this->input->post("direccion_nombre"), $this->input->post("direccion_numero"));
+            //$this->session->set_flashdata('correcto', 'Usted se ha registrado correctamente');
+            $id_alojamiento = $this->id_alojamiento($this->input->post("direccion_nombre"), $this->input->post("direccion_numero"));
             //print_r($idalojamiento);
             //die(); <--------------------------------------------------------acaaaaaaaaaaaaaaaaaaaaaaaa va la prueba
 
             //print_r($data);
             //die();
-            $this->load->view("alta_alojamiento_fotos_view", array('id_alojamiento' => $data));
 
+             //if($this->input->post("agregar_fotos")){
+            //$id_alojamiento = $this->input->post("agregar_fotos");
+
+            //$data['id_alojamiento'] = $id_alojamiento;
+
+            //$this->load->view("usuario/fine_uploader_head");
+            //$this->load->view("usuario/usuario_top_nav");
+            //$this->load->view("usuario/usuario_side_nav");
+            //$this->load->view("usuario/agregar_fotos", $data);
+            //$this->load->view("usuario/usuario_footer");
+            
+            //$this->load->view("alta_alojamiento_fotos_view", array('id_alojamiento' => $data));
+                redirect("alojamiento/mis_alojamientos"); 
         } else {
             //print_r("no anduvo");
             $this->session->set_flashdata('incorrecto', 'Usted se ha registrado correctamente');
@@ -550,25 +562,10 @@ class Alojamiento extends CI_Controller
 
     public function agregacion_fotos()
     {
-        //if($this->input->post("agregar_fotos")){
+
         $id_alojamiento = $this->input->post("agregar_fotos");
 
-        
-        //$product = $this->Alojamiento_model->alojamiento($this->input->post("agregar_fotos"));
-        //$galeria = $this->Alojamiento_model->galeria($this->input->post("agregar_fotos"));
-        //print_r($data);
-        //die();
-
-        //$data = array_merge($product, $estados);
-        //$data['product'] = $product;
-        //print_r($data);
-        //die();
-        //$data['product']=$product;
-        //$data['galeria']=$galeria;
-        //"alta_alojamiento_fotos_view", array('id_alojamiento' => $data)
         $data['id_alojamiento'] = $id_alojamiento;
-        //$this->load->view("alta_alojamiento_fotos_view", $data);
-        //$this->load->view("alta_alojamiento_fotos_view");
 
         $this->load->view("usuario/fine_uploader_head");
         $this->load->view("usuario/usuario_top_nav");
@@ -576,7 +573,6 @@ class Alojamiento extends CI_Controller
         $this->load->view("usuario/agregar_fotos", $data);
         $this->load->view("usuario/usuario_footer");
 
-        //}
     }
 
     public function agregacion_servicios()
@@ -588,6 +584,10 @@ class Alojamiento extends CI_Controller
         $data['servicios_disponibles'] = $this->servicios_disponibles($id_alojamiento);
         $data['todos_los_servicios'] = $this->todos_los_servicios();
 
+        //print_r($data['servicios_disponibles']);
+        //print_r("-------------------------------");
+        //print_r($data['todos_los_servicios']);
+        //die();
         //print_r($data);
         //die();
 
@@ -697,9 +697,9 @@ class Alojamiento extends CI_Controller
 
         $config = $this->configurarPaginado($config);
         $this->pagination->initialize($config);
-        $data['products'] = $this->reservas($config['per_page'], $id);
-        
-
+        //$data['products'] = $this->reservas($config['per_page'], $id);
+        $data['products'] = $this->Alojamiento_model->mis_reservas($config['per_page'], $id);
+        //mis_reservas
         $this->load->view("usuario/usuario_head");
        
         $this->load->view("usuario/usuario_top_nav");
@@ -740,7 +740,7 @@ class Alojamiento extends CI_Controller
         $id_reserva = $this->input->post("confirmar");
         $this->Alojamiento_model->cliente_corfirmar_duenio($id_reserva); 
 
-        redirect(base_url("alojamiento/mis_reservas"));
+        redirect(base_url("alojamiento/reservas_clientes"));
     }
     
 
@@ -755,7 +755,7 @@ class Alojamiento extends CI_Controller
         $id = $_SESSION['id'];
         $aux = $this->Alojamiento_model->mis_reservas_simple($id);
 
-        $mis_reservas;  
+        $mis_reservas=null;  
         foreach ($aux as $reserva) {
             if(($reserva->confirmacion_cliente == 'confirmado') and ($reserva->confirmacion_dueño == 'confirmado')){
                 $mis_reservas[]=$reserva; 
@@ -771,7 +771,7 @@ class Alojamiento extends CI_Controller
         $id_reserva = $this->input->post("pagar");
         $this->Alojamiento_model->reserva_pagar($id_reserva); 
 
-        redirect(base_url("alojamiento/mis_pagos"));
+        redirect(base_url("alojamiento/mis_reservas"));
     }  
     
       

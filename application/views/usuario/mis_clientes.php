@@ -1,5 +1,5 @@
 <?php
-    //print_r($reservas_clientes[0]->id_reserva);
+    //print_r($reservas_clientes[0]);
     //die(); 
 ?>
 <!DOCTYPE html>
@@ -140,6 +140,7 @@
                       <th>Dni</th>
                       <th>Pago total</th>
                       <th>Direccion</th>
+                      <th>Estado</th>
                       <th>Accion</th>  
                     </tr>
                   </thead>
@@ -182,7 +183,9 @@
                       <td>
                          <?=$fila->direccion_nombre." ".$fila->direccion_numero;?>
                       </td>
-      
+                      <td>
+                         <?=$fila->estado_res;?>
+                      </td>
                       <td>
                       <form action="<?=base_url("alojamiento/reserva_confirmar_duenio");?>" method="post">
                             <button name="confirmar" value="<?php echo $fila->id_reserva?>" title="Confirmar" class="btn btn-dark btn-xs"></button>
