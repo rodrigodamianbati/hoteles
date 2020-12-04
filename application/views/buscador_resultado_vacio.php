@@ -20,8 +20,9 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!--script type="text/javascript" src="<//?php echo base_url()."src/"; ?>animacion.js"></script-->
-       
+    <link rel="stylesheet" href="<?php echo base_url()."src/"; ?>barra-propia.css">   
     <link rel="stylesheet" href="<?php echo base_url()."src/"; ?>body.css">
+ 
     <title>Resultado buscador</title>
     
 </head>
@@ -29,7 +30,7 @@
 <body>
 
 <!-- nav header-->
-<div class="w3-bar w3-dark-grey">
+<div class="w3-bar barra-propia">
     <form action="<?=base_url();?>">
         <button class="w3-bar-item w3-button w3-dark-grey">Inicio</button>
     </form>
@@ -122,12 +123,26 @@
       </div>
     </div>
     
+    <input name="localidad" type="hidden" value="<?php if (isset($products)){if(!empty($products))echo $products[0]->localidad;}?>">
     <!--input name="localidad" type="hidden" value="<//?php if (isset($products)){if(!empty($products))echo $products[0]->localidad;}?>"-->
     <!--input name="current_localidad" type="sumit" type="hidden" value=""-->
     <input name="nueva_localidad" type="text" class="w3-bar-item w3-input w3-white" placeholder="Ej: Carmen de Patagones" style="width:35%">
     <!--a href="javascript:void(0)" class="w3-bar-item w3-button w3-right"><i class="fa fa-search"> Buscar</i></a-->
    
     <button name="buscar" class="w3-bar-item w3-button w3-right" value="buscar"><i class="fa fa-search"> Buscar</i></button>
+    <script>
+        var localidad =  $('input[name=localidad]').val();
+        $('input[name=nueva_localidad]').change(function() {
+            var aux = $('input[name=nueva_localidad]').val();
+            if(aux.length == 0){
+                $('input[name=localidad]').val(localidad);
+            }else{
+                $('input[name=localidad]').val(aux);
+            }
+                
+        });
+
+    </script>
 </div>
     <!--button name="buscar2" class="w3-bar-item w3-button w3-right" value="Buscar" id="buscar2"><i class="fa fa-search"> Buscar</i></button-->
 </form>

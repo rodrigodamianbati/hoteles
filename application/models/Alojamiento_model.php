@@ -35,7 +35,7 @@ class Alojamiento_model extends CI_Model
         $consulta = $this->db->query("SELECT id FROM alojamiento WHERE (direccion_nombre='$direccion_nombre' AND direccion_numero='$direccion_numero')");
         if ($consulta->num_rows() == 0) {
             //$id=$_SESSION['id'];
-            $consulta = $this->db->query("INSERT INTO alojamiento VALUES(NULL, '$precio','$id_localidad','$direccion_nombre','$direccion_numero', '1', '$id_usuario'/*sesion*/, '$tipo', '/pruebaTemplate2/fotos_alojamientos/default.png');");
+            $consulta = $this->db->query("INSERT INTO alojamiento VALUES(NULL, '$precio','$id_localidad','$direccion_nombre','$direccion_numero', '1', '$id_usuario'/*sesion*/, '$tipo', '/hoteles/fotos_alojamientos/default.png');");
 
             if ($consulta == true) {
                 return true;

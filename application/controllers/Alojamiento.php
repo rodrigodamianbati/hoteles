@@ -328,7 +328,8 @@ class Alojamiento extends CI_Controller
         //die();
         //if ($tipo != null) {
             if (isset($_GET['ninguno'])) {
-                $tipo = null;
+                //$tipo = null;
+                $tipo = "sin_resultado";
             } else {
                 if (isset($_GET['casa'])) {
                     $tipo = "casa";
@@ -348,7 +349,8 @@ class Alojamiento extends CI_Controller
                                     if(isset($_GET['monoambiente'])){
                                         $tipo = "monoambiente";
                                     } else{
-                                        $tipo = null; 
+                                        //$tipo = null;
+                                        $tipo = "sin_resultado";
                                     }
                                 }
                             }
@@ -361,7 +363,8 @@ class Alojamiento extends CI_Controller
         //print_r($tipo);
         //die();
 
-        $limite_precio = null;
+        //$limite_precio = null;
+        $limite_precio = 0;
 
         if (isset($_GET['limite_1'])) {
             $limite_precio = $_GET['limite_1'];
@@ -415,7 +418,7 @@ class Alojamiento extends CI_Controller
         $config = $this->configurarPaginado($config);
 
         $config['per_page'] = 9;
-        if ($limite_precio == null and $tipo == null) {
+        if ($limite_precio == 0 and $tipo == "sin_resultado") {
             $data['products'] = $this->alojamientosFiltrado($config['per_page'], $localidad, $filtros);
             $config['total_rows'] = $this->totalFilasFiltrado($localidad, $filtros);
            // print_r("if ");

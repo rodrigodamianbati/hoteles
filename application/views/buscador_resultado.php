@@ -21,8 +21,8 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!--script type="text/javascript" src="<//?php echo base_url()."src/"; ?>animacion.js"></script-->
-
-    <link rel="stylesheet" href="<?php echo base_url() . "src/"; ?>body.css">
+    <link rel="stylesheet" href="<?php echo base_url()."src/"; ?>barra-propia.css">
+    <link rel="stylesheet" href="<?php echo base_url()."src/"; ?>body.css">
     <title>Resultado buscador</title>
 
 </head>
@@ -30,7 +30,7 @@
 <body>
 
 <!-- nav header-->
-<div class="w3-bar w3-dark-grey">
+<div class="w3-bar barria-propia">
     <form action="<?=base_url();?>">
         <button class="w3-bar-item w3-button w3-dark-grey">Inicio</button>
     </form>

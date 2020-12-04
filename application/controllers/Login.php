@@ -20,7 +20,7 @@ class Login extends CI_Controller{
     public function index(){
         
         //si el usuario se encuentra logueado se redirecciona a su perfil o home o lo que sea
-
+        //$this->session->flashdata('registro');
         if(isset($this->session->userdata['logged_in'])){
             redirect('usuario');
         }else{

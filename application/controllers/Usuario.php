@@ -112,7 +112,12 @@ class Usuario extends CI_Controller{
                         echo "Usuario agregado con exito lpmqlp";
                     }
                     else{
-                        echo "Se a registrado correctamente";
+
+                        if(!isset($this->session->userdata['logged_in'])){
+                            $this->session->set_flashdata('registro', 'ok');
+                            redirect('login');
+                        }
+                        //echo "Se a registrado correctamente";
                     }
                     
                 }
@@ -240,7 +245,15 @@ class Usuario extends CI_Controller{
 
     }
 
-
+    public function chat(){
+        
+        $this->load->view("inicio/head");
+                    
+        $this->load->view("usuario/usuario_top_nav.php");
+        $this->load->view("usuario/usuario_side_nav");
+        $this->load->view("chat_view");
+        $this->load->view("inicio/footer");
+    }
     
 }
 ?>
