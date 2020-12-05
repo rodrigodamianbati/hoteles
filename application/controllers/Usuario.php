@@ -11,7 +11,8 @@ class Usuario extends CI_Controller{
          
         //llamo o incluyo el modelo
         $this->load->model("Usuario_model");
-         
+        $this->load->model("Chat");
+        $this->load->model("Mensaje");
         //cargo la libreria de sesiones
         $this->load->library("session");
 
@@ -246,14 +247,25 @@ class Usuario extends CI_Controller{
     }
 
     public function chat(){
-        
+        $id_usuario = $_SESSION['id'];
+        $usuario = $this->Usuario_model->getUsuario($id_usuario);
+        $chats = $this->Chat->misChats($id_usuario);
+        $data['usuario'] = $usuario;
+        $data['chats'] = $chats;
         $this->load->view("inicio/head");
                     
         $this->load->view("usuario/usuario_top_nav.php");
         $this->load->view("usuario/usuario_side_nav");
-        $this->load->view("chat_view");
+        $this->load->view("chat_view", $data);
         $this->load->view("inicio/footer");
+        //echo json_encode($data);
     }
     
+    public function mensajes(){
+        $id_chat = $_POST['id_chat'];
+        print_r($id_chat);
+        $mensajesDelChat = $this->Mensaje->misMensajes($id_chat);
+        echo json_encode($mensajesDelChat);
+    }
 }
 ?>
