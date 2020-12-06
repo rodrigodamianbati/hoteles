@@ -262,10 +262,29 @@ class Usuario extends CI_Controller{
     }
     
     public function mensajes(){
+        //echo json_encode($_POST);
         $id_chat = $_POST['id_chat'];
-        print_r($id_chat);
-        $mensajesDelChat = $this->Mensaje->misMensajes($id_chat);
+        //print_r($id_chat);
+        $mensajesDelChat = $this->Mensaje->mensajes($id_chat);
+        $mensajesDelChat['id_session'] = $_SESSION['id'];
         echo json_encode($mensajesDelChat);
+        //$response = array('status' => 'OK');
+        //Content-Type: application/javascript
+        //$data = json_decode($_POST);
+        //$this->input->raw_input_stream;
+
+        //$data = $_POST['id_chat'];
+        //print_r($data);
+        //echo json_encode($data);
+        /*
+        $this->output
+        ->set_status_header(200)
+        ->set_content_type('application/json', 'utf-8')
+        ->set_output(json_encode($data))
+        ->_display();
+        //, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
+        exit;*/
+        
     }
 }
 ?>
