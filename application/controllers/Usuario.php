@@ -283,8 +283,40 @@ class Usuario extends CI_Controller{
         ->set_output(json_encode($data))
         ->_display();
         //, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
-        exit;*/
-        
+        exit;*/   
+    }
+
+    public function nuevo_mensaje(){
+        //echo json_encode($_POST);
+        //die();
+//print_r($_POST['id_chat']);
+       // die();
+       //print_r($_POST);
+       //die();
+        $id_chat = $_POST['id_chat'];
+        $id_usuario_envia = $_SESSION['id'];
+        $texto = $_POST['texto'];
+        $nuevoMensaje = $this->Mensaje->nuevoMensaje($id_chat, $id_usuario_envia, $texto);
+        echo json_encode($nuevoMensaje);
+    }
+
+    public function lugares(){
+        //$this->load->library('pagination');
+        $id = $_SESSION['id'];
+        //$config['total_rows'] = $this->total_mis_reservas($id);
+        //$config['base_url'] = base_url().'alojamiento/mis_reservas';
+
+        //$config = $this->configurarPaginado($config);
+        //$this->pagination->initialize($config);
+        //$data['products'] = $this->reservas($config['per_page'], $id);
+        $data['products'] = $this->Alojamiento_model->misLugaresVisitados();
+        //mis_reservas
+        $this->load->view("usuario/usuario_head");
+       
+        $this->load->view("usuario/usuario_top_nav");
+        $this->load->view("usuario/usuario_side_nav");
+        $this->load->view("usuario/lugares", $data);
+        $this->load->view("usuario/usuario_footer");
     }
 }
 ?>

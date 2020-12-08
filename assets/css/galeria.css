@@ -11,3 +11,9 @@
     margin-top: 15px;
     margin-bottom: 15px;
   }
+
+  div#caja{
+    overflow: scroll;
+    height: 500px;
+    width: 400px;
+  }

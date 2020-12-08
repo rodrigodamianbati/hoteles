@@ -173,3 +173,11 @@ hr {
 .chat-box-tray i:last-of-type {
   margin-left: 25px;
 }
+
+#enviar:hover { 
+  color: #00FF00; 
+} 
+
+#enviar:visited  {     
+  background-color:yellow;    
+}

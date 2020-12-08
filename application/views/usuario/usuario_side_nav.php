@@ -59,7 +59,18 @@
     <i class="fas fa-shopping-cart"></i>
       <span>Reservas de mis clientes</span></a>
   </li>
-
+  <li class="nav-item">
+    <a class="nav-link" href="<?php echo base_url()."usuario/lugares"; ?>">
+    <i class="fas fa-globe-americas"></i>
+    <!--i class="fas fa-shopping-cart"></i-->
+      <span>Lugares visitados</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="<?php echo base_url()."usuario/chat"; ?>">
+    <i class="fas fa-comment"></i>
+    <!--i class="fas fa-shopping-cart"></i-->
+      <span>Mis chats</span></a>
+  </li>
 </ul>
 
 

@@ -981,8 +981,27 @@ class Alojamiento_model extends CI_Model
         $f_desde=$fecha_desde->format('Y-m-d');
         $f_hasta=$fecha_hasta->format('Y-m-d');
         $this->db->query("INSERT INTO reserva (id, seña, precio_total, pago_seña, pago_resto, fecha_realizacion, fecha_inicio, fecha_fin, id_estado, id_alojamiento, id_usuario) VALUES (NULL, '0', '$precio_total', 'pendiente', '', '$f_fecha_actual', '$f_desde', '$f_hasta', '1', '$id_alojamiento', '$id_usuario')");
-        
+        $id_reserva = $this->db->insert_id();
         $this->db->query("UPDATE alojamiento SET id_estado = '3' WHERE alojamiento.id = '$id_alojamiento';");
+        
+        $consulta_id_dueño = $this->db->query("SELECT u.id FROM usuario u WHERE (SELECT a.id_usuario FROM alojamiento a WHERE a.id='$id_alojamiento')");
+        $id_dueño = $consulta_id_dueño->result()[0]->id;
+        //print_r($id_dueño);
+        //die();
+        $consulta = $this->db->query("SELECT id FROM chat WHERE (id_dueño='$id_dueño' AND id_cliente='$id_cliente')");
+        if ($consulta->num_rows() == 0) {
+            //$id=$_SESSION['id'];
+            // $this->db->query("INSERT INTO servicio_aloj (id_alojamiento, id_servicio) VALUES ('$id_alojamiento', '$id_servicio')"); 
+            $consulta = $this->db->query("INSERT INTO chat (id, id_dueño, id_cliente, id_reserva)VALUES(NULL, $id_dueño, $id_usuario,$id_reserva)");
+
+            if ($consulta == true) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
     public function cliente_corfirmar($id_reserva){
@@ -1003,7 +1022,7 @@ class Alojamiento_model extends CI_Model
 
     public function reserva_pagar($id_reserva){
 
-        $this->db->query("UPDATE reserva SET pago_seña = 'pagado' WHERE reserva.id = '$id_reserva';");
+        $this->db->query("UPDATE reserva SET pago_seña = 1 WHERE reserva.id = '$id_reserva';");
     
     } 
     

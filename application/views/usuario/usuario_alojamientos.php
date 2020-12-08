@@ -51,7 +51,7 @@
             <div class="card-header">
               <i class="fas fa-table"></i>
               Alojamientos</div>
-              <div class="w3-row-padding w3-padding-16">
+              <div class="w3-row-padding w3-padding-16" id="caja">
     
     <?php foreach ($products as $product){ ?>
 
@@ -107,7 +107,7 @@
         </form>
       </div>
     </div>
-
+    <hr>
     <?php } //} ?>
 </div>
             <div class="card-footer small text-muted">Actualizado ayer a las 11:59 PM</div>

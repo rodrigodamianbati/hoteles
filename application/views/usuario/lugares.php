@@ -67,14 +67,13 @@
         <h6 class="w3-opacity">Precio por noche: $ <?php echo $product->precio ?></h6>
         <p>Estado alojamiento: <?php echo $product->estado_alojamiento ?></p>
         <p>Estado reserva: <?php if ($product->estado_reserva == 1) {if ($product->confirmacion_cliente == "confirmado") {echo "pendiente (Esperando confirmacion del dueño del alojamiento)";} else {echo "pendiente";}} else {if ($product->estado_reserva == 2) {echo "en curso";} else {echo "cancelada";}}?></p>
-        <p>Pago seña: <?php if ($product->pago_seña == 1){echo "pagado";}else{echo "pendiente";}; ?></p>
+        <p>Pago seña: <?php echo $product->pago_seña ?></p>
         <p>Direccion: <?php echo $product->direccion_nombre ?>, <?php echo $product->direccion_numero ?></p>
 
-        <?php if ($product->estado_reserva != 1) {if ($product->confirmacion_cliente != "confirmado") { ?>
+
         <form action="<?=base_url("alojamiento/reserva_confirmar");?>" method="post">
           <button name="confirmar" value="<?php echo $product->id ?>" class="w3-button w3-block w3-black w3-margin-bottom">Confirmar</button>
         </form>
-        <?php } }?>
         <form action="<?=base_url("alojamiento/reserva_baja");?>" method="post">
           <button name="baja" value="<?php echo $product->id ?>" class="w3-button w3-block w3-black w3-margin-bottom">Baja</button>
         </form>

@@ -27,6 +27,14 @@ class Mensaje extends CI_Model{
         //die();
         return $consulta->result();
     }
+
+    public function nuevoMensaje($id_chat, $id_usuario_envia, $texto){
+        $this->db->query("INSERT INTO mensaje (id, texto, marca_de_tiempo, id_chat, id_usuario_envia) VALUES (null, '$texto', null, $id_chat, $id_usuario_envia)"); 
+    
+        $this->db->where('id', $this->db->insert_id());
+        $consulta = $this->db->get('mensaje');
+        return $consulta->result();
+    }
 }
 
 ?>
