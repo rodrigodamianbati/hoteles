@@ -29,6 +29,14 @@ class Login extends CI_Controller{
         
     }
 
+    public function seguridad(){
+        if(isset($this->session->userdata['logged_in'])){
+            redirect('usuario');
+        }else{
+            $this->load->view("login");
+        }
+    }
+
     public function iniciar_sesion(){
         //compruebo si se a enviado submit
         if($this->input->post("submit")){
@@ -79,7 +87,8 @@ class Login extends CI_Controller{
                 // print_r($nuevaSesion);
                 // die();
                 $this->session->set_userdata($nuevaSesion);
-                
+                //$url
+                //redirect($url);
                 redirect('inicio');
             }else{
                 $this->session->set_flashdata('incorrecto', 'Usted no se ha iniciado sesion correctamente');

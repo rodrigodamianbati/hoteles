@@ -29,5 +29,5 @@
 
     <link href="<?php echo base_url()."assets/"; ?>css/galeria.css" rel="stylesheet">
 
-
+    <link href="<?php echo base_url()."src/"; ?>rating.css" rel="stylesheet">
   </head>

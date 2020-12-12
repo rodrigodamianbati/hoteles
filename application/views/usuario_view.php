@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -124,7 +125,7 @@
               <i class="fas fa-users"></i>
               Usuarios Registrados</div>
             <div class="card-body">
-            <div><button type="button" class="btn btn-primary btn-xs" onclick="location.href='<?php echo base_url();?>registro'">Agregar usuario</button></div>
+            <div><button type="button" class="btn btn-primary btn-xs" onclick="location.href='<?php echo base_url();?>usuario/registro'">Agregar usuario</button></div>
             <br>
               <div id="tablaUsuarios" class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -141,6 +142,7 @@
                   
                   <tbody>
                     <?php
+        
                       foreach($ver as $fila){
 
                         $idUso=$fila->id."//";
@@ -180,7 +182,7 @@
                                  
                             <button id="button-edit" title="Editar" type="button" class="btn btn-dark btn-xs" data-toggle="modal" data-target="#modalEdicion" onclick="agregarForm('<?php echo $datos ?>')">
                             <i class="fas fa-edit"></i>
-                          </button>
+                            </button>
                         
 
 

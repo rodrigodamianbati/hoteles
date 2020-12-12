@@ -1058,4 +1058,42 @@ class Alojamiento_model extends CI_Model
         return $consulta->result();
     }  
 
+    public function misLugaresVisitados(){
+        //fecha_fin---------date("Y-m-d");
+        $fechaHoy = date("Y-m-d");
+        $id = $_SESSION['id'];
+        $this->db->select("a.id as id_alojamiento,reserva.confirmacion_cliente, reserva.confirmacion_dueño, reserva.precio_total, reserva.fecha_fin,reserva.fecha_inicio,reserva.fecha_realizacion, reserva.pago_seña, reserva.id_estado as estado_reserva, reserva.id, e.descripcion as estado_alojamiento, t.descripcion as tipo, a.default_foto as foto, a.precio, l.nombre as localidad, a.direccion_nombre, a.direccion_numero, AVG(v.valoracion) AS valoracion");
+        //$this->db->select("*");
+        $this->db->where("reserva.id_usuario='$id'");
+        $this->db->where("reserva.fecha_fin<'$fechaHoy'");
+        $this->db->join("alojamiento a", "reserva.id_alojamiento = a.id");
+        $this->db->join("valoracion_cliente_alojamiento v", "v.id_alojamiento = a.id");
+
+        $this->db->join("estado_aloj e", "a.id_estado = e.id");
+        $this->db->join("tipo_aloj t", "a.id_tipo = t.id");
+        $this->db->join("localidad l", "a.id_localidad = l.id");
+        $this->db->group_by("a.id");
+
+        $consulta = $this->db->get('reserva');
+        
+       // print_r($this->db->last_query());
+        //die();
+        return $consulta->result();
+    }
+
+    public function puntuar_alojamiento($id_cliente, $id_alojamiento, $rating){
+        $consulta = $this->db->query("SELECT '*' FROM valoracion_cliente_alojamiento WHERE (id_cliente='$id_cliente' AND id_alojamiento='$id_alojamiento')");
+        if ($consulta->num_rows() == 0) {
+            //$id=$_SESSION['id'];
+            $consulta = $this->db->query("INSERT INTO valoracion_cliente_alojamiento VALUES('$id_cliente', '$id_alojamiento','$rating');");
+
+            if ($consulta == true) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
 }

@@ -1,4 +1,5 @@
 <!--?php if (isset($products)){if(!empty($products)){$tipo=$products[0]->tipo;$iguales=true; foreach ($products as $product){if ($product->tipo != $tipo){ $iguales=false;}}if($iguales){print_r($products[0]->tipo);}}}?-->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -118,7 +119,7 @@
     <?php foreach ($products as $product) {?>
 
     <div class="w3-third w3-margin-bottom alojamiento-contenedor">
-      <img src='<?php echo $product->foto ?>' alt="Norway" style="width:100%">
+      <img src='<?php echo base_url().$product->foto ?>' alt="Norway" style="width:200px; height:180px">
 
       <div class="w3-container alojamiento-descripcion">    <!--w3-white-->
         <h3><?php echo $product->tipo ?></h3>

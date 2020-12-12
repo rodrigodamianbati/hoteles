@@ -11,10 +11,12 @@ class Usuario extends CI_Controller{
          
         //llamo o incluyo el modelo
         $this->load->model("Usuario_model");
+        $this->load->model("Alojamiento_model");
         $this->load->model("Chat");
         $this->load->model("Mensaje");
         //cargo la libreria de sesiones
         $this->load->library("session");
+        
 
     }
      
@@ -188,6 +190,8 @@ class Usuario extends CI_Controller{
             $fecNac=$_POST['fechaNacimiento'];
             $email=$_POST['email'];
 
+            //print_r($_POST);
+            //die();
             $this->Usuario_model->modificarUsuario( $id, $nombre, $apellido, $dni, $fecNac, $email);
          
             return 1;
@@ -311,6 +315,9 @@ class Usuario extends CI_Controller{
         //$data['products'] = $this->reservas($config['per_page'], $id);
         $data['products'] = $this->Alojamiento_model->misLugaresVisitados();
         //mis_reservas
+
+        //print_r($data);
+        //die();
         $this->load->view("usuario/usuario_head");
        
         $this->load->view("usuario/usuario_top_nav");

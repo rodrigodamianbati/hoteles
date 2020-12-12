@@ -4,14 +4,15 @@
 
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <a href="<?php echo base_url()."alojamiento/crear_alojamiento"; ?>#">Nuevo alojamiento</a>
-            </li>
-            <li class="breadcrumb-item active">Nuevo alojamiento</li>
+            <!--li class="breadcrumb-item">
+              <a href="<//?php echo base_url()."alojamiento/crear_alojamiento"; ?>#">Nuevo alojamiento</a>
+            </li-->
+            <!--li class="breadcrumb-item active">Nuevo alojamiento</li-->
+            <button type="button" class="btn btn-primary btn-xs" onclick="location.href='<?php echo base_url();?>alojamiento/crear_alojamiento'">Nuevo alojamiento</button>
           </ol>
 
           <!-- Icon Cards-->
-          <div class="row">
+          <!--div class="row">
             <div class="col-xl-3 col-sm-6 mb-3">
               <div class="card text-white bg-primary o-hidden h-100">
                 <div class="card-body">
@@ -20,7 +21,7 @@
                   </div>
                   <div class="mr-5">26 Nuevos Mensajes!</div>
                 </div>
-                <a class="card-footer text-white clearfix small z-1" href="<?php echo base_url()."assets/"; ?>#">
+                <a class="card-footer text-white clearfix small z-1" href="<//?php echo base_url()."assets/"; ?>#">
                   <span class="float-left">Ver</span>
                   <span class="float-right">
                     <i class="fas fa-angle-right"></i>
@@ -36,7 +37,7 @@
                   </div>
                   <div class="mr-5">123 Nuevas reservas!</div>
                 </div>
-                <a class="card-footer text-white clearfix small z-1" href="<?php echo base_url()."assets/"; ?>#">
+                <a class="card-footer text-white clearfix small z-1" href="<//?php echo base_url()."assets/"; ?>#">
                   <span class="float-left">Ver</span>
                   <span class="float-right">
                     <i class="fas fa-angle-right"></i>
@@ -44,7 +45,7 @@
                 </a>
               </div>
             </div>
-          </div>
+          </div-->
 
           <!-- Alojamientos del usuario-->
           <div class="card mb-3">
@@ -52,11 +53,13 @@
               <i class="fas fa-table"></i>
               Alojamientos</div>
               <div class="w3-row-padding w3-padding-16" id="caja">
-    
+    <?php if (count($products) == 0){ ?>
+              <h1 class="text-center display-3">Aun no posee alojamientos</h1>
+    <?php  }?>
     <?php foreach ($products as $product){ ?>
-
-    <div class="w3-third w3-margin-bottom alojamiento-contenedor">
-      <img src='<?php echo $product->foto?>' alt="Norway" style="width:30%">
+    <hr>
+    <div class="w3-third w3-margin-bottom alojamiento-contenedor text-center mb-2">
+      <img src='<?php echo base_url().$product->foto?>' alt="Norway" style="width:30%">
       
       <div class="w3-container alojamiento-descripcion">    <!--w3-white-->
         <h3><?php echo $product->tipo?></h3>
@@ -87,24 +90,87 @@
                     <i class="fa fa-television"></i>
         <?php } } } } } ?>
         </p>
-        <form action="<?=base_url("alojamiento/baja");?>" method="post">
-          <button name="baja" value="<?php echo $product->id?>" class="w3-button w3-block w3-black w3-margin-bottom">Baja</button>
+
+        <div class="row">
+          <div class="col-sm-12">
+          <form action="<?=base_url("alojamiento/baja");?>" style="float: left; margin-right:10px; margin-left:30px;" method="post">
+          <button name="baja" value="<?php echo $product->id?>" class="btn btn-outline-primary text-center mb-2">Baja</button>
+        </form>
+      
+         
+          <form action="<?=base_url("alojamiento/modificaciones");?>" style="float: left; margin-right:10px;" method="post">
+          <button name="modificar" value="<?php echo $product->id?>" class="btn btn-outline-primary text-center mb-2">Modificar</button>
+        </form>
+        
+          <form action="<?=base_url("alojamiento/modificacion_estado");?>"style="float: left; margin-right:10px;" method="post">
+          <button name="modificar_estado" value="<?php echo $product->id?>" class="btn btn-outline-primary text-center mb-2">Modificar estado</button>
+        </form>
+        
+          <form action="<?=base_url("alojamiento/modificacion_galeria");?>" style="float: left; margin-right:10px;"method="post">
+          <button name="modificar_galeria" value="<?php echo $product->id?>" class="btn btn-outline-primary text-center mb-2">Modificar galeria</button>
+        </form>
+         
+          <form action="<?=base_url("alojamiento/agregacion_fotos");?>" style="float: left; margin-right:10px;"method="post">
+          <button name="agregar_fotos" value="<?php echo $product->id?>" class="btn btn-outline-primary text-center mb-2">Agregar fotos a la galeria</button>
+        </form>
+         
+          <form action="<?=base_url("alojamiento/agregacion_servicios");?>" style="float: left; margin-right:10px;" method="post">
+          <button name="agregar_servicios" value="<?php echo $product->id?>" class="btn btn-outline-primary text-center mb-2">Agregar nuevos servicios <br> al alojamiento</button>
+        </form>
+          </div>
+        </div>
+
+        <!--div class="row">
+          <div class="col-sm">
+          <form action="<?=base_url("alojamiento/baja");?>" method="post">
+          <button name="baja" value="<?php echo $product->id?>" class="btn btn-outline-primary text-center mb-2">Baja</button>
+        </form>
+          </div>
+          <div class="col-sm">
+          <form action="<?=base_url("alojamiento/modificaciones");?>" method="post">
+          <button name="modificar" value="<?php echo $product->id?>" class="btn btn-outline-primary text-center mb-2">Modificar</button>
+        </form>
+          </div>
+          <div class="col-sm">
+          <form action="<?=base_url("alojamiento/modificacion_estado");?>" method="post">
+          <button name="modificar_estado" value="<?php echo $product->id?>" class="btn btn-outline-primary text-center mb-2">Modificar estado</button>
+        </form>
+          </div>
+          <div class="col-sm">
+          <form action="<?=base_url("alojamiento/modificacion_galeria");?>" method="post">
+          <button name="modificar_galeria" value="<?php echo $product->id?>" class="btn btn-outline-primary text-center mb-2">Modificar galeria</button>
+        </form>
+          </div>
+          <div class="col-sm">
+          <form action="<?=base_url("alojamiento/agregacion_fotos");?>" method="post">
+          <button name="agregar_fotos" value="<?php echo $product->id?>" class="btn btn-outline-primary text-center mb-2">Agregar fotos a la galeria</button>
+        </form>
+          </div>
+          <div class="col-sm">
+          <form action="<?=base_url("alojamiento/agregacion_servicios");?>" method="post">
+          <button name="agregar_servicios" value="<?php echo $product->id?>" class="btn btn-outline-primary text-center mb-2">Agregar nuevos servicios al alojamiento </button>
+        </form>
+          </div>
+        </div-->
+
+        <!--form action="<?=base_url("alojamiento/baja");?>" method="post">
+          <button name="baja" value="<?php echo $product->id?>" class="btn btn-outline-primary text-center mb-2">Baja</button>
         </form>
         <form action="<?=base_url("alojamiento/modificaciones");?>" method="post">
-          <button name="modificar" value="<?php echo $product->id?>" class="w3-button w3-block w3-black w3-margin-bottom">Modificar</button>
+          <button name="modificar" value="<?php echo $product->id?>" class="btn btn-outline-primary text-center mb-2">Modificar</button>
         </form>
         <form action="<?=base_url("alojamiento/modificacion_estado");?>" method="post">
-          <button name="modificar_estado" value="<?php echo $product->id?>" class="w3-button w3-block w3-black w3-margin-bottom">Modificar estado</button>
+          <button name="modificar_estado" value="<?php echo $product->id?>" class="btn btn-outline-primary text-center mb-2">Modificar estado</button>
         </form>
         <form action="<?=base_url("alojamiento/modificacion_galeria");?>" method="post">
-          <button name="modificar_galeria" value="<?php echo $product->id?>" class="w3-button w3-block w3-black w3-margin-bottom">Modificar galeria</button>
+          <button name="modificar_galeria" value="<?php echo $product->id?>" class="btn btn-outline-primary text-center mb-2">Modificar galeria</button>
         </form>
         <form action="<?=base_url("alojamiento/agregacion_fotos");?>" method="post">
-          <button name="agregar_fotos" value="<?php echo $product->id?>" class="w3-button w3-block w3-black w3-margin-bottom">Agregar fotos a la galeria</button>
+          <button name="agregar_fotos" value="<?php echo $product->id?>" class="btn btn-outline-primary text-center mb-2">Agregar fotos a la galeria</button>
         </form>
         <form action="<?=base_url("alojamiento/agregacion_servicios");?>" method="post">
-          <button name="agregar_servicios" value="<?php echo $product->id?>" class="w3-button w3-block w3-black w3-margin-bottom">Agregar nuevos servicios al alojamiento </button>
-        </form>
+          <button name="agregar_servicios" value="<?php echo $product->id?>" class="btn btn-outline-primary text-center mb-2">Agregar nuevos servicios al alojamiento </button>
+        </form-->
       </div>
     </div>
     <hr>

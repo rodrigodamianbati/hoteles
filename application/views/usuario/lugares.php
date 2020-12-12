@@ -65,22 +65,20 @@
         <h3><?php echo $product->tipo ?></h3>
         <h2>Precio total: $ <?php echo $product->precio_total ?></h2>
         <h6 class="w3-opacity">Precio por noche: $ <?php echo $product->precio ?></h6>
-        <p>Estado alojamiento: <?php echo $product->estado_alojamiento ?></p>
-        <p>Estado reserva: <?php if ($product->estado_reserva == 1) {if ($product->confirmacion_cliente == "confirmado") {echo "pendiente (Esperando confirmacion del dueño del alojamiento)";} else {echo "pendiente";}} else {if ($product->estado_reserva == 2) {echo "en curso";} else {echo "cancelada";}}?></p>
-        <p>Pago seña: <?php echo $product->pago_seña ?></p>
+        <!--p>Estado reserva: <//?php if ($product->estado_reserva == 1) {if ($product->confirmacion_cliente == "confirmado") {echo "pendiente (Esperando confirmacion del dueño del alojamiento)";} else {echo "pendiente";}} else {if ($product->estado_reserva == 2) {echo "en curso";} else {echo "cancelada";}}?></p-->
+        <!--p>Pago seña: <//?php echo $product->pago_seña ?></p-->
         <p>Direccion: <?php echo $product->direccion_nombre ?>, <?php echo $product->direccion_numero ?></p>
+        <p>Valoracion clientes: <?php if (isset($product->valoracion)){ echo $product->valoracion;} else { echo "N/A";}?></p>
 
-
-        <form action="<?=base_url("alojamiento/reserva_confirmar");?>" method="post">
-          <button name="confirmar" value="<?php echo $product->id ?>" class="w3-button w3-block w3-black w3-margin-bottom">Confirmar</button>
-        </form>
-        <form action="<?=base_url("alojamiento/reserva_baja");?>" method="post">
-          <button name="baja" value="<?php echo $product->id ?>" class="w3-button w3-block w3-black w3-margin-bottom">Baja</button>
-        </form>
+        <form class="text-center mb-2" action="<?=base_url("alojamiento/puntuar_alojamiento");?>" method="post">
+          <h1 id="rating_h1">Tu valoracion del alojamiento</h1>
+          <div class="rating text-center mb-2"> <input type="radio" name="rating" value="5" id="cinco"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="cuatro"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="tres"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="dos"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="uno"><label for="1">☆</label>
+          </div>
+          <button id="boton_valoracion" name="alojamiento" value="<?php echo $product->id ?>" class="btn btn-outline-primary text-center mb-2">Puntuar alojamiento</button>
         </form>
       </div>
     </div>
-
+    <input type="hidden" id="mi_valoracion" value=<?php if (isset($product->valoracion)){ echo $product->valoracion;} else { echo 0;}?>>
     <?php } //} ?>
 </div>
             <div class="card-footer small text-muted">Actualizado ayer a las 11:59 PM</div>
@@ -88,3 +86,35 @@
 
         </div>
         <!-- /.container-fluid -->
+        
+ <!-- Bootstrap core JavaScript-->
+ <script src="<?php echo base_url()."assets/"; ?>vendor/jquery/jquery.min.js"></script>
+    <script src="<?php echo base_url()."assets/"; ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="<?php echo base_url()."assets/"; ?>vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="<?php echo base_url()."src/"; ?>valoracion.js"></script>
+<?php if ($this->session->flashdata('valoracion') != 'ok'){?>
+<div class="modal" tabindex="-1" role="dialog" id="myModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Valoracion</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Por favor elija una valoracion.</p>
+      </div>
+      <div class="modal-footer">
+        <!--button type="button" class="btn btn-primary">Guardar</button-->
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <script>$('#myModal').modal('show')</script>
+  <?php } $this->session->set_flashdata('valoracion','ok');?>
+  
+  <!--script>$('#miModal').modal('show')</script-->

@@ -34,8 +34,18 @@ class Alojamiento extends CI_Controller
         //$this->load->view("buscador");
     }
 
+    public function seguridad(){
+        if(isset($this->session->userdata['logged_in'])){
+            redirect('usuario');
+        }else{
+            $url= $_SERVER['HTTP_REFERER'];
+            redirect('login', $url);
+        }
+    }
+
     public function crear_alojamiento()
     {
+        $this->seguridad();
         $tipos = $this->tipos();
         $localidades = $this->localidades();
         //print_r($_SESSION['id']);
@@ -49,7 +59,7 @@ class Alojamiento extends CI_Controller
 
     public function tipos()
     {
-
+        
         $consulta['tipos'] = $this->Alojamiento_model->tipos();
 
         return $consulta;
@@ -74,6 +84,7 @@ class Alojamiento extends CI_Controller
     /////////////////////////////////////---------ALTA-ALOJAMIENTO
     public function alta()
     {
+        $this->seguridad();
         if ($this->input->post("submit")) {
 
             //llamo al metodo agregar
@@ -127,8 +138,8 @@ class Alojamiento extends CI_Controller
     ///////////////////////////////////-------SUBIDOR-DE-FOTOs
     public function subir_foto()
     {
-
-        $config['upload_path'] = '/var/www/html/pruebaTemplate2/fotos_alojamientos/';
+        $this->seguridad();
+        $config['upload_path'] = 'C:/xampp/htdocs/hoteles/fotos_alojamientos/';
 
         $config['allowed_types'] = 'gif|jpg|png';
         $config['max_size'] = 2048000;
@@ -150,7 +161,7 @@ class Alojamiento extends CI_Controller
             http_response_code(500);
         } else {
 
-            $path = '/pruebaTemplate2/fotos_alojamientos/' . $nombre;
+            $path = 'fotos_alojamientos/' . $nombre;
 
             $id = $_GET['id'];
 
@@ -491,6 +502,7 @@ class Alojamiento extends CI_Controller
     {
         //print_r($this->input->post("baja"));
         //die();
+        $this->seguridad();
         if ($this->input->post("baja")) {
             $this->Alojamiento_model->baja($this->input->post("baja"));
         }
@@ -506,6 +518,7 @@ class Alojamiento extends CI_Controller
 
     public function modificacion_estado()
     {
+        $this->seguridad();
         if ($this->input->post("modificar_estado")) {
             $product = $this->Alojamiento_model->alojamiento($this->input->post("modificar_estado"));
             $estados = $this->estados();
@@ -565,7 +578,7 @@ class Alojamiento extends CI_Controller
 
     public function agregacion_fotos()
     {
-
+        $this->seguridad();
         $id_alojamiento = $this->input->post("agregar_fotos");
 
         $data['id_alojamiento'] = $id_alojamiento;
@@ -580,6 +593,7 @@ class Alojamiento extends CI_Controller
 
     public function agregacion_servicios()
     {
+        $this->seguridad();
         $id_alojamiento = $this->input->post("agregar_servicios");
 
         $data['id_alojamiento'] = $id_alojamiento;
@@ -613,6 +627,7 @@ class Alojamiento extends CI_Controller
 
     public function modificaciones()
     {
+        $this->seguridad();
         if ($this->input->post("modificar")) {
             $product = $this->Alojamiento_model->alojamiento($this->input->post("modificar"));
             $tipos = $this->tipos();
@@ -632,7 +647,7 @@ class Alojamiento extends CI_Controller
     public function modificar()
     {
     
-
+        $this->seguridad();
         if ($this->input->post("modificar")) {
             
             $this->Alojamiento_model->modificar(
@@ -651,7 +666,7 @@ class Alojamiento extends CI_Controller
     {
         //print_r($this->input->post("baja"));
         //die();
-
+        $this->seguridad();
         if ($this->input->post("modificar_estado")) {
             //print_r($this->input->post("localidades"));
             //die();
@@ -666,7 +681,7 @@ class Alojamiento extends CI_Controller
     }
 
     public function reservar(){
-
+        $this->seguridad();
         $precio_noche = $this->input->post("precio_noche");   
         $id_alojamiento = $this->input->post("reserva");
 
@@ -676,7 +691,7 @@ class Alojamiento extends CI_Controller
     }
 
     public function generar_reserva(){
-
+        $this->seguridad();
         $precio_noche = $this->input->post("precio_noche");
         $id_alojamiento = $this->input->post("id_alojamiento");
 
@@ -693,6 +708,7 @@ class Alojamiento extends CI_Controller
     }
     
     public function mis_reservas(){
+        //$this->seguridad();
         $this->load->library('pagination');
         $id = $_SESSION['id'];
         $config['total_rows'] = $this->total_mis_reservas($id);
@@ -712,6 +728,7 @@ class Alojamiento extends CI_Controller
     }  
 
     public function reservas_clientes(){
+        $this->seguridad();
         $id = $_SESSION['id'];
         $reservas_clientes=$this->Alojamiento_model->reservas_clientes($id);
         //print_r($id); 
@@ -722,6 +739,7 @@ class Alojamiento extends CI_Controller
     } 
 
     public function reservas_todas(){
+        $this->seguridad();
         $reservas_todas=$this->Alojamiento_model->reservas_todas();
         $data['reservas_todas'] = $reservas_todas;
         $this->load->view("usuario/reservas_todas_view",$data);
@@ -729,10 +747,12 @@ class Alojamiento extends CI_Controller
 
     private function reservas($limite, $id)
     {
+        $this->seguridad();
         return $this->Alojamiento_model->mis_reservas($limite, $id);
     }
 
     public function reserva_confirmar(){
+        $this->seguridad();
         $id_reserva = $this->input->post("confirmar");
         $this->Alojamiento_model->cliente_corfirmar($id_reserva); 
 
@@ -740,6 +760,7 @@ class Alojamiento extends CI_Controller
     }
 
     public function reserva_confirmar_duenio(){
+        $this->seguridad();
         $id_reserva = $this->input->post("confirmar");
         $this->Alojamiento_model->cliente_corfirmar_duenio($id_reserva); 
 
@@ -748,6 +769,7 @@ class Alojamiento extends CI_Controller
     
 
     public function reserva_baja(){
+        $this->seguridad();
         $id_reserva = $this->input->post("baja");
         $this->Alojamiento_model->reserva_baja($id_reserva); 
 
@@ -755,6 +777,7 @@ class Alojamiento extends CI_Controller
     }
     
     public function mis_pagos(){
+        $this->seguridad();
         $id = $_SESSION['id'];
         $aux = $this->Alojamiento_model->mis_reservas_simple($id);
 
@@ -771,12 +794,30 @@ class Alojamiento extends CI_Controller
     }
 
     public function pagar(){
+        $this->seguridad();
         $id_reserva = $this->input->post("pagar");
         $this->Alojamiento_model->reserva_pagar($id_reserva); 
 
         redirect(base_url("alojamiento/mis_reservas"));
     }  
     
+    public function puntuar_alojamiento(){
+        //print_r($_POST);
+        //print_r($_POST);
+        //die();
+        $this->seguridad();
+        if(isset($_POST['rating'])){
+            $rating = $_POST['rating'];
+            $id_alojamiento = $_POST['alojamiento'];
+            $id_cliente = $_SESSION['id'];
+            $this->Alojamiento_model->puntuar_alojamiento($id_cliente, $id_alojamiento, $rating);
+            $this->session->set_flashdata('valoracion','ok');
+        }else{
+            $this->session->set_flashdata('valoracion','mal');
+        }
+        redirect('usuario/lugares');
+        //die();
+    }
       
      /*
 Array ( [0] => stdClass Object ( [id] => 70 [seña] => 0 [precio_total] => 10000 [pago_seña] => pendiente [pago_resto] => 0 
