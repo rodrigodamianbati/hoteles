@@ -35,11 +35,18 @@ class Alojamiento extends CI_Controller
     }
 
     public function seguridad(){
-        if(isset($this->session->userdata['logged_in'])){
-            redirect('usuario');
-        }else{
-            $url= $_SERVER['HTTP_REFERER'];
-            redirect('login', $url);
+        if(!isset($this->session->userdata['logged_in'])){
+            $this->session->set_flashdata('ultima_url', current_url());
+            redirect('login');
+        }
+
+        else{
+            if($this->session->userdata['rol'] == 'administrador'){
+            // array asociativo con la llamada al metodo del modelo
+                 $usuario["ver"]=$this->Usuario_model->ver();
+                // // cargo la vista y le paso los datos
+                 $this->load->view("usuario_view",$usuario);
+            }
         }
     }
 
@@ -692,6 +699,12 @@ class Alojamiento extends CI_Controller
 
     public function generar_reserva(){
         $this->seguridad();
+        if(!$this->input->post("precio_noche")){
+           redirect('inicio');
+        }
+        if(!$this->input->post("id_alojamiento")){
+           redirect('inicio');
+        }
         $precio_noche = $this->input->post("precio_noche");
         $id_alojamiento = $this->input->post("id_alojamiento");
 
@@ -703,8 +716,18 @@ class Alojamiento extends CI_Controller
 
         $precio_total = $dias * $precio_noche;
 
-        $this->Alojamiento_model->almacenar_reserva($_SESSION['id'],$id_alojamiento, $precio_total, $fecha_desde, $fecha_hasta); 
-        redirect(base_url()); 
+        if($this->Alojamiento_model->almacenar_reserva($_SESSION['id'],$id_alojamiento, $precio_total, $fecha_desde, $fecha_hasta)){
+            redirect(base_url().'alojamiento/mis_reservas'); 
+        } else{
+            $datos = array();
+            $datos['id_usuario']=$_SESSION['id'];
+            $datos['id_alojamiento']=$id_alojamiento;
+            $datos['precio_noche']=$precio_noche;
+
+            $this->session->set_flashdata('datos_redirect', $datos);
+            redirect(base_url().'alojamiento/reservar'); 
+        }
+       
     }
     
     public function mis_reservas(){

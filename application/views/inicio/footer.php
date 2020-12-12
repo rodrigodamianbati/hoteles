@@ -1,7 +1,11 @@
       <!-- Sticky Footer -->
+      </body>
       <div class="fixed-bottom">
          
-         <footer >
+        
+
+      </div>
+      <footer >
          <script type="text/javascript" src="<?php echo base_url()."src/"; ?>chat.js"></script>
             <div class="container my-auto">
               <div class="copyright text-center my-auto">
@@ -9,8 +13,5 @@
               </div>
            </div>
          </footer>
-
-      </div>
-
-    </body>
+    
     </html>

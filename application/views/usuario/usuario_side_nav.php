@@ -78,9 +78,17 @@ $usuario = $CI->Usuario_model->getUsuario($_SESSION['id'])[0];
     <!--i class="fas fa-shopping-cart"></i-->
       <span>Mis chats</span></a>
   </li>
-  <button id="button-edit" title="Editar" type="button" class="btn btn-dark btn-xs" data-toggle="modal" data-target="#modalEdicion" onclick="agregarForm('<?php echo $usuario->id ?>')">
-    <i class="fas fa-edit">Editar mi perfil</i>
-  </button>
+  <li class="nav-item">
+    <a class="nav-link" href="#" data-toggle="modal" data-target="#modalEdicion" onClick="agregarForm('<?php echo $usuario->id ?>')">
+    <i class="fas fa-edit"></i>
+    <!--i class="fas fa-shopping-cart"></i-->
+      <span>Editar mi perfil</span></a>
+  </li>
+  <!--li class="nav-item">
+  <button id="button-edit" title="Editar" type="button" class="nav-link" data-toggle="modal" data-target="#modalEdicion" onclick="agregarForm('<?php echo $usuario->id ?>')">
+    <i class="fas fa-edit"><span>Editar mi perfil</span></i>
+  </button-->
+  </li>
 </ul>
 
 <script type="text/javascript">
@@ -100,7 +108,7 @@ $usuario = $CI->Usuario_model->getUsuario($_SESSION['id'])[0];
 </script>
 
 <!-- script onclick del button modal llenar los input del editar  -->
-<script type="text/javascript">
+<!--script type="text/javascript">
             function actualizarDatos(){
               $id=$('#idpersona').val();
               $nombre= $('#nom').val();
@@ -123,7 +131,7 @@ $usuario = $CI->Usuario_model->getUsuario($_SESSION['id'])[0];
 
           $.ajax({
             type:"POST",
-            url:"<?php echo base_url()."usuario/modificarUsuario"?>",
+            url:"<//?php echo base_url()."usuario/modificarUsuario"?>",
             data: $cadena,
             
             success:function(r){
@@ -136,7 +144,7 @@ $usuario = $CI->Usuario_model->getUsuario($_SESSION['id'])[0];
             }
           });
             }
-		    	</script>
+		    	</script-->
     
 
      
@@ -174,9 +182,10 @@ $usuario = $CI->Usuario_model->getUsuario($_SESSION['id'])[0];
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-              <button id="actualizar" type="button" class="btn btn-primary " onclick="actualizarDatos()"> Continuar</button>
+              <button id="actualizar" type="button" class="btn btn-primary"> Continuar</button>
             </div>
           </div>
         </div>
       </div>
+      <script src="<?php echo base_url()."src/";?>sid-nav.js"></script>
 

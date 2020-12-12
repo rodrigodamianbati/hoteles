@@ -1,11 +1,5 @@
  <!-- Sticky Footer -->
- <footer class="sticky-footer">
-          <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-              <span>Copyright © Aloj-ar 2018</span>
-            </div>
-          </div>
- </footer>
+ 
 
        </div>
       <!-- /.content-wrapper  -->
@@ -46,5 +40,11 @@
     <script src="<?php echo base_url()."src/"; ?>mod_galeria.js"></script>
     
   </body>
-
+  <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © Aloj-ar 2018</span>
+            </div>
+          </div>
+ </footer>
 </html>

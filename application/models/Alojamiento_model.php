@@ -980,28 +980,32 @@ class Alojamiento_model extends CI_Model
         $f_fecha_actual = date("Y-m-d");
         $f_desde=$fecha_desde->format('Y-m-d');
         $f_hasta=$fecha_hasta->format('Y-m-d');
+
+        $consulta_espacio=$this->db->query("SELECT *
+        FROM reserva r
+        WHERE r.id_alojamiento='$id_alojamiento' AND (r.fecha_inicio BETWEEN '$f_desde' AND '$f_hasta') 
+        OR (r.fecha_fin BETWEEN '$f_desde' AND '$f_hasta')");
+
+        if($consulta_espacio->num_rows() > 0){
+            
+            return false;
+        }
+
         $this->db->query("INSERT INTO reserva (id, seña, precio_total, pago_seña, pago_resto, fecha_realizacion, fecha_inicio, fecha_fin, id_estado, id_alojamiento, id_usuario) VALUES (NULL, '0', '$precio_total', 'pendiente', '', '$f_fecha_actual', '$f_desde', '$f_hasta', '1', '$id_alojamiento', '$id_usuario')");
         $id_reserva = $this->db->insert_id();
-        $this->db->query("UPDATE alojamiento SET id_estado = '3' WHERE alojamiento.id = '$id_alojamiento';");
-        
-        $consulta_id_dueño = $this->db->query("SELECT u.id FROM usuario u WHERE (SELECT a.id_usuario FROM alojamiento a WHERE a.id='$id_alojamiento')");
+        $this->db->query("UPDATE alojamiento SET id_estado = '1' WHERE alojamiento.id = '$id_alojamiento';");
+                                                //SELECT * FROM usuario u WHERE u.id IN (SELECT a.id_usuario FROM alojamiento a WHERE a.id=1)
+        $consulta_id_dueño = $this->db->query("SELECT u.id FROM usuario u WHERE u.id IN (SELECT a.id_usuario FROM alojamiento a WHERE a.id='$id_alojamiento')");
         $id_dueño = $consulta_id_dueño->result()[0]->id;
         //print_r($id_dueño);
         //die();
-        $consulta = $this->db->query("SELECT id FROM chat WHERE (id_dueño='$id_dueño' AND id_cliente='$id_cliente')");
+        $consulta = $this->db->query("SELECT id FROM chat WHERE (id_dueño='$id_dueño' AND id_cliente='$id_usuario')");
         if ($consulta->num_rows() == 0) {
             //$id=$_SESSION['id'];
             // $this->db->query("INSERT INTO servicio_aloj (id_alojamiento, id_servicio) VALUES ('$id_alojamiento', '$id_servicio')"); 
             $consulta = $this->db->query("INSERT INTO chat (id, id_dueño, id_cliente, id_reserva)VALUES(NULL, $id_dueño, $id_usuario,$id_reserva)");
-
-            if ($consulta == true) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
         }
+        return true;
     }
 
     public function cliente_corfirmar($id_reserva){
@@ -1096,4 +1100,21 @@ class Alojamiento_model extends CI_Model
             return false;
         }
     }
+
+    private function prueba(){
+        if ($product->estado_reserva == 1) {
+            if ($product->confirmacion_cliente == "confirmado") {
+                echo "pendiente (Esperando confirmacion del dueño del alojamiento)";
+            } else {
+                echo "pendiente";
+            }
+        } else {
+            if ($product->estado_reserva == 2) {
+                echo "en curso";
+            } else {
+                echo "cancelada";
+            }
+        }
+    }
+    
 }

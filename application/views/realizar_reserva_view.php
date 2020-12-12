@@ -1,3 +1,13 @@
+<?php 
+if($this->session->flashdata('datos_redirect')){
+  $datos = $this->session->flashdata('datos_redirect');
+  $precio_noche = $datos['precio_noche'];
+  $id_alojamiento = $datos['id_alojamiento'];
+  //print_r($this->session->flashdata('datos_redirect'));
+  //die();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -77,7 +87,7 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="date" id="fecha-hasta" class="form-control" placeholder="Fecha-hasta" name="fecha_hasta">
+                    <input type="date" id="fecha-hasta" class="form-control" placeholder="Fecha-hasta" required="required" name="fecha_hasta">
                     <label for="fecha-hasta" >Hasta</label>
                   </div>
                 </div>
@@ -87,16 +97,19 @@
             
             <input type="hidden" name="precio_noche" value="<?php echo $precio_noche?>">
             <input type="hidden" name="id_alojamiento" value="<?php echo $id_alojamiento?>">
-            <input class="btn btn-primary btn-block" type="submit" name="submit" value="Confirmar"/>
+            <h3 id="alerta_alojamiento_ocupado" style="color: red;" <?php if(!$this->session->flashdata('datos_redirect')){echo "hidden";}?>>El alojamiento se encuentra ocupado en las fechas dadas, elija una nueva</h3>
+            <p id="alerta" style="color: red;">Elija una fecha valida antes de continuar</p>
+            <input id="boton_sumbit" class="btn btn-primary btn-block" type="submit" name="submit" value="Confirmar" disabled>
           </form>
           
         </div>
       </div>
     </div>
 
-
-   
-
+<!-- script para manejar provincia -->
+<script type="text/javascript">
+  
+</script>
 
 
 <!-- script para manejar provincia -->
@@ -104,11 +117,12 @@
    function getval(sel){
         var id_prov=sel.value;
         // alert(id_prov);
-
+        var base_url = window.location.origin;
        $.ajax({
 
                       type:"GET",
-                      url:"<?php echo base_url()."registro/provincia_localidades"?>",
+                      url: base_url +'registro/provincia_localidades',
+                      /*url:"<//?php echo base_url()."registro/provincia_localidades"?>",*/
                       data: {id_prov},
                       dataType : 'json',
                       success:function(json){
@@ -142,7 +156,7 @@
 
     <!-- Core plugin JavaScript-->
     <script src="<?php echo base_url()."assets/"; ?>vendor/jquery-easing/jquery.easing.min.js"></script>
-
+    <script src="<?php echo base_url()."src/"; ?>checkfechas.js"></script>
   </body>
 
 </html>

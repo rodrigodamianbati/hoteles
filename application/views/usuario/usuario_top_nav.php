@@ -4,9 +4,9 @@
 
       <a class="navbar-brand mr-1" href="<?php echo base_url(); ?>">Aloj.ar</a>
 
-      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="<?php echo base_url()."assets/"; ?>#">
+      <!--button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="<?php echo base_url()."assets/"; ?>#">
         <i class="fas fa-bars"></i>
-      </button>
+      </button-->
 
       <!-- Navbar Search
       <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -23,19 +23,19 @@
       <!-- Navbar -->
       <div class="collapse navbar-collapse justify-content-end"> 
       <ul class="navbar-nav ml-auto ml-md-0">
-        <li class="nav-item dropdown no-arrow mx-1">
+        <!--li class="nav-item dropdown no-arrow mx-1">
           <a class="nav-link dropdown-toggle" href="<?php echo base_url()."assets/"; ?>#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-bell fa-fw"></i>
             <span class="badge badge-danger">9+</span>
           </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-            <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>#">Action</a>
-            <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>#">Something else here</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown no-arrow mx-1">
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown"-->
+            <!--a class="dropdown-item" href="<//?php echo base_url()."assets/"; ?>#">Action</a-->
+            <!--a class="dropdown-item" href="<//?php echo base_url()."assets/"; ?>#">Another action</a-->
+            <!--div class="dropdown-divider"></div-->
+            <!--a class="dropdown-item" href="<//?php echo base_url()."assets/"; ?>#">Something else here</a-->
+          <!--/div>
+        </li-->
+        <!--li class="nav-item dropdown no-arrow mx-1">
           <a class="nav-link dropdown-toggle" href="<?php echo base_url()."assets/"; ?>#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-envelope fa-fw"></i>
             <span class="badge badge-danger">7</span>
@@ -46,14 +46,14 @@
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>#">Something else here</a>
           </div>
-        </li>
+        </li-->
         <li class="nav-item dropdown no-arrow">
           <a class="nav-link dropdown-toggle" href="<?php echo base_url()."assets/"; ?>#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-user-circle fa-fw"></i>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-            <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>#">Ajustes</a>
-            <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>#">Activity Log</a>
+            <!--a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>#">Ajustes</a>
+            <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>#">Activity Log</a-->
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>#" data-toggle="modal" data-target="#logoutModal">Salir</a>
           </div>

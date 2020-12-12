@@ -28,13 +28,14 @@ class Usuario extends CI_Controller{
         }
 
         else{
+            if($this->session->userdata['rol'] == 'administrador'){
             // array asociativo con la llamada al metodo del modelo
-            
                  $usuario["ver"]=$this->Usuario_model->ver();
-                
                 // // cargo la vista y le paso los datos
                  $this->load->view("usuario_view",$usuario);
-            
+            }else{
+                redirect('inicio');
+            }
         }
         
     }
@@ -179,9 +180,8 @@ class Usuario extends CI_Controller{
 
      public function modificarUsuario()
     {
-
-        
-      
+        //print_r("modificar usuario");
+        //die();
        if($this->input->is_ajax_request()){
             $id=$_POST['id'];
             $nombre=$_POST['nombre'];

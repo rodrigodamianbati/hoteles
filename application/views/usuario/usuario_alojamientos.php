@@ -53,8 +53,9 @@
               <i class="fas fa-table"></i>
               Alojamientos</div>
               <div class="w3-row-padding w3-padding-16" id="caja">
+
     <?php if (count($products) == 0){ ?>
-              <h1 class="text-center display-3">Aun no posee alojamientos</h1>
+              <h3 class="text-center">Aun no posee alojamientos</h3>
     <?php  }?>
     <?php foreach ($products as $product){ ?>
     <hr>
