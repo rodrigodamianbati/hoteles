@@ -454,6 +454,7 @@ class Alojamiento_model extends CI_Model
 
         foreach ($consulta as $alojamiento) {
             $alojamiento->servicios = $alojamiento->servicios($alojamiento->id);
+            $alojamiento->fotos = $alojamiento->fotos($alojamiento->id);
         }
 
         return $consulta;
@@ -843,6 +844,16 @@ class Alojamiento_model extends CI_Model
         $this->db->where("servicio_aloj.id_alojamiento='$id_alojamiento'");
         $this->db->join("servicio s", "s.id=servicio_aloj.id_servicio");
         $consulta = $this->db->get('servicio_aloj');
+
+        return $consulta->result();
+    }
+
+    public function fotos($id_alojamiento)
+    {
+        $this->db->select('*');
+        $this->db->where("foto_alojamiento.id_alojamiento='$id_alojamiento'");
+        //$this->db->join("servicio s", "s.id=servicio_aloj.id_servicio");
+        $consulta = $this->db->get('foto_alojamiento');
 
         return $consulta->result();
     }

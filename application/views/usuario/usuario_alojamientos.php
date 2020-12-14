@@ -1,3 +1,7 @@
+<?php
+//print_r($products[0]->fotos);
+//die(); 
+?>
 <div id="content-wrapper">
 
         <div class="container-fluid">
@@ -60,7 +64,36 @@
     <?php foreach ($products as $product){ ?>
     <hr>
     <div class="w3-third w3-margin-bottom alojamiento-contenedor text-center mb-2">
-      <img src='<?php echo base_url().$product->foto?>' alt="Norway" style="width:30%">
+    <!-- caruuuuuuuuuuuuuuuuuuuuusel -->
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+  <?php $i=0; foreach ($product->fotos as $foto) {?>
+    <?php if ($i==0) {?>
+      <div class="carousel-item active">
+      <img class="d-block w-10" style="margin:auto;" src='<?php echo base_url().$foto->foto_url?>' alt="First slide">
+    <?php } else{ if($i==1) {?>
+      <div class="carousel-item">
+      <img class="d-block w-10" style="margin:auto;" src='<?php echo base_url().$foto->foto_url?>' alt="Second slide">
+    <?php } else { if ($i==2){?>
+      <div class="carousel-item">
+      <img class="d-block w-10" style="margin:auto;" src='<?php echo base_url().$foto->foto_url?>' alt="Third slide">
+    </div>
+  <?php }}} $i++; ?>
+  </div>
+<?php }?>
+  
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+ <!-- caruuuuuuuuuuuuuuuuuuuuusel -->
+      <!--img src='<//?php echo base_url().$product->foto?>' alt="Norway" style="width:30%"-->
       
       <div class="w3-container alojamiento-descripcion">    <!--w3-white-->
         <h3><?php echo $product->tipo?></h3>
