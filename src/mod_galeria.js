@@ -26,7 +26,11 @@ $(".fotos_borrar").on( 'change', function() {
     }
 });
 */
+var id_alojamiento;
 var checked = [];
+$( document ).ready(function() {
+id_alojamiento = parseInt($("#id_alojamiento").attr('value'));
+console.log(id_alojamiento);
 if( $('input[name=fotos_borrar]').prop("checked") ) {
     alert('Seleccionado');
 }
@@ -43,12 +47,18 @@ $('input[name=fotos_borrar]').on( 'change', function() {
     }
 });
 
+
+});
+
 function sumetear() {
+    console.log(id_alojamiento);
     $.ajax({
         type: "POST",
         url: "modificar_galeria",
-        data: { chequeados: checked },
-        success: function() {
+        data: { chequeados: checked, id_alojamiento: id_alojamiento },
+        success: function(response) {
+            console.log("algo");
+            console.log(response);
             location.reload();
         }
      });

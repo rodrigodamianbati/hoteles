@@ -12,6 +12,7 @@ foreach ($galeria as $foto) {
 }
 die(); 
 */
+
 ?>
 <div id="content-wrapper">
         
@@ -19,10 +20,7 @@ die();
 
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <a href="<?php echo base_url()."assets/"; ?>#">Dashboard</a>
-            </li>
-            <li class="breadcrumb-item active">Overview</li>
+            <li class="breadcrumb-item active"><h6>Mi alojamiento</h6></li>
           </ol>
 
           <!-- Alojamientos a modificar-->
@@ -46,10 +44,10 @@ die();
             <div class="col-lg-3 col-md-4 col-xs-6 thumb">
                 <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
                    <?php //data-image="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" ?>
-                   data-image="<?php echo $foto->foto_url?>"
+                   data-image="<?php echo base_url().$foto->foto_url?>"
                    data-target="#image-gallery">
                     <img class="img-thumbnail"
-                         src="<?php echo $foto->foto_url?>"
+                         src="<?php echo base_url().$foto->foto_url?>"
                          alt="Another alt text">
                 </a>
                 <input name="fotos_borrar" type="checkbox" value="<?php echo $foto->id?>" id="caja<?php echo $id_vista?>" />
@@ -84,7 +82,7 @@ die();
 </div>
            
             </div>
-            <input type="hidden" type="submit" name="id" value="<?php echo $product[0]->id?>"/>
+            <input type="hidden" id="id_alojamiento" value="<?php echo $product[0]->id?>"/>
             <input class="btn btn-primary btn-block" type="submit" name="borrar_fotos" value="Borrar seleccionados" onclick="sumetear()"/>
           </form>
           <div class="text-center">

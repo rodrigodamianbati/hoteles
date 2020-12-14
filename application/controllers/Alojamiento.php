@@ -578,7 +578,9 @@ class Alojamiento extends CI_Controller
         //print_r($_POST);
         //print_r($_REQUEST);
         //die();
-        $this->Alojamiento_model->modificar_galeria($_POST['chequeados']);
+        //print_r($_POST['id_alojamiento']);
+        //die();
+        $this->Alojamiento_model->modificar_galeria($_POST['id_alojamiento'],$_POST['chequeados']);
         //}
         //cuidado --------------------------------> redirect('alojamiento/mis_alojamientos');
     }
@@ -796,7 +798,7 @@ class Alojamiento extends CI_Controller
         $id_reserva = $this->input->post("baja");
         $this->Alojamiento_model->reserva_baja($id_reserva); 
 
-        redirect(base_url("alojamiento/mis_reservas"));
+        redirect(base_url("alojamiento/reservas_clientes"));
     }
     
     public function mis_pagos(){
@@ -842,6 +844,22 @@ class Alojamiento extends CI_Controller
         //die();
     }
       
+    public function baja_servicio(){
+        $id_alojamiento = $_POST['id_alojamiento'];
+        $id_servicio = $_POST['id_servicio'];
+        $this->Alojamiento_model->baja_servicio($id_alojamiento, $id_servicio);
+        
+        $todos_los_servicios = array();
+        $servicios_disponibles = array();
+
+        $todos_los_servicios = $this->todos_los_servicios();
+        $servicios_disponibles = $this->servicios_disponibles($id_alojamiento);
+
+        $this->session->set_flashdata('id_alojamiento', $id_alojamiento);
+        $this->session->set_flashdata('todos_los_servicios', $todos_los_servicios);
+        $this->session->set_flashdata('servicios_disponibles', $servicios_disponibles);
+        redirect('alojamiento/agregacion_servicios');
+    }
      /*
 Array ( [0] => stdClass Object ( [id] => 70 [seña] => 0 [precio_total] => 10000 [pago_seña] => pendiente [pago_resto] => 0 
 [fecha_realizacion] => 2018-11-23 [fecha_inicio] => 2018-11-01 [fecha_fin] => 2018-11-11 [id_estado] => 3 

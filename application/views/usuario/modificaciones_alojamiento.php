@@ -11,10 +11,7 @@
 
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <a href="<?php echo base_url()."assets/"; ?>#">Dashboard</a>
-            </li>
-            <li class="breadcrumb-item active">Overview</li>
+            <li class="breadcrumb-item active"><h6>Mi Alojamiento</h6></li>
           </ol>
 
           <!-- Alojamientos a modificar-->

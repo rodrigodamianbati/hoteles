@@ -35,7 +35,7 @@ class Alojamiento_model extends CI_Model
         $consulta = $this->db->query("SELECT id FROM alojamiento WHERE (direccion_nombre='$direccion_nombre' AND direccion_numero='$direccion_numero')");
         if ($consulta->num_rows() == 0) {
             //$id=$_SESSION['id'];
-            $consulta = $this->db->query("INSERT INTO alojamiento VALUES(NULL, '$precio','$id_localidad','$direccion_nombre','$direccion_numero', '1', '$id_usuario'/*sesion*/, '$tipo', '/hoteles/fotos_alojamientos/default.png');");
+            $consulta = $this->db->query("INSERT INTO alojamiento VALUES(NULL, '$precio','$id_localidad','$direccion_nombre','$direccion_numero', '1', '$id_usuario'/*sesion*/, '$tipo', 'fotos_alojamientos/default.png');");
 
             if ($consulta == true) {
                 return true;
@@ -627,13 +627,19 @@ class Alojamiento_model extends CI_Model
     }
 
     public function servicios_disponibles($id_alojamiento){
+        /* SELECT * FROM `servicio` JOIN `servicio_aloj` `sa` ON `servicio`.`id` = `sa`.`id_servicio` WHERE `sa`.`id_alojamiento` = '69'*/
 
+        /*
         $this->db->select("*");
         $this->db->from("servicio_aloj"); 
         $this->db->where("servicio_aloj.id_alojamiento",$id_alojamiento);
         $this->db->join("servicio_aloj sa", "servicio.id = sa.id_servicio");
         $consulta=$this->db->get("servicio");
-          
+        print_r($this->db->last_query());
+        die();*/
+        $consulta = $this->db->query("SELECT * FROM `servicio` JOIN `servicio_aloj` `sa` ON `servicio`.`id` = `sa`.`id_servicio` WHERE `sa`.`id_alojamiento` = '$id_alojamiento'");
+        //print_r($this->db->last_query());
+        //die();
         return $consulta->result();
     } 
 
@@ -881,12 +887,24 @@ class Alojamiento_model extends CI_Model
         return $consulta->result();
     }
 
-    public function modificar_galeria($lista_fotos)
+    public function modificar_galeria($id_alojamiento,$lista_fotos)
     {
 
         foreach ($lista_fotos as $id_foto) {
             $this->borrar_foto($id_foto);
         }
+
+        $this->db->select('*');
+        $this->db->where('foto_alojamiento.id_alojamiento', $id_alojamiento);
+        $consulta = $this->db->get('foto_alojamiento');
+
+        if($consulta->num_rows() == 0){
+            $data = array('default_foto'=>'fotos_alojamientos/default.png');
+
+            $this->db->where('alojamiento.id', $id_alojamiento);
+            $this->db->update('alojamiento', $data);
+        }
+
     }
 
     public function agregar_servicios($lista_servicios, $id_alojamiento)
@@ -1117,4 +1135,10 @@ class Alojamiento_model extends CI_Model
         }
     }
     
+    public function baja_servicio($id_alojamiento, $id_servicio){
+        $this->db->where('servicio_aloj.id_alojamiento', $id_alojamiento);
+        $this->db->where('servicio_aloj.id_servicio', $id_servicio);
+        $this->db->delete('servicio_aloj');
+        return true;
+    }
 }

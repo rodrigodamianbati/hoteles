@@ -4,10 +4,10 @@
 
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <a href="<?php echo base_url()."assets/"; ?>#">Dashboard</a>
-            </li>
-            <li class="breadcrumb-item active">Overview</li>
+            <!--li class="breadcrumb-item">
+              <a href="<//?php echo base_url()."assets/"; ?>#">Dashboard</a>
+            </li-->
+            <li class="breadcrumb-item active"><h6>Fotos del alojamiento</h6></li>
           </ol>
 
           <!-- Alojamientos a modificar-->
@@ -15,7 +15,7 @@
             <div class="card-header">
               <i class="fas fa-table"></i>
               Alojamiento - Modificaciones</div>
-              <div class="card-header">Agregar nuevas fotos de su alojamiento!</div>
+              <div class="card-header">Agregar nuevas fotos a su alojamiento!</div>
         <div class="card-body">
           <form action="<?=base_url("alojamiento/modificar_estado");?>" method="post">
 

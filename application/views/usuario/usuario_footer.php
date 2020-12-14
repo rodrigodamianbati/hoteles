@@ -37,7 +37,7 @@
     <script src="<?php echo base_url()."assets/"; ?>js/demo/datatables-demo.js"></script>
     <script src="<?php echo base_url()."assets/"; ?>js/demo/chart-area-demo.js"></script>
 
-    <script src="<?php echo base_url()."src/"; ?>mod_galeria.js"></script>
+    
     
   </body>
   <footer class="sticky-footer">
@@ -47,4 +47,5 @@
             </div>
           </div>
  </footer>
+ <script src="<?php echo base_url()."src/"; ?>mod_galeria.js"></script>
 </html>

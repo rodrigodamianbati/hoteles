@@ -77,6 +77,8 @@
             <i class="fa fa-ban" data-title="Sin servicios disponibles"> Sin servicios disponibles</i>
 
       <?php  }
+        //print_r($product->servicios[1]);
+        //die();
         foreach($product->servicios as $servicio) { 
             if ($servicio->descripcion == "baniera") { ?>
                     <i class="fa fa-bath"></i> 
@@ -88,17 +90,17 @@
                     <i class="fa fa-phone"></i>
             <?php } else { 
                 if ($servicio->descripcion == "television") {?>
-                    <i class="fa fa-television"></i>
-        <?php } } } } } ?>
+                    <i class="fa fa-tv"></i>
+            <?php } else {
+                if ($servicio->descripcion == "garage") {?>
+                    <i class="fa fa-car"></i>
+        <?php } } } } } }?>
         </p>
-
         <div class="row">
           <div class="col-sm-12">
           <form action="<?=base_url("alojamiento/baja");?>" style="float: left; margin-right:10px; margin-left:30px;" method="post">
           <button name="baja" value="<?php echo $product->id?>" class="btn btn-outline-primary text-center mb-2">Baja</button>
         </form>
-      
-         
           <form action="<?=base_url("alojamiento/modificaciones");?>" style="float: left; margin-right:10px;" method="post">
           <button name="modificar" value="<?php echo $product->id?>" class="btn btn-outline-primary text-center mb-2">Modificar</button>
         </form>
@@ -115,8 +117,8 @@
           <button name="agregar_fotos" value="<?php echo $product->id?>" class="btn btn-outline-primary text-center mb-2">Agregar fotos a la galeria</button>
         </form>
          
-          <form action="<?=base_url("alojamiento/agregacion_servicios");?>" style="float: left; margin-right:10px;" method="post">
-          <button name="agregar_servicios" value="<?php echo $product->id?>" class="btn btn-outline-primary text-center mb-2">Agregar nuevos servicios <br> al alojamiento</button>
+          <form action="<?=base_url("alojamiento/agregacion_servicios");?>" style="margin-right:20px;" method="post">
+          <button name="agregar_servicios" value="<?php echo $product->id?>" class="btn btn-outline-primary text-center mb-2">Servicios</button>
         </form>
           </div>
         </div>

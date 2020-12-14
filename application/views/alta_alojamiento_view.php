@@ -40,7 +40,7 @@
               <div class="form-row">
                 <div class="col-md-6">
                   <div class="form-label-group">
-
+                
                     <select id="tipo" name="tipo" class="form-control" name="tipo" placeholder="Tipo">
                     <label for="tipo">Tipo</label>
                         <?php
@@ -62,7 +62,7 @@
                 <div class="col-md-6">
                   <div class="form-label-group">
                     <input type="text" id="precio" class="form-control" placeholder="Precio" required="required" name="precio">
-                    <label for="precio">Precio</label>
+                    <label for="precio">Precio por noche</label>
                   </div>
                 </div>
               </div>

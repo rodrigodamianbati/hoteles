@@ -48,11 +48,12 @@
               </div>
             </div>
             <input class="btn btn-primary btn-block" type="submit" name="submit" value="Iniciar sesion"/>
+            <hr>
           </form>
           <div class="text-center">
             <!--a class="d-block small mt-3" href="register.html">Registrarse</a-->
             <form action="<?=base_url("usuario/registro");?>">
-              <button class="d-block small mt-3">Registrarse</button>
+              <button class="btn btn-primary btn-block">Registrarse</button>
             </form>
             <a class="d-block small" href="forgot-password.html">¿Olvido la contraseña?</a>
           </div>
