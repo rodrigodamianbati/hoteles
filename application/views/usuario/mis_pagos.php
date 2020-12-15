@@ -77,13 +77,9 @@
     </a>
     <div class="dropdown-menu" aria-labelledby="pagesDropdown">
       <h6 class="dropdown-header">Login Screens:</h6>
-      <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>login.html">Inicio de sesion</a>
-      <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>register.html">Registro</a>
-      <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>forgot-password.html">Olvide mi contraseña</a>
+      <a class="dropdown-item" href="<?php echo base_url()."hoteles/"; ?>login">Inicio de sesion</a>
+      <a class="dropdown-item" href="<?php echo base_url()."hoteles/"; ?>registro">Registro</a>
       <div class="dropdown-divider"></div>
-      <h6 class="dropdown-header">Other Pages:</h6>
-      <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>404.html">404 Page</a>
-      <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>blank.html">Blank Page</a>
     </div>
   </li>
   <!-- <li class="nav-item">
@@ -197,22 +193,26 @@
                           <?=$fila->precio_total;?>
                       </td>
                       <td>
-                        <?=$fila->pago_seña;?>
+                        <?php if($fila->pago_seña == 0){ 
+                          echo "Pendiente";
+                        }else {
+                          echo "Pagado";
+                        };?> 
                       </td>
                       <td>
                          <?=$fila->direccion_nombre." ".$fila->direccion_numero;?>
                       </td>
                         
                       <td>
-                      <form action="<?=base_url("alojamiento/pagar");?>" method="post">
-                            <button name="pagar" value="<?php echo $fila->id_reserva?>" title="Pagar" class="btn btn-dark btn-xs"></button>
-                      </form>
+                      <!--form action="<//?=base_url("alojamiento/pagar");?>" method="post"-->
+                      <li style="list-style-type: none;"><button name="pagar" value="<?php echo $fila->id_reserva ?>" class="btn btn-sm btn-primary" style="float: left; margin-right:10px; margin-left:20px; margin-bottom:20px;" data-toggle="modal" data-target=<?php echo ("#modalConfirmar".$fila->id_reserva)?>>Pagar</button></li><!--button name="pagar" value="<//?php echo $fila->id_reserva?>" title="Pagar" class="btn btn-outline-primary text-center mb-2">Pagar</button-->
+                      <!--/form-->
                         
-
-                        <form action="<?=base_url("alojamiento/reserva_baja");?>" method="post">
-                             <button name="baja" value="<?php echo $fila->id_reserva?>" title="Eliminar" class="btn btn-dark btn-xs" data-toggle="modal">
-                            </button>
-                        </form>
+                        
+                        <!--form action="<//?=base_url("alojamiento/reserva_baja");?>" method="post"-->
+                        
+                        <li style="list-style-type: none;"><button name="baja" value="<?php echo $fila->id_reserva ?>" class="btn btn-sm btn-danger" style="float: left; margin-right:10px; margin-left:20px; margin-bottom:20px;" data-toggle="modal" data-target=<?php echo ("#modalEliminar".$fila->id_reserva)?>>Eliminar</button></li><!--button name="baja" value="<//?php echo $fila->id_reserva?>" title="Eliminar" class="btn btn-outline-primary text-center mb-2" data-toggle="modal">Eliminar</button-->
+                        <!--/form-->
 
                             
                        
@@ -458,3 +458,54 @@
   </body>
 
 </html>
+
+
+<!-- MODALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLS -->
+
+
+<?php foreach($mis_pagos as $pago) {?>
+        <div class="modal fade" id="<?php echo ("modalConfirmar".$pago->id_reserva) ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel" style="margin:auto;">¿Desea realizar este pago?</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+      
+            <div class="modal-footer" style="margin:auto;">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+              <form action="<?=base_url("alojamiento/pagar");?>" style="float: center;" method="post">
+              <button type="submit" name="baja" value=<?php echo $pago->id_reserva?> id=<?php echo ("actualizar".$pago->id_reserva)?> type="button" class="btn btn-danger"> Aceptar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+<?php } ?>
+
+
+<!-- MODAAAAAAAAAAAALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL -->
+
+
+<?php foreach($mis_pagos as $pago) {?>
+        <div class="modal fade" id="<?php echo ("modalEliminar".$pago->id_reserva) ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel" style="margin:auto;">¿Desea realizar este pago?</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+      
+            <div class="modal-footer" style="margin:auto;">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+              <form action="<?=base_url("alojamiento/reserva_baja");?>" style="float: center;" method="post">
+              <button type="submit" name="baja" value=<?php echo $pago->id_reserva?> id=<?php echo ("actualizar".$pago->id_reserva)?> type="button" class="btn btn-danger"> Aceptar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+<?php } ?>
+
+
+<!-- MODAAAAAAAAAAAALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL -->

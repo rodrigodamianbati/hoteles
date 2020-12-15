@@ -39,19 +39,19 @@
       <!-- Navbar -->
       <div class="collapse navbar-collapse justify-content-end"> 
       <ul class="navbar-nav ml-auto ml-md-0">
-        <li class="nav-item dropdown no-arrow mx-1">
+        <!--li class="nav-item dropdown no-arrow mx-1">
           <a class="nav-link dropdown-toggle" href="<?php echo base_url()."assets/"; ?>#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-bell fa-fw"></i>
             <span class="badge badge-danger">9+</span>
           </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-            <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>#">Action</a>
-            <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>#">Something else here</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown no-arrow mx-1">
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown"-->
+            <!--a class="dropdown-item" href="<//?php echo base_url()."assets/"; ?>#">Action</a-->
+            <!--a class="dropdown-item" href="<//?php echo base_url()."assets/"; ?>#">Another action</a-->
+            <!--div class="dropdown-divider"></div-->
+            <!--a class="dropdown-item" href="<//?php echo base_url()."assets/"; ?>#">Something else here</a-->
+          <!--/div>
+        </li-->
+        <!--li class="nav-item dropdown no-arrow mx-1">
           <a class="nav-link dropdown-toggle" href="<?php echo base_url()."assets/"; ?>#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-envelope fa-fw"></i>
             <span class="badge badge-danger">7</span>
@@ -62,20 +62,20 @@
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>#">Something else here</a>
           </div>
-        </li>
+        </li-->
         <li class="nav-item dropdown no-arrow">
           <a class="nav-link dropdown-toggle" href="<?php echo base_url()."assets/"; ?>#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-user-circle fa-fw"></i>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-            <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>#">Ajustes</a>
-            <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>#">Actividad</a>
+            <!--a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>#">Ajustes</a>
+            <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>#">Activity Log</a-->
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Salir</a>
+            <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>#" data-toggle="modal" data-target="#logoutModal">Salir</a>
           </div>
         </li>
       </ul>
-
+      </div>
     </nav>
 
     </div>
@@ -101,7 +101,7 @@
         <li class="nav-item">
           <a class="nav-link" href="<?php echo base_url()."alojamiento/reservas_todas"; ?>">
           <i class="fas fa-shopping-cart"></i>
-            <span>Reservas</span></a>
+            <span>Todas las reservas</span></a>
         </li>
 
         <li class="nav-item">
@@ -123,7 +123,8 @@
               <i class="fas fa-users"></i>
               Usuarios Registrados</div>
             <div class="card-body">
-           
+            <div><button type="button" class="btn btn-primary btn-xs" onclick="location.href='<?php echo base_url();?>registro'">Agregar usuario</button></div>
+            <hr>
               <div id="tablaUsuarios" class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>

@@ -24,7 +24,7 @@
       <div class="collapse navbar-collapse justify-content-end"> 
       <ul class="navbar-nav ml-auto ml-md-0">
         <!--li class="nav-item dropdown no-arrow mx-1">
-          <a class="nav-link dropdown-toggle" href="<?php echo base_url()."assets/"; ?>#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="<//?php echo base_url()."assets/"; ?>#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-bell fa-fw"></i>
             <span class="badge badge-danger">9+</span>
           </a>
@@ -36,15 +36,15 @@
           <!--/div>
         </li-->
         <!--li class="nav-item dropdown no-arrow mx-1">
-          <a class="nav-link dropdown-toggle" href="<?php echo base_url()."assets/"; ?>#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="<//?php echo base_url()."assets/"; ?>#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-envelope fa-fw"></i>
             <span class="badge badge-danger">7</span>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-            <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>#">Action</a>
-            <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>#">Another action</a>
+            <a class="dropdown-item" href="<//?php echo base_url()."assets/"; ?>#">Action</a>
+            <a class="dropdown-item" href="<//?php echo base_url()."assets/"; ?>#">Another action</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>#">Something else here</a>
+            <a class="dropdown-item" href="<//?php echo base_url()."assets/"; ?>#">Something else here</a>
           </div>
         </li-->
         <li class="nav-item dropdown no-arrow">

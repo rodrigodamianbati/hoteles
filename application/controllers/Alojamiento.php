@@ -16,6 +16,8 @@ class Alojamiento extends CI_Controller
 
         $this->load->library("session");
 
+        $this->load->model("Usuario_model");
+
         //$this->load->library('upload');
 
     }
