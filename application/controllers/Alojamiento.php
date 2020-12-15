@@ -41,15 +41,20 @@ class Alojamiento extends CI_Controller
             $this->session->set_flashdata('ultima_url', current_url());
             redirect('login');
         }
+        if($this->session->userdata['rol'] == 'administrador'){
+            redirect('usuario');
+         }
 
-        else{
+        /*else{
             if($this->session->userdata['rol'] == 'administrador'){
             // array asociativo con la llamada al metodo del modelo
                  $usuario["ver"]=$this->Usuario_model->ver();
                 // // cargo la vista y le paso los datos
+                
                  $this->load->view("usuario_view",$usuario);
             }
-        }
+            
+        }*/
     }
 
     public function crear_alojamiento()
@@ -766,7 +771,10 @@ class Alojamiento extends CI_Controller
     } 
 
     public function reservas_todas(){
-        $this->seguridad();
+        if(!isset($this->session->userdata['logged_in'])){
+            $this->session->set_flashdata('ultima_url', current_url());
+            redirect('login');
+        }
         $reservas_todas=$this->Alojamiento_model->reservas_todas();
         $data['reservas_todas'] = $reservas_todas;
         $this->load->view("usuario/reservas_todas_view",$data);

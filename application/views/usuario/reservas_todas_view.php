@@ -1,6 +1,6 @@
 <?php 
-print_r($reservas_todas);
-die();
+//print_r($reservas_todas);
+//die();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -205,31 +205,7 @@ die();
 
 
       <!-- script para actualizar los dato de la tabla luego de la modificacion --> 
-        <script type="text/javascript">
-
-          function actualizarTabla(){
-               location.reload();
-          }
-
-        </script> 
-
-         
         
-        <!-- script autocompletar formulario de modificacion-->
-        <script type="text/javascript">
-            function agregarForm(datos){
-              d=datos.split('//');
-              
-              $('#idpersona').val(d[0]);
-              $('#nom').val(d[1]);
-              $('#ape').val(d[2]);
-              $('#dni').val(d[3]);
-              $('#fecnac').val(d[4]);
-              $('#ema').val(d[5]);
-              $('#cont').val(d[6]);
-            
-              }
-		    	</script>
 
         <!-- Sticky Footer -->
         
@@ -246,162 +222,7 @@ die();
     </a>
 
 <!-- script onclick del button modal llenar los input del editar  -->
-<script type="text/javascript">
-            function actualizarDatos(){
-              $id=$('#idpersona').val();
-              $nombre= $('#nom').val();
-              $apellido=$('#ape').val();
-              $dni=$('#dni').val();
-              $fecNac=$('#fecnac').val();
-              $email=$('#ema').val();
-            
-            
 
-               $cadena= "id=" + $id +
-              "&nombre=" + $nombre + 
-              "&apellido=" + $apellido +
-              "&dni=" + $dni +
-              "&fechaNacimiento=" + $fecNac +
-              "&email=" + $email ;
-
-
-            
-
-          $.ajax({
-            type:"POST",
-            url:"<?php echo base_url()."usuario/modificarUsuario"?>",
-            data: $cadena,
-            
-            success:function(r){
-              
-              actualizarTabla();
-             
-            }
-          });
-            }
-		    	</script>
-    
-
-      <!-- Modal para editar usuario-->
-      <div class="modal fade" id="modalEdicion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title" id="myModalLabel">Ingrese los nuevos datos del usuario</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              
-            </div>
-            <div class="modal-body">
-
-       
-                  
-                <input type="text" hidden="" id="idpersona" name="">
-                
-                <label>Nombre</label>
-                <input type="text" name="" id="nom" class="form-control input-sm">
-                <br>
-                <label>Apellido</label>
-                <input type="text" name="" id="ape" class="form-control input-sm">
-                <br>
-                <label>DNI</label>
-                <input type="text" name="" id="dni" class="form-control input-sm">
-                <br>
-                <label>Fecha Nacimiento</label>
-                <input type="date" name="" id="fecnac" class="form-control input-sm">
-                <br>
-                <label>Email</label>
-                <input type="text" name="" id="ema" class="form-control input-sm">
-                <br>
-               
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-              <button id="actualizar" type="button" class="btn btn-primary " onclick="actualizarDatos()"> Continuar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-<!-- script eliminacion usuario -->
-      <script type="text/javascript">
-                  function eliminarUsuario(){
-                   var id= $('#idper').val();
-                  
-                   
-                    
-                    $.ajax({
-                      type:"POST",
-                      url:"<?php echo base_url()."usuario/eliminarUsuario"?>",
-                      data: {id},
-                      
-                      success:function(r){
-                    
-                        location.reload();
-                    //  alert(r);
-                    
-                  }
-                });
-                    }
-      </script>
-
-
-      <script type="text/javascript">
-                  function agregaridElim(idUso){
-                    d=idUso.split('//');
-
-                    
-                   $('#idper').val(d[0]);
-                   
-                    
-                    }
-      </script>
-       
-       
-
-       <!-- Modal para eliminar usuario-->
-       <div class="modal fade" id="modalEliminacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title" id="myModalLabel">¿Desea eliminar este usuario?</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              
-            </div>
-            <div class="modal-body">
-            <input type="text" hidden="" id="idper" name="">
-              Seleccione "Continuar" si quiere continuar con la eliminacion.
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-              <button id="eliminar" type="button" class="btn btn-primary " onclick="eliminarUsuario()"> Continuar</button>
-              <!-- <button type="button" class="btn btn-primary">Continuar</button> -->
-            </div>
-          </div>
-        </div>
-      </div>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">¿Listo para salir?</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">Seleccione "Cerrar Sesion" debajo si esta listo para cerrar la sesion.</div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-            
-            <a class="btn btn-primary" href="<?=base_url()."inicio/cerrar_sesion";?>">Cerrar Sesion</a>
-
-            <!--PROBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANDO REGISTRO-->
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="<?php echo base_url()."assets/"; ?>vendor/jquery/jquery.min.js"></script>
