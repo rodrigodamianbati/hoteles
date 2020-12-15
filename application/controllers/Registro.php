@@ -12,6 +12,12 @@
         }
 
         public function index() {
+            //print_r("entra");
+            //die();
+            if(isset($this->session->userdata['logged_in'])){
+                $this->session->set_flashdata('ultima_url', current_url());
+                redirect('inicio');
+            }
 
             $provincias['prov'] = $this->Alojamiento_model->provincias();
              $localidades['loc'] = $this->Alojamiento_model->localidades(); 

@@ -64,6 +64,11 @@
     <?php foreach ($products as $product){ ?>
     <hr>
     <div class="w3-third w3-margin-bottom alojamiento-contenedor text-center mb-2">
+ 
+    <?php if( empty ($product->fotos) ){ ?>
+      <img class="d-block w-10" style="margin:auto;" src='<?php echo base_url().$product->foto?>'>
+    <?php } else {?>
+    
     <!-- caruuuuuuuuuuuuuuuuuuuuusel -->
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
@@ -91,7 +96,7 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-
+<?php }?>
  <!-- caruuuuuuuuuuuuuuuuuuuuusel -->
       <!--img src='<//?php echo base_url().$product->foto?>' alt="Norway" style="width:30%"-->
       
@@ -131,9 +136,10 @@
         </p>
         <div class="row">
           <div class="col-sm-12">
-          <form action="<?=base_url("alojamiento/baja");?>" style="float: left; margin-right:10px; margin-left:30px;" method="post">
-          <button name="baja" value="<?php echo $product->id?>" class="btn btn-outline-primary text-center mb-2">Baja</button>
-        </form>
+          <!--form action="<//?=base_url("alojamiento/baja");?>" style="float: left; margin-right:10px; margin-left:30px;" method="post"-->
+          <li style="list-style-type: none;"><button name="id_alojamiento" value="<?php echo $product->id ?>" class="btn btn-sm btn-danger" style="float: left; margin-right:10px; margin-left:20px;" data-toggle="modal" data-target=<?php echo ("#modalConfirmar".$product->id)?>>Eliminar</button></li>
+          <!--button name="baja" value="<//?php echo $product->id?>" class="btn btn-outline-primary text-center mb-2">Baja</button-->
+        <!--/form-->
           <form action="<?=base_url("alojamiento/modificaciones");?>" style="float: left; margin-right:10px;" method="post">
           <button name="modificar" value="<?php echo $product->id?>" class="btn btn-outline-primary text-center mb-2">Modificar</button>
         </form>
@@ -217,3 +223,30 @@
 
         </div>
         <!-- /.container-fluid -->
+
+        <!-- MODALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLS -->
+
+
+<?php foreach ($products as $alojamiento) {?>
+        <div class="modal fade" id="<?php echo ("modalConfirmar".$alojamiento->id) ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel" style="margin:auto;">¿Desea eliminar este alojamiento?</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              
+            </div>
+      
+            <div class="modal-footer" style="margin:auto;">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+              <form action="<?=base_url("alojamiento/baja");?>" style="float: center;" method="post">
+              <button type="submit" name="baja" value=<?php echo $alojamiento->id?> id=<?php echo ("actualizar".$alojamiento->id)?> type="button" class="btn btn-danger"> Aceptar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+<?php } ?>
+
+
+<!-- MODAAAAAAAAAAAALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL -->

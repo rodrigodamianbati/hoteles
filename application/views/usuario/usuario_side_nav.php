@@ -22,13 +22,9 @@ $usuario = $CI->Usuario_model->getUsuario($_SESSION['id'])[0];
     </a>
     <div class="dropdown-menu" aria-labelledby="pagesDropdown">
       <h6 class="dropdown-header">Login Screens:</h6>
-      <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>login.html">Inicio de sesion</a>
-      <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>register.html">Registro</a>
-      <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>forgot-password.html">Olvide mi contraseña</a>
+      <a class="dropdown-item" href="<?php echo base_url()."login"?>">Inicio de sesion</a>
+      <a class="dropdown-item" href="<?php echo base_url()."registro/"; ?>">Registro</a>
       <div class="dropdown-divider"></div>
-      <h6 class="dropdown-header">Other Pages:</h6>
-      <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>404.html">404 Page</a>
-      <a class="dropdown-item" href="<?php echo base_url()."assets/"; ?>blank.html">Blank Page</a>
     </div>
   </li>
   <!-- <li class="nav-item">

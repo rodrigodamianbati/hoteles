@@ -143,7 +143,14 @@ class Usuario extends CI_Controller{
 
 
     public function registro(){
-        $this->load->view("registro");
+        
+        if(isset($this->session->userdata['logged_in'])){
+            $this->session->set_flashdata('ultima_url', current_url());
+            redirect('inicio');
+        }else{
+            $this->load->view("registro");
+        }
+        
     }
 
     

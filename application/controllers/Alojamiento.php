@@ -484,7 +484,7 @@ class Alojamiento extends CI_Controller
 
     public function mis_alojamientos()
     {
-
+        $this->seguridad();
         $this->load->library('pagination');
         $id = $_SESSION['id'];
         $config['total_rows'] = $this->totalMisAlojamientos($id);
@@ -798,7 +798,7 @@ class Alojamiento extends CI_Controller
         $id_reserva = $this->input->post("baja");
         $this->Alojamiento_model->reserva_baja($id_reserva); 
 
-        redirect(base_url("alojamiento/reservas_clientes"));
+        redirect(base_url("alojamiento/mis_reservas"));
     }
     
     public function mis_pagos(){

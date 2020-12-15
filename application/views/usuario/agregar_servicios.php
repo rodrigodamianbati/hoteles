@@ -93,10 +93,10 @@ foreach ($todos_los_servicios as $servicio) {
                       }
                       if($sonIguales){ 
                         array_push($lista_ids_eliminar, $servicio->id); ?>
-                        <form action="<?=base_url("alojamiento/baja_servicio");?>" method="post">
+                        <!--form action="<//?=base_url("alojamiento/baja_servicio");?>" method="post"-->
                         <input type="hidden" type="submit" name="id_alojamiento" value="<?php echo $id_alojamiento ?>"/>
-                        <li style="list-style-type: none;"><button name="id_servicio" value="<?php echo $servicio->id ?>" class="btn btn-sm btn-danger" style="margin-bottom: 34px;">Eliminar</button></li>
-                      </form>
+                        <li style="list-style-type: none;"><button name="id_servicio" value="<?php echo $servicio->id ?>" class="btn btn-sm btn-danger" style="margin-bottom: 34px;" data-toggle="modal" data-target=<?php echo ("#modalConfirmar".$servicio->id)?>>Eliminar</button></li>
+                      <!--/form-->
                       <?php
                       }else{ ?>
                       <form action="<?=base_url("alojamiento/baja_servicio");?>" method="post">
@@ -131,7 +131,33 @@ foreach ($todos_los_servicios as $servicio) {
 
         </div>
 
+<!-- MODALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLS -->
 
+
+<?php foreach ($todos_los_servicios as $servicio) {?>
+        <div class="modal fade" id="<?php echo ("modalConfirmar".$servicio->id) ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel" style="margin:auto;">¿Desea eliminar este servicio de tu alojamiento?</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              
+            </div>
+      
+            <div class="modal-footer" style="margin:auto;">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+              <form action="<?=base_url("alojamiento/baja_servicio");?>" style="float: center;" method="post">
+              <input type="hidden" type="submit" name="id_alojamiento" value="<?php echo $id_alojamiento ?>"/>
+              <button type="submit" name="id_servicio" value=<?php echo $servicio->id?> id=<?php echo ("actualizar".$servicio->id)?> type="button" class="btn btn-danger"> Aceptar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+<?php } ?>
+
+
+<!-- MODAAAAAAAAAAAALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL -->
 
 
 

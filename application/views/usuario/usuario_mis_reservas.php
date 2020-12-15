@@ -35,15 +35,15 @@
         <p>Direccion: <?php echo $product->direccion_nombre ?>, <?php echo $product->direccion_numero ?></p>
 
         <?php if ($product->estado_reserva == 1) {if ($product->confirmacion_cliente != "confirmado") { ?>
-        <form action="<?=base_url("alojamiento/reserva_confirmar");?>" method="post">
-          <button style="margin-bottom: 10px" name="confirmar" value="<?php echo $product->id ?>" class="btn btn-outline-primary text-center mb-2">Confirmar</button>
-        </form>
+        <!--form action="<//?=base_url("alojamiento/reserva_confirmar");?>" method="post"-->
+          <button style="margin-bottom: 10px" name="confirmar" value="<?php echo $product->id ?>" class="btn btn-outline-primary text-center mb-2" data-toggle="modal" data-target=<?php echo ("#modalConfirmar".$product->id) ?>>Confirmar</button>
+        <!--/form-->
         <?php } }?>
         <div class="row">
           <div class="col-sm-12">
-          <form action="<?=base_url("alojamiento/reserva_baja");?>" style="float: center;" method="post">
-          <button name="baja" value="<?php echo $product->id?>" class="btn btn-outline-primary text-center mb-2">Baja</button>
-        </form>
+          <!--form action="<//?=base_url("alojamiento/reserva_baja");?>" style="float: center;" method="post"-->
+          <button name="baja" value="<?php echo $product->id?>" class="btn btn-outline-primary text-center mb-2" data-toggle="modal" data-target=<?php echo ("#modalBaja".$product->id)?>>Baja</button>
+          <!--/form-->
         
       </div>
     </div>
@@ -55,4 +55,44 @@
 
         </div>
         <!-- /.container-fluid -->
+        <?php foreach ($products as $product) {?>
+        <div class="modal fade" id="<?php echo "modalBaja".$product->id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel" style="margin:auto;">¿Desea dar de baja esta reserva?</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              
+            </div>
+      
+            <div class="modal-footer" style="margin:auto;">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+              <form action="<?=base_url("alojamiento/reserva_baja");?>" style="float: center;" method="post">
+              <button type="submit" name="baja" value=<?php echo $product->id?> id=<?php echo ("actualizar".$product->id)?> type="button" class="btn btn-danger"> Aceptar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <?php } ?>
 
+      <?php foreach ($products as $product) {?>
+        <div class="modal fade" id="<?php echo ("modalConfirmar".$product->id) ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel" style="margin:auto;">¿Desea confirmar esta reserva?</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              
+            </div>
+      
+            <div class="modal-footer" style="margin:auto;">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+              <form action="<?=base_url("alojamiento/reserva_confirmar");?>" style="float: center;" method="post">
+              <button type="submit" name="confirmar" value=<?php echo $product->id?> id=<?php echo ("actualizar".$product->id)?> type="button" class="btn btn-danger"> Aceptar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <?php } ?>

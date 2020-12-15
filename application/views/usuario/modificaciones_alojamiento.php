@@ -111,7 +111,7 @@
             <input class="btn btn-primary btn-block" type="submit" name="modificar" value="Modificar"/>
           </form>
           <div class="text-center">
-            <a class="d-block small mt-3" href="<?php echo base_url()."alojamiento/mis_alojamientos"; ?>">Cancelar</a>
+            <a class="d-block small mt-3" href="<?php echo base_url()."alojamiento/mis_alojamientos"; ?>">Atras</a>
           </div>
         </div>
     </div>
