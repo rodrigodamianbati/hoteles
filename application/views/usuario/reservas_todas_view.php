@@ -188,7 +188,7 @@
                          <?=$fila->estado_reserva;?>
                       </td>
                       <td>
-                         <?=$fila->pago_seña;?>
+                         <?php if ($fila->pago_seña == 0) { echo "pendiente";} else { echo "pagado";}?>
                       </td>        
                   <?php  } ?>
                   </tr>      
@@ -252,4 +252,3 @@
           </div>
         </footer>
 </html>
-
