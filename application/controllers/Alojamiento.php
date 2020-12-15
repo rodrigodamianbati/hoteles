@@ -870,6 +870,16 @@ class Alojamiento extends CI_Controller
         $this->session->set_flashdata('servicios_disponibles', $servicios_disponibles);
         redirect('alojamiento/agregacion_servicios');
     }
+
+    public function pagos_todos(){
+        if(!isset($this->session->userdata['logged_in'])){
+            $this->session->set_flashdata('ultima_url', current_url());
+            redirect('login');
+        }
+        $reservas_todas=$this->Alojamiento_model->reservas_todas();
+        $data['reservas_todas'] = $reservas_todas;
+        $this->load->view("usuario/pagos_todos_view",$data);
+    }
      /*
 Array ( [0] => stdClass Object ( [id] => 70 [seña] => 0 [precio_total] => 10000 [pago_seña] => pendiente [pago_resto] => 0 
 [fecha_realizacion] => 2018-11-23 [fecha_inicio] => 2018-11-01 [fecha_fin] => 2018-11-11 [id_estado] => 3 

@@ -185,9 +185,7 @@
                             <button id="button-edit" title="Editar" type="button" class="btn btn-dark btn-xs" data-toggle="modal" data-target="#modalEdicion" onclick="agregarForm('<?php echo $datos ?>')">
                             <i class="fas fa-edit"></i>
                             </button>
-                        
-
-
+                            <hr>
                              <button id="button-elim" title="Eliminar" type="button" class="btn btn-dark btn-xs" data-toggle="modal" data-target="#modalEliminacion" onclick="agregaridElim('<?php echo $idUso ?>')">
                               <i class="fas fa-trash-alt"></i>
                             </button>

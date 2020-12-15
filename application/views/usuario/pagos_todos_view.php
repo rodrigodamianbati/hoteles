@@ -141,9 +141,7 @@
                       <th>Dni</th>
                       <th>Pago total</th>
                       <th>Direccion</th>
-                      <th>Estado Reserva</th>
-                      <th>Fecha pedido</th>
-                      <!--th>Estado Pago</th-->
+                      <th>Estado Pago</th>
                     </tr>
                   </thead>
                   
@@ -186,16 +184,8 @@
                          <?=$fila->direccion_nombre." ".$fila->direccion_numero;?>
                       </td>
                       <td>
-                         <?=$fila->estado_reserva;?>
-                      </td>
-                      <td>
-                      <?php 
-                         $date=date_create($fila->fecha_inicio);
-                         echo (date_format($date,"d-m-Y"))?>
-                      </td>
-                      <!--td>
-                         <//?php if ($fila->pago_seña == 0) { echo "pendiente";} else { echo "pagado";}?>
-                      </td-->        
+                         <?php if ($fila->pago_seña == 0) { echo "pendiente";} else { echo "pagado";}?>
+                      </td>        
                   <?php  } ?>
                   </tr>      
                   </tbody>
