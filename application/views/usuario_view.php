@@ -175,7 +175,9 @@
                         <?=$fila->dni;?>
                       </td>
                       <td>
-                         <?=$fila->fecha_nacimiento;?>
+                         <?php 
+                         $date=date_create($fila->fecha_nacimiento);
+                         echo (date_format($date,"d-m-Y"))?>
                       </td>
       
                       <td>
