@@ -14,10 +14,11 @@
         public function index() {
             //print_r("entra");
             //die();
+            /*
             if(isset($this->session->userdata['logged_in'])){
                 $this->session->set_flashdata('ultima_url', current_url());
                 redirect('inicio');
-            }
+            }*/
 
             $provincias['prov'] = $this->Alojamiento_model->provincias();
              $localidades['loc'] = $this->Alojamiento_model->localidades(); 
@@ -29,6 +30,8 @@
                     $data = array_merge($provincias, $localidades,$roles);
                     $this->load->view("usuario/alta_usuario", $data);
                     
+                }else{
+                    redirect('inicio');
                 }
                
             }

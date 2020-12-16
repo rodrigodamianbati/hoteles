@@ -163,8 +163,9 @@
             </div>
             <input class="btn btn-primary btn-block" type="submit" name="submit" value="Registrar"/>
           </form>
+          <hr>
           <div class="text-center">
-            <a class="d-block small mt-3">Ingreso</a>
+            <a class="btn btn-secondary btn-block" href="<?=base_url()."inicio" ?>">Atras</a>
           </div>
         </div>
       </div>

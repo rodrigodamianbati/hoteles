@@ -143,8 +143,9 @@
             
             <input class="btn btn-primary btn-block" type="submit" name="submit" value="Registrar"/>
           </form>
+          <hr>
           <div class="text-center">
-            <a class="d-block small mt-3">Ingreso</a>
+            <a href="<?php echo base_url()."inicio"?>" class="btn btn-secondary btn-block">Atras</a>
           </div>
         </div>
       </div>

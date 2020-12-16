@@ -42,8 +42,8 @@
                                          
                                      
                                     // var options = {
-                                    //         //url: "<?php echo base_url();?>js/countries.json",
-                                    //         url: "<?php echo base_url();?>inicio/getCiudades",
+                                    //         //url: "<//?php echo base_url();?>js/countries.json",
+                                    //         url: "<//?php echo base_url();?>inicio/getCiudades",
                                             
                                     //         getValue: "nombre"
                                             

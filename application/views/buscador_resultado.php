@@ -12,7 +12,10 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 
+    <script src="<?php echo base_url();?>assets/js/easyautocomplete/jquery.easy-autocomplete.min.js"></script> 
 
+ <!-- CSS file -->
+  <link rel="stylesheet" href="<?php echo base_url();?>assets/js/easyautocomplete/easy-autocomplete.min.css"> 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -92,10 +95,10 @@
     <!--input name="tipo_actual" type="hidden" value="<//?php if (isset($products)) {if (!empty($products)) {$tipo = $products[0]->tipo;
     $iguales = true;foreach ($products as $product) {if ($product->tipo != $tipo) {$iguales = false;}}if ($iguales) {echo ($products[0]->tipo);}}}?>"-->
     <!--input name="current_localidad" type="sumit" type="hidden" value=""-->
-    <input name="nueva_localidad" type="text" class="w3-bar-item w3-input w3-white" placeholder="Ej: Carmen de Patagones" style="width:35%">
+    <input id="id_nueva_localidad" name="nueva_localidad" type="text" class="w3-bar-item w3-input w3-white" placeholder="Ej: Carmen de Patagones">
     <!--a href="javascript:void(0)" class="w3-bar-item w3-button w3-right"><i class="fa fa-search"> Buscar</i></a-->
 
-    <button name="buscar" class="w3-bar-item w3-button w3-right" value="buscar"><i class="fa fa-search"> Buscar</i></button>
+    <button name="buscar" class="w3-bar-item w3-button w3-right" value="buscar"><i class="fa fa-search" style="color:#ffffcc;"> Buscar</i></button>
     <script>
         var localidad =  $('input[name=localidad]').val();
         $('input[name=nueva_localidad]').change(function() {
@@ -109,6 +112,16 @@
         });
 
     </script>
+
+<script type="text/javascript">
+        var options = { url: function (phrase) { 
+    // return "api / countrySearch.php? phrase =" + phrase + "& format = json"; 
+        return "<?php echo base_url();?>inicio/getCiudadesFiltrado/" + phrase; 
+      }, 
+        getValue: "nombre" 
+      }; 
+      $("#id_nueva_localidad").easyAutocomplete(options);
+    </script>
 </div>
     <!--button name="buscar2" class="w3-bar-item w3-button w3-right" value="Buscar" id="buscar2"><i class="fa fa-search"> Buscar</i></button-->
 </form>
@@ -118,8 +131,8 @@
 
     <?php foreach ($products as $product) {?>
 
-    <div class="w3-third w3-margin-bottom alojamiento-contenedor">
-      <img src='<?php echo base_url().$product->foto ?>' alt="Norway" style="width:200px; height:180px">
+    <div class="w3-third w3-margin-bottom alojamiento-contenedor" style="margin-right:0px;">
+      <img src='<?php echo base_url().$product->foto ?>' alt="Norway" style="width:200px; height:230px; margin-left: 65px;">
 
       <div class="w3-container alojamiento-descripcion">    <!--w3-white-->
         <h3><?php echo $product->tipo ?></h3>
