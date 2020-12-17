@@ -1112,7 +1112,7 @@ class Alojamiento_model extends CI_Model
         //fecha_fin---------date("Y-m-d");
         $fechaHoy = date("Y-m-d");
         $id = $_SESSION['id'];
-        $this->db->select("a.id as id_alojamiento,reserva.confirmacion_cliente, reserva.confirmacion_dueño, reserva.precio_total, reserva.fecha_fin,reserva.fecha_inicio,reserva.fecha_realizacion, reserva.pago_seña, reserva.id_estado as estado_reserva, reserva.id, e.descripcion as estado_alojamiento, t.descripcion as tipo, a.default_foto as foto, a.precio, l.nombre as localidad, a.direccion_nombre, a.direccion_numero, AVG(v.valoracion) AS valoracion");
+        $this->db->select("a.id as id_alojamiento,reserva.confirmacion_cliente, reserva.confirmacion_dueño, reserva.precio_total, reserva.fecha_fin,reserva.fecha_inicio,reserva.fecha_realizacion, reserva.pago_seña, reserva.id_estado as estado_reserva, reserva.id, e.descripcion as estado_alojamiento, t.descripcion as tipo, a.default_foto as foto, a.precio, l.nombre as localidad, a.direccion_nombre, a.direccion_numero, v.valoracion");
         //$this->db->select("*");
         $this->db->where("reserva.id_usuario='$id'");
         $this->db->where("reserva.fecha_fin<'$fechaHoy'");
@@ -1127,7 +1127,7 @@ class Alojamiento_model extends CI_Model
         $consulta = $this->db->get('reserva');
         
        //print_r($this->db->last_query());
-        //die();
+       //();
         return $consulta->result();
     }
 
