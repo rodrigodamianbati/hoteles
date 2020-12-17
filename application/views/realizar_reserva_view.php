@@ -81,13 +81,13 @@ if($this->session->flashdata('datos_redirect')){
               <div class="form-row">
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="date" id="fecha-desde" class="form-control" placeholder="Fecha-desde" required="required" name="fecha_desde">
+                    <input type="date" id="fecha-desde" class="form-control" placeholder="Fecha-desde" required="required" name="fecha_desde" min=<?php echo date("Y-m-d") ?>>
                     <label for="fecha-desde">Desde</label> 
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="date" id="fecha-hasta" class="form-control" placeholder="Fecha-hasta" required="required" name="fecha_hasta">
+                    <input type="date" id="fecha-hasta" class="form-control" placeholder="Fecha-hasta" required="required" name="fecha_hasta" min=<?php echo date("Y-m-d") ?>>
                     <label for="fecha-hasta" >Hasta</label>
                   </div>
                 </div>

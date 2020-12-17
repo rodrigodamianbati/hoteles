@@ -129,6 +129,12 @@
     <!--i class="fas fa-shopping-cart"></i-->
       <span>Mis chats</span></a>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#" data-toggle="modal" data-target="#modalEdicion" onClick="agregarForm('<?php echo $_SESSION['id'] ?>')">
+    <i class="fas fa-edit"></i>
+    <!--i class="fas fa-shopping-cart"></i-->
+      <span>Editar mi perfil</span></a>
+  </li>
 </ul>
 
       <div id="content-wrapper">
@@ -462,37 +468,13 @@
 
 <!-- MODALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLS -->
 
-
-<?php foreach($mis_pagos as $pago) {?>
-        <div class="modal fade" id="<?php echo ("modalConfirmar".$pago->id_reserva) ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title" id="myModalLabel" style="margin:auto;">¿Desea realizar este pago?</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-      
-            <div class="modal-footer" style="margin:auto;">
-              <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
-              <form action="<?=base_url("alojamiento/pagar");?>" style="float: center;" method="post">
-              <button type="submit" name="baja" value=<?php echo $pago->id_reserva?> id=<?php echo ("actualizar".$pago->id_reserva)?> type="button" class="btn btn-danger"> Aceptar</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-<?php } ?>
-
-
-<!-- MODAAAAAAAAAAAALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL -->
-
-
+<?php if(!empty($mis_pagos)){?>
 <?php foreach($mis_pagos as $pago) {?>
         <div class="modal fade" id="<?php echo ("modalEliminar".$pago->id_reserva) ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title" id="myModalLabel" style="margin:auto;">¿Desea realizar este pago?</h4>
+              <h4 class="modal-title" id="myModalLabel" style="margin:auto;">¿Desea cancelar esta reserva?</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
       
@@ -506,6 +488,30 @@
         </div>
       </div>
 <?php } ?>
+<?php } ?>
 
+<!-- MODAAAAAAAAAAAALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL -->
+
+<?php if(!empty($mis_pagos)){ ?>
+<?php foreach($mis_pagos as $pago) {?>
+        <div class="modal fade" id="<?php echo ("modalConfirmar".$pago->id_reserva) ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel" style="margin:auto;">¿Desea realizar este pago?</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+      
+            <div class="modal-footer" style="margin:auto;">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+              <form action="<?=base_url("alojamiento/pagar");?>" style="float: center;" method="post">
+              <button type="submit" name="pagar" value=<?php echo $pago->id_reserva?> id=<?php echo ("actualizar".$pago->id_reserva)?> type="button" class="btn btn-danger"> Aceptar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+<?php } ?>
+<?php } ?>
 
 <!-- MODAAAAAAAAAAAALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL -->

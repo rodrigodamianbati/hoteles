@@ -96,3 +96,33 @@
         </div>
       </div>
       <?php } ?>
+
+       <!-- Bootstrap core JavaScript-->
+    <script src="<?php echo base_url()."assets/"; ?>vendor/jquery/jquery.min.js"></script>
+    <script src="<?php echo base_url()."assets/"; ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="<?php echo base_url()."assets/"; ?>vendor/jquery-easing/jquery.easing.min.js"></script>
+
+      <?php if ($this->session->flashdata('pago') == 'cancelado'){ ?>
+    <div class="modal" tabindex="-1" role="dialog" id="pago_modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">El pago no pude realizarse!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>El pago no pude realizarse porque ya paso la fecha del pago.</p>
+      </div>
+      <div class="modal-footer">
+        <!--button type="button" class="btn btn-primary">Guardar</button-->
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <script>$('#pago_modal').modal('show')</script>
+  <?php }?>

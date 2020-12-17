@@ -168,7 +168,7 @@ $usuario = $CI->Usuario_model->getUsuario($_SESSION['id'])[0];
       <span>Mis chats</span></a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#" data-toggle="modal" data-target="#modalEdicion" onClick="agregarForm('<?php echo $usuario->id ?>')">
+    <a class="nav-link" href="#" data-toggle="modal" data-target="#modalEdicion" onClick="agregarForm('<?php echo $_SESSION['id']?>')">
     <i class="fas fa-edit"></i>
     <!--i class="fas fa-shopping-cart"></i-->
       <span>Editar mi perfil</span></a>

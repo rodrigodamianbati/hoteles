@@ -112,8 +112,9 @@
             </div>
             <input class="btn btn-primary btn-block" type="submit" name="submit" value="Guardar"/>
           </form>
+          <hr>
           <div class="text-center">
-            <a class="d-block small mt-3">Cancelar</a>
+            <a class="btn btn-secondary btn-block" href="<?=base_url().'inicio'?>">Cancelar</a>
           </div>
         </div>
       </div>

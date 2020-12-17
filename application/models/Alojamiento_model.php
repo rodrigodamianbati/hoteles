@@ -1055,7 +1055,20 @@ class Alojamiento_model extends CI_Model
 
     public function reserva_pagar($id_reserva){
 
-        $this->db->query("UPDATE reserva SET pago_seña = 1 WHERE reserva.id = '$id_reserva';");
+        $fecha_hoy = date("Y-m-d");
+        $consulta = $this->db->query("SELECT * FROM reserva WHERE (reserva.id='$id_reserva' AND reserva.fecha_inicio>='$fecha_hoy')");
+        //print_r($this->db->last_query());
+        //die();
+        if ($consulta->num_rows() == 0) {
+            $this->db->query("UPDATE reserva SET pago_seña = 1 WHERE reserva.id = '$id_reserva';");
+            return true;
+        }else{
+            $this->db->where('reserva.id', $id_reserva);
+            $this->db->delete('reserva');
+            $this->session->set_flashdata('pago', 'cancelado');
+        }
+        
+        
     
     } 
     

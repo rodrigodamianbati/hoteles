@@ -831,7 +831,8 @@ class Alojamiento extends CI_Controller
     public function pagar(){
         $this->seguridad();
         $id_reserva = $this->input->post("pagar");
-        $this->Alojamiento_model->reserva_pagar($id_reserva); 
+        $this->Alojamiento_model->reserva_pagar($id_reserva);
+       
 
         redirect(base_url("alojamiento/mis_reservas"));
     }  
