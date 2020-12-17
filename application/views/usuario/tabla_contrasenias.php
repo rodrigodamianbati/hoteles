@@ -239,10 +239,9 @@ function actualizarTabla(){
                   function cambiarContraseña(){
                    var id= $('#idper').val();
                    var contrasenia = $('#id-contrasenia').val();
-                
+                   var contraeniaRepeticion = $('#id-contrasenia-confirm').val();
                   
-                   
-                    
+                   if(contrasenia == contraeniaRepeticion){
                     $.ajax({
                       type:"POST",
                       url:"<?php echo base_url()."usuario/cambiarContrasenia"?>",
@@ -255,6 +254,13 @@ function actualizarTabla(){
                     
                   }
                 });
+                   }else{
+                      $('#contraseña_modal').modal('show');
+                   }
+                   
+                   
+                    
+                    
                     }
       </script>
 
@@ -350,3 +356,23 @@ function actualizarTabla(){
   </body>
 
 </html>
+
+<div class="modal" tabindex="-1" role="dialog" id="contraseña_modal" style="color:red;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Error</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>La constraseñas de ambos campos ingresadas deben coincidir.</p>
+      </div>
+      <div class="modal-footer">
+        <!--button type="button" class="btn btn-primary">Guardar</button-->
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

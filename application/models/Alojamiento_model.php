@@ -498,6 +498,7 @@ class Alojamiento_model extends CI_Model
         $this->db->select("alojamiento.id, e.descripcion as estado, t.descripcion as tipo, alojamiento.default_foto as foto, alojamiento.precio, l.nombre as localidad, alojamiento.direccion_nombre, alojamiento.direccion_numero");
         //$this->db->select("a.id, a.default_foto as foto, a.precio");
         //$this->db->from("alojamiento a");
+        $this->db->where("alojamiento.id_estado=1");
         $this->db->where("alojamiento.id_localidad IN ($where_clause)", null, false);
         //$this->db->where("a.id_localidad",2);
         $this->db->join("estado_aloj e", "alojamiento.id_estado = e.id");
