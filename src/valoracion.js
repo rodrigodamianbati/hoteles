@@ -1,25 +1,53 @@
 
 //console.log("valoracion");
-var valor = parseInt($('#mi_valoracion').val());
-console.log("el valor es: "+valor);
+$( document ).ready(function() {
+    console.log( "listo!" );
 
-//$("#"+valor).prop('checked', true);
-if(valor == 1){
-    $("#uno").attr('checked', 'checked');
-}else{
-    if(valor == 2){
-        $("#dos").attr('checked', 'checked');
+$( ".puntaje" ).click(function(event) {
+    var valor
+    //alert(parseInt(event.target.id));
+    valor = parseInt(event.target.id);
+    console.log("el valor es: "+valor);
+    if(valor == 1){
+        console.log("cambio el 1");
+        limpiar(valor);
+        $("#uno").attr('checked', 'checked');
     }else{
-        if(valor == 3){
-            $("#tres").attr('checked', 'checked');
+        if(valor == 2){
+            console.log("cambio el 2");
+            limpiar(valor);
+            $("#dos").attr('checked', 'checked');
         }else{
-            if(valor == 4){
-                $("#cuatro").attr('checked', 'checked');
+            if(valor == 3){
+                console.log("cambio el 3");
+                limpiar(valor);
+                $("#tres").attr('checked', 'checked');
             }else{
-                if(valor == 5){
-                    $("#cinco").attr('checked', 'checked');
+                if(valor == 4){
+                    console.log("cambio el 4");
+                    limpiar(valor);
+                    $("#cuatro").attr('checked', 'checked');
+                }else{
+                    if(valor == 5){
+                        console.log("cambio el 5");
+                        limpiar(valor);
+                        $("#cinco").attr('checked', 'checked');
+                    }
                 }
             }
         }
     }
+});
+
+function limpiar(valor){
+    console.log("primero limpio");
+    $("#uno").attr('checked', false);
+    $("#dos").attr('checked', false);
+    $("#tres").attr('checked',  false);
+    $("#cuatro").attr('checked', false);
+    $("#cinco").attr('checked', false);
 }
+
+});
+//$("#"+valor).prop('checked', true);
+

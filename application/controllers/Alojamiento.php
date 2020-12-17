@@ -816,10 +816,12 @@ class Alojamiento extends CI_Controller
         $id = $_SESSION['id'];
         $aux = $this->Alojamiento_model->mis_reservas_simple($id);
 
-        $mis_reservas=null;  
+        //$mis_reservas=null;
+        $mis_reservas=array();  
         foreach ($aux as $reserva) {
             if(($reserva->confirmacion_cliente == 'confirmado') and ($reserva->confirmacion_dueño == 'confirmado')){
-                $mis_reservas[]=$reserva; 
+                //$mis_reservas[]=$reserva;
+                array_push($mis_reservas, $reserva);
             }
         }
         //print_r($mis_reservas);

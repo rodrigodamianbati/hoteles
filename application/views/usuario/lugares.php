@@ -13,16 +13,16 @@
           
 
           <!-- Alojamientos del usuario-->
-          <div class="card mb-3">
+          <div class="card mb-3" >
             <div class="card-header">
               <i class="fas fa-table"></i>
               Alojamientos</div>
-              <div class="w3-row-padding w3-padding-16">
+              <div class="w3-row-padding w3-padding-16"  >
 
     <?php foreach ($products as $product) {?>
 
-    <div class="w3-third w3-margin-bottom alojamiento-contenedor" id="caja">
-      <img src='<?php echo $product->foto ?>' alt="Norway" style="width:30%">
+    <div class="w3-third w3-margin-bottom alojamiento-contenedor text-center" id="caja">
+      <img src='<?php echo base_url().$product->foto ?>' alt="Norway">
 
       <div class="w3-container alojamiento-descripcion">    <!--w3-white-->
         <h3><?php echo $product->tipo ?></h3>
@@ -35,7 +35,7 @@
 
         <form class="text-center mb-2" action="<?=base_url("alojamiento/puntuar_alojamiento");?>" method="post">
           <h1 id="rating_h1">Tu valoracion del alojamiento</h1>
-          <div class="rating text-center mb-2"> <input type="radio" name="rating" value="5" id="cinco"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="cuatro"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="tres"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="dos"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="uno"><label for="1">☆</label>
+          <div class="rating text-center mb-2"> <input type="radio" name="rating" value="5" id="cinco"><label class="puntaje" id="5" for="5">☆</label> <input class="puntaje" type="radio" name="rating" value="4" id="cuatro"><label class="puntaje" id="4" for="4">☆</label> <input type="radio" name="rating" value="3" id="tres"><label class="puntaje" id="3" for="3">☆</label> <input type="radio" name="rating" value="2" id="dos"><label class="puntaje" id="2" for="2">☆</label> <input type="radio" name="rating" value="1" id="uno"><label class="puntaje" id="1" for="1">☆</label>
           </div>
           <button id="boton_valoracion" name="alojamiento" value="<?php echo $product->id ?>" class="btn btn-outline-primary text-center mb-2">Puntuar alojamiento</button>
         </form>

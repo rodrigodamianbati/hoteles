@@ -187,6 +187,9 @@ class Alojamiento_model extends CI_Model
 
         $consulta = $this->db->get('reserva');
 
+       //print_r($this->db->last_query());
+        //die();
+
         return $consulta->result();
     }
 
@@ -1060,7 +1063,7 @@ class Alojamiento_model extends CI_Model
         $consulta = $this->db->query("SELECT * FROM reserva WHERE (reserva.id='$id_reserva' AND reserva.fecha_inicio>='$fecha_hoy')");
         //print_r($this->db->last_query());
         //die();
-        if ($consulta->num_rows() == 0) {
+        if ($consulta->num_rows() > 0) {
             $this->db->query("UPDATE reserva SET pago_seña = 1 WHERE reserva.id = '$id_reserva';");
             return true;
         }else{
@@ -1114,7 +1117,7 @@ class Alojamiento_model extends CI_Model
         $this->db->where("reserva.id_usuario='$id'");
         $this->db->where("reserva.fecha_fin<'$fechaHoy'");
         $this->db->join("alojamiento a", "reserva.id_alojamiento = a.id");
-        $this->db->join("valoracion_cliente_alojamiento v", "v.id_alojamiento = a.id");
+        $this->db->join("valoracion_cliente_alojamiento v", "v.id_alojamiento = a.id", 'left');
 
         $this->db->join("estado_aloj e", "a.id_estado = e.id");
         $this->db->join("tipo_aloj t", "a.id_tipo = t.id");
@@ -1123,7 +1126,7 @@ class Alojamiento_model extends CI_Model
 
         $consulta = $this->db->get('reserva');
         
-       // print_r($this->db->last_query());
+       //print_r($this->db->last_query());
         //die();
         return $consulta->result();
     }
