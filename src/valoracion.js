@@ -4,10 +4,11 @@ $( document ).ready(function() {
     console.log( "listo!" );
 
 //mi_valoracion = $("#mi_valoracion").val();
+/*
 valoracion($("#mi_valoracion").val());
 
 function valoracion(valor){
-    
+
     console.log("el valor es: "+valor);
     if(valor == 1){
         console.log("cambio el 1");
@@ -39,38 +40,49 @@ function valoracion(valor){
         }
     }
     console.log("funcion valoracion entro: "+valor);
-}
+}*/
 
 $( ".puntaje" ).click(function(event) {
     var valor
+    
     //alert(parseInt(event.target.id));
-    valor = parseInt(event.target.id);
+    //valor = parseInt(event.target.id);
+    //console.log(event.target.class);
+    valor = event.target.id;
+    //valor = $(event.target).attr('class');
+    value = $("#"+valor).attr('value');
 
-    console.log("el valor es: "+valor);
-    if(valor == 1){
+    var id_alojamiento = $("#"+valor).attr('alojamiento');
+    //console.log($(this).val());
+    //console.log("el id es:"+ $("#"+event.target.id));
+    console.log("el value es: "+value);
+    //console.log("el valor es: "+valor);
+    console.log("el id es: "+valor);
+
+    if(value == 1){
         console.log("cambio el 1");
-        limpiar(valor);
-        $("#uno").attr('checked', 'checked');
+        limpiar(id_alojamiento);
+        $("."+valor).attr('checked', 'checked');
     }else{
-        if(valor == 2){
+        if(value == 2){
             console.log("cambio el 2");
-            limpiar(valor);
-            $("#dos").attr('checked', 'checked');
+            limpiar(id_alojamiento);
+            $("."+valor).attr('checked', 'checked');
         }else{
-            if(valor == 3){
+            if(value == 3){
                 console.log("cambio el 3");
-                limpiar(valor);
-                $("#tres").attr('checked', 'checked');
+                limpiar(id_alojamiento);
+                $("."+valor).attr('checked', 'checked');
             }else{
-                if(valor == 4){
+                if(value == 4){
                     console.log("cambio el 4");
-                    limpiar(valor);
-                    $("#cuatro").attr('checked', 'checked');
+                    limpiar(id_alojamiento);
+                    $("."+valor).attr('checked', 'checked');
                 }else{
-                    if(valor == 5){
+                    if(value == 5){
                         console.log("cambio el 5");
-                        limpiar(valor);
-                        $("#cinco").attr('checked', 'checked');
+                        limpiar(id_alojamiento);
+                        $("."+valor).attr('checked', 'checked');
                     }
                 }
             }
@@ -78,14 +90,16 @@ $( ".puntaje" ).click(function(event) {
     }
 });
 
-function limpiar(valor){
-    console.log("el valor en la funcion es: "+valor);
+function limpiar(id_alojamiento){
+    console.log("el id del alojamiento en la funcion es: "+id_alojamiento);
     console.log("primero limpio");
-    $("#uno").attr('checked', false);
-    $("#dos").attr('checked', false);
-    $("#tres").attr('checked',  false);
-    $("#cuatro").attr('checked', false);
-    $("#cinco").attr('checked', false);
+    console.log("limpiando");
+    $(".uno"+id_alojamiento).attr('checked', false);
+    $(".dos"+id_alojamiento).attr('checked', false);
+    $(".tres"+id_alojamiento).attr('checked', false);
+    $(".cuatro"+id_alojamiento).attr('checked', false);
+    $(".cinco"+id_alojamiento).attr('checked', false);
+    console.log("se limpio");
 }
 
 });

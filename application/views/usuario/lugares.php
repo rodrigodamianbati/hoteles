@@ -36,14 +36,17 @@
 
         <form class="text-center mb-2" action="<?=base_url("alojamiento/puntuar_alojamiento");?>" method="post">
           <h1 id="rating_h1">Tu valoracion del alojamiento</h1>
-          <div class="rating text-center mb-2"> <input type="radio" name="rating" value="5" id="cinco"><label class="puntaje" id="5" for="5">☆</label> <input class="puntaje" type="radio" name="rating" value="4" id="cuatro"><label class="puntaje" id="4" for="4">☆</label> <input type="radio" name="rating" value="3" id="tres"><label class="puntaje" id="3" for="3">☆</label> <input type="radio" name="rating" value="2" id="dos"><label class="puntaje" id="2" for="2">☆</label> <input type="radio" name="rating" value="1" id="uno"><label class="puntaje" id="1" for="1">☆</label>
+          <div class="rating text-center mb-2"> <input class=<?="cinco".$product->id?> type="radio" name="rating" value="5" id="cinco"><label alojamiento="<?=$product->id ?>" class="puntaje" id=<?="cinco".$product->id?> for="5" value="5">☆</label> <input type="radio" name="rating" value="4" class=<?="cuatro".$product->id?>><label alojamiento="<?=$product->id ?>" class="puntaje" for="4" value="4" id=<?="cuatro".$product->id?>>☆</label> <input type="radio" name="rating" value="3" id="tres" class=<?="tres".$product->id?>><label alojamiento="<?=$product->id ?>" class="puntaje" for="3" value="3" id=<?="tres".$product->id?>>☆</label> <input type="radio" name="rating" value="2" id="dos" class=<?="dos".$product->id?>><label alojamiento="<?=$product->id ?>" class="puntaje" id=<?="dos".$product->id?> for="2" value="2">☆</label> <input type="radio" name="rating" value="1" id="uno" class=<?="uno".$product->id?>><label alojamiento="<?=$product->id ?>" class="puntaje" id=<?="uno".$product->id?> for="1" value="1">☆</label>
           </div>
           <button id="boton_valoracion" name="alojamiento" value="<?php echo $product->id ?>" class="btn btn-outline-primary text-center mb-2">Puntuar alojamiento</button>
         </form>
       </div>
     </div>
     <input type="hidden" id="mi_valoracion" value=<?php if (isset($product->valoracion)){ echo $product->valoracion;} else { echo 0;}?>>
+    <hr>
+    <hr>
     <?php } //} ?>
+    
 </div>
             <div class="card-footer small text-muted">Actualizado ayer a las 11:59 PM</div>
           </div>
