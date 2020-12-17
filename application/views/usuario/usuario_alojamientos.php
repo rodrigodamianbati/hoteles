@@ -1,6 +1,7 @@
 <?php
 //print_r($products[0]->fotos);
 //die(); 
+
 ?>
 <div id="content-wrapper">
 
@@ -248,5 +249,31 @@
       </div>
 <?php } ?>
 
+<script src="<?php echo base_url()."assets/"; ?>vendor/jquery/jquery.min.js"></script>
+    <script src="<?php echo base_url()."assets/"; ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-<!-- MODAAAAAAAAAAAALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL -->
+    <!-- Core plugin JavaScript-->
+    <script src="<?php echo base_url()."assets/"; ?>vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<?php if ($this->session->flashdata('seguridad') == 'no_usuario'){?>
+    <div class="modal" tabindex="-1" role="dialog" id="myModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">ERROR!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>USTED NO ES EL DUEÑO DE ESTE ALOJAMIENTO.</p>
+      </div>
+      <div class="modal-footer">
+        <!--button type="button" class="btn btn-primary">Guardar</button-->
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <script type="text/javascript">$('#myModal').modal('show')</script>
+  <?php }?>

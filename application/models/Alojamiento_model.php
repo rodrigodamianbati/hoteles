@@ -888,8 +888,20 @@ class Alojamiento_model extends CI_Model
 
     public function baja($id)
     {
-        $this->db->where('alojamiento.id', $id);
-        $this->db->delete('alojamiento');
+        //print_r($id);
+        //die();
+        $id_usuario = $_SESSION['id'];
+        $consulta = $this->db->query("SELECT * FROM usuario u JOIN alojamiento a ON (a.id_usuario = u.id) WHERE (u.id='$id_usuario' AND a.id='$id') ");
+        //print_r($this->db->last_query());
+        //die();
+        if($consulta->num_rows() > 0){
+            $this->db->where('alojamiento.id', $id);
+            $this->db->delete('alojamiento');
+            return true;
+        }else{
+            return false;
+        }
+        
     }
 
     public function galeria($id)

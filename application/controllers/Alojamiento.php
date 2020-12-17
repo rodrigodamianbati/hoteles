@@ -518,7 +518,14 @@ class Alojamiento extends CI_Controller
         //die();
         $this->seguridad();
         if ($this->input->post("baja")) {
-            $this->Alojamiento_model->baja($this->input->post("baja"));
+            if($this->Alojamiento_model->baja($this->input->post("baja"))){
+                //print_r("borra");
+                //die();
+            }else{
+               // print_r("no borra");
+                //die();
+                $this->session->set_flashdata('seguridad', 'no_usuario');
+            }
         }
         redirect('alojamiento/mis_alojamientos');
     }

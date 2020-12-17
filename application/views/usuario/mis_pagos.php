@@ -211,7 +211,9 @@
                         
                       <td>
                       <!--form action="<//?=base_url("alojamiento/pagar");?>" method="post"-->
+                      <?php if($fila->pago_seña == 0){ ?>
                       <li style="list-style-type: none;"><button name="pagar" value="<?php echo $fila->id_reserva ?>" class="btn btn-sm btn-primary" style="float: left; margin-right:10px; margin-left:20px; margin-bottom:20px;" data-toggle="modal" data-target=<?php echo ("#modalConfirmar".$fila->id_reserva)?>>Pagar</button></li><!--button name="pagar" value="<//?php echo $fila->id_reserva?>" title="Pagar" class="btn btn-outline-primary text-center mb-2">Pagar</button-->
+                      <?php }?>
                       <!--/form-->
                         
                         

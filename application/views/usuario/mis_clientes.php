@@ -1,7 +1,3 @@
-<?php
-    //print_r($reservas_clientes[0]);
-    //die(); 
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -94,7 +90,7 @@ $usuario = $CI->Usuario_model->getUsuario($_SESSION['id'])[0];
 ?>
 
 
-<div id="wrapper">
+<div id="wrapper" style="overflow-x: auto;">
 
 <!-- Sidebar -->
 <ul class="sidebar navbar-nav">
@@ -342,19 +338,24 @@ $usuario = $CI->Usuario_model->getUsuario($_SESSION['id'])[0];
                          <?=$fila->estado_res;?>
                       </td>
                       <td>
-                      <form action="<?=base_url("alojamiento/reserva_confirmar_duenio");?>" method="post">
-                            <button name="confirmar" value="<?php echo $fila->id_reserva?>" title="Confirmar" class="btn btn-outline-primary text-center mb-2">Confirmar</button>
-                      </form>
+                      <?php if ( $fila->estado_res != "reservado" ) { ?>
+                      <!--form action="<//?=base_url("alojamiento/reserva_confirmar_duenio");?>" method="post"-->
+                            <!--button name="confirmar" value="<//?php echo $fila->id_reserva;?>" title="Confirmar" class="btn btn-outline-primary text-center mb-2">Confirmar</button-->
+                            <button style="margin-bottom: 10px" name="confirmar" value="<?php echo $fila->id_reserva ?>" class="btn btn-outline-primary text-center mb-2" data-toggle="modal" data-target=<?php echo ("#modalConfirmar".$fila->id_reserva) ?>>Confirmar</button>
+                      <!--/form-->
+                      <?php }?>
+                      <!--?php}?-->
+                      <?php}?>
                         
-
-                        <form action="<?=base_url("alojamiento/reserva_baja");?>" method="post">
-                             <button name="baja" value="<?php echo $fila->id_reserva?>" title="Eliminar" class="btn btn-outline-primary text-center mb-2" data-toggle="modal" data-target="#modalEdicion">Baja</button>
-                        </form>
+                        <!--form action="<//?=base_url("alojamiento/reserva_baja");?>" method="post"-->
+                        <button name="baja" value="<?php echo $fila->id_reserva;?>" class="btn btn-outline-primary text-center mb-2" data-toggle="modal" data-target=<?php echo ("#modalBaja".$fila->id_reserva)?>>Baja</button>
+                             <!--button name="baja" value="<//?php echo $fila->id_reserva;?>" title="Eliminar" class="btn btn-outline-primary text-center mb-2" data-toggle="modal" data-target="#modalEdicion">Baja</button-->
+                        <!--/form-->
 
                             
                        
                       </td>                      
-                  <?php  } ?>
+                  <?php } ?>
                   </tr>      
                   </tbody>
                 </table>
@@ -595,3 +596,47 @@ $usuario = $CI->Usuario_model->getUsuario($_SESSION['id'])[0];
   </body>
 
 </html>
+
+
+<!-- /.container-fluid -->
+<?php foreach ($reservas_clientes as $fila) {?>
+        <div class="modal fade" id="<?php echo "modalBaja".$fila->id_reserva?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel" style="margin:auto;">¿Desea dar de baja esta reserva?</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              
+            </div>
+      
+            <div class="modal-footer" style="margin:auto;">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+              <form action="<?=base_url("alojamiento/reserva_baja");?>" style="float: center;" method="post">
+              <button type="submit" name="baja" value=<?php echo $fila->id_reserva?> id=<?php echo ("actualizar".$fila->id_reserva)?> type="button" class="btn btn-danger"> Aceptar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <?php } ?>
+
+      <?php foreach ($reservas_clientes as $fila) {?>
+        <div class="modal fade" id="<?php echo ("modalConfirmar".$fila->id_reserva) ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel" style="margin:auto;">¿Desea confirmar esta reserva?</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              
+            </div>
+      
+            <div class="modal-footer" style="margin:auto;">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+              <form action="<?=base_url("alojamiento/reserva_confirmar_duenio");?>" style="float: center;" method="post">
+              <button type="submit" name="confirmar" value=<?php echo $fila->id_reserva?> id=<?php echo ("actualizar".$fila->id_reserva)?> type="button" class="btn btn-danger"> Aceptar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <?php } ?>
